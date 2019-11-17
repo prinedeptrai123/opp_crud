@@ -16,6 +16,7 @@ namespace crud_genarate.SQLConnection
         public string Username { get; set; }
         public string Password { get; set; }
         public bool UseWindowsAuth { get; set; }
+        public string Catalog { get; set; }
 
         private string ConnectionString
         {
@@ -23,6 +24,7 @@ namespace crud_genarate.SQLConnection
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 builder.DataSource = Server;
+                if (!String.IsNullOrEmpty(Catalog)) builder.InitialCatalog = Catalog;
                 builder.IntegratedSecurity = false;
                 builder.ConnectTimeout = 10;
                 if (UseWindowsAuth)
@@ -73,14 +75,14 @@ namespace crud_genarate.SQLConnection
             return false;
         }
 
-        public DataTable GetDataTalbe(string querryString)
+        private DataTable GetDataTalbe(string query)
         {
             DataTable db = new DataTable();
             try
             {
                 using(var conn = new SqlConnection(this.ConnectionString))
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(querryString, conn);
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     DataSet ds = new DataSet("Data");
                     da.Fill(ds);
                     if (ds.Tables.Count == 1)
@@ -108,6 +110,23 @@ namespace crud_genarate.SQLConnection
                 "AND m.name not in ('master','tempdev','modeldev','MSDBData') " +
                 "ORDER BY m.name;";
             return GetDataTalbe(querry);
+        }
+
+        public DataTable GetTableList()
+        {
+            string query = "SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_TYPE ='BASE TABLE' order by TABLE_NAME";
+            return GetDataTalbe(query);
+        }
+
+        /// <summary>
+        /// Trả về tên cột kiểu dữ liệu tương ứng
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public DataTable GetColumnList(string tableName)
+        {
+            string query = $"SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
+            return GetDataTalbe(query);
         }
     }
 

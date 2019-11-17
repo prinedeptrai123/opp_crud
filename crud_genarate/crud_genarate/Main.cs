@@ -14,6 +14,7 @@ namespace crud_genarate
 {
     public partial class Main : Form
     {
+        SQLConnector connector;
         public Main()
         {
             InitializeComponent();
@@ -23,12 +24,28 @@ namespace crud_genarate
         {
             string SQLServer = "DESKTOP-GR8RADT\\SQLEXPRESS";
 
-            SQLConnector connector = new SQLConnector(SQLServer);
+            connector = new SQLConnector(SQLServer);
 
             DataTable catelog = connector.GetCatalogList();
             cbxCatalog.DataSource = catelog;
             cbxCatalog.DisplayMember = "name";
             cbxCatalog.Enabled = true;
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            connector.Catalog = cbxCatalog.Text;
+            DataTable db = connector.GetTableList();
+            for(int i = 0; i < db.Rows.Count - 1; i++)
+            {
+                Debug.WriteLine(db.Rows[i][0]);
+                DataTable column = connector.GetColumnList(db.Rows[i][0].ToString());
+                for (int j = 0; j < column.Rows.Count; j++)
+                {
+                    Debug.WriteLine(column.Rows[j][0] + " " + column.Rows[j][1]);
+
+                }
+            }
         }
     }
 }

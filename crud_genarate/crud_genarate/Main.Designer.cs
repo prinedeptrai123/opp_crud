@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSQLServer = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtPassWord = new System.Windows.Forms.TextBox();
-            this.btnTestConnect = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbxCatalog = new System.Windows.Forms.ComboBox();
-            this.btnReset = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.cbxCatalog = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnTestConnect = new System.Windows.Forms.Button();
+            this.txtPassWord = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtSQLServer = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,30 +64,85 @@
             this.panel1.Size = new System.Drawing.Size(509, 292);
             this.panel1.TabIndex = 0;
             // 
-            // btnExit
+            // btnNext
             // 
-            this.btnExit.Location = new System.Drawing.Point(22, 310);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(96, 38);
-            this.btnExit.TabIndex = 1;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnNext.Location = new System.Drawing.Point(345, 239);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(135, 41);
+            this.btnNext.TabIndex = 11;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // label1
+            // btnReset
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "SQL Sever";
+            this.btnReset.Location = new System.Drawing.Point(405, 209);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 24);
+            this.btnReset.TabIndex = 10;
+            this.btnReset.Text = "reset";
+            this.btnReset.UseVisualStyleBackColor = true;
             // 
-            // txtSQLServer
+            // cbxCatalog
             // 
-            this.txtSQLServer.Location = new System.Drawing.Point(90, 12);
-            this.txtSQLServer.Name = "txtSQLServer";
-            this.txtSQLServer.Size = new System.Drawing.Size(390, 22);
-            this.txtSQLServer.TabIndex = 1;
+            this.cbxCatalog.FormattingEnabled = true;
+            this.cbxCatalog.Location = new System.Drawing.Point(90, 209);
+            this.cbxCatalog.Name = "cbxCatalog";
+            this.cbxCatalog.Size = new System.Drawing.Size(299, 24);
+            this.cbxCatalog.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 212);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "catalog";
+            // 
+            // btnTestConnect
+            // 
+            this.btnTestConnect.Location = new System.Drawing.Point(90, 143);
+            this.btnTestConnect.Name = "btnTestConnect";
+            this.btnTestConnect.Size = new System.Drawing.Size(390, 42);
+            this.btnTestConnect.TabIndex = 7;
+            this.btnTestConnect.Text = "Test Connection";
+            this.btnTestConnect.UseVisualStyleBackColor = true;
+            this.btnTestConnect.Click += new System.EventHandler(this.btnTestConnect_Click);
+            // 
+            // txtPassWord
+            // 
+            this.txtPassWord.Enabled = false;
+            this.txtPassWord.Location = new System.Drawing.Point(90, 115);
+            this.txtPassWord.Name = "txtPassWord";
+            this.txtPassWord.Size = new System.Drawing.Size(390, 22);
+            this.txtPassWord.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 115);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 17);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Password";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Enabled = false;
+            this.txtUserName.Location = new System.Drawing.Point(90, 71);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(390, 22);
+            this.txtUserName.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 17);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "UserName";
             // 
             // checkBox1
             // 
@@ -101,84 +156,30 @@
             this.checkBox1.Text = "Windows authentications";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // txtSQLServer
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "UserName";
+            this.txtSQLServer.Location = new System.Drawing.Point(90, 12);
+            this.txtSQLServer.Name = "txtSQLServer";
+            this.txtSQLServer.Size = new System.Drawing.Size(390, 22);
+            this.txtSQLServer.TabIndex = 1;
             // 
-            // txtUserName
+            // label1
             // 
-            this.txtUserName.Enabled = false;
-            this.txtUserName.Location = new System.Drawing.Point(90, 71);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(390, 22);
-            this.txtUserName.TabIndex = 4;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "SQL Sever";
             // 
-            // label3
+            // btnExit
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 115);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Password";
-            // 
-            // txtPassWord
-            // 
-            this.txtPassWord.Enabled = false;
-            this.txtPassWord.Location = new System.Drawing.Point(90, 115);
-            this.txtPassWord.Name = "txtPassWord";
-            this.txtPassWord.Size = new System.Drawing.Size(390, 22);
-            this.txtPassWord.TabIndex = 6;
-            // 
-            // btnTestConnect
-            // 
-            this.btnTestConnect.Location = new System.Drawing.Point(90, 143);
-            this.btnTestConnect.Name = "btnTestConnect";
-            this.btnTestConnect.Size = new System.Drawing.Size(390, 42);
-            this.btnTestConnect.TabIndex = 7;
-            this.btnTestConnect.Text = "Test Connection";
-            this.btnTestConnect.UseVisualStyleBackColor = true;
-            this.btnTestConnect.Click += new System.EventHandler(this.btnTestConnect_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 212);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "catalog";
-            // 
-            // cbxCatalog
-            // 
-            this.cbxCatalog.FormattingEnabled = true;
-            this.cbxCatalog.Location = new System.Drawing.Point(90, 209);
-            this.cbxCatalog.Name = "cbxCatalog";
-            this.cbxCatalog.Size = new System.Drawing.Size(299, 24);
-            this.cbxCatalog.TabIndex = 9;
-            // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(405, 209);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 24);
-            this.btnReset.TabIndex = 10;
-            this.btnReset.Text = "reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(345, 239);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(135, 41);
-            this.btnNext.TabIndex = 11;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnExit.Location = new System.Drawing.Point(22, 310);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(96, 38);
+            this.btnExit.TabIndex = 1;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
