@@ -69,11 +69,12 @@ namespace crud_genarate
 
         private void _callGenCode()
         {
-
-            //EntityGenerator generator = new EntityGenerator(".\\SQLEXPRESS", cbxCatalog.Text, "Model",
-            //    cbxCatalog.Text + "Entities", "something.Model", @"D:\KHTNPJ\Opp\TestGen");
-            EntityGenerator generator = new EntityGenerator("1", "1", "Model",
-                "1", "something.Model", "1");
+            string catalog = cbxCatalog.Text.ToString();
+            Debug.WriteLine(catalog);
+            EntityGenerator generator = new EntityGenerator(".\\SQLEXPRESS", catalog, "Model",
+                catalog + "Entities", "something.Model", @"D:\KHTNPJ\Opp\TestGen");
+            //EntityGenerator generator = new EntityGenerator("1", "1", "Model",
+            //    "1", "something.Model", "1");
             generator.GenerateEntityFiles();
         }
     }

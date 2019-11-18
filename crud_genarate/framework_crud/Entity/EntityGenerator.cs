@@ -37,7 +37,7 @@ namespace framework_crud.Entity
 
         #endregion
 
-        public EntityGenerator(string Server,string Catalog,string Project,string EntityContainer,string Namespace,
+        public EntityGenerator(string Server, string Catalog, string Project, string EntityContainer, string Namespace,
             string SourceDirectory)
         {
             this.Server = Server;
@@ -48,25 +48,21 @@ namespace framework_crud.Entity
             this.SourceDirectory = SourceDirectory;
 
             //hard code
-            SourceDirectory = @"D:\KHTNPJ\Opp\TestGen";
+            //SourceDirectory = @"D:\KHTNPJ\Opp\TestGen";
 
-            //cmdToGenerateMapping = EDMGenDir + string.Format(formatGenerateMapping, Server, Catalog,
-            //    Project, EntityContainer, Namespace);
-            //cmdToGenerateLayer = EDMGenDir + string.Format(formatGenerateLayer, Project);
-            cmdToGenerateMapping = EDMGenDir + string.Format(formatGenerateMapping, ".\\SQLEXPRESS", "MiniBookStore",
-                "model", "MiniBookStoreEntities", "crud_genarate.model");
+            cmdToGenerateMapping = EDMGenDir + string.Format(formatGenerateMapping, Server, Catalog,
+                Project, EntityContainer, Namespace);
+            cmdToGenerateLayer = EDMGenDir + string.Format(formatGenerateLayer, Project);
+            //cmdToGenerateMapping = EDMGenDir + string.Format(formatGenerateMapping, ".\\SQLEXPRESS", "MiniBookStore",
+            //    "model", "MiniBookStoreEntities", "crud_genarate.model");
             //cmdToGenerateLayer = EDMGenDir + string.Format(formatGenerateLayer, "model");
         }
 
-        public void GenerateEntityFiles()
+        private void _generateMappingFile()
         {
             if (!isGenerating)
             {
                 isGenerating = true;
-                Directory.CreateDirectory(SourceDirectory);
-
-                Debug.WriteLine(cmdToGenerateMapping);
-                Debug.WriteLine(cmdToGenerateLayer);
                 try
                 {
                     using (var process = new Process())
@@ -89,6 +85,8 @@ namespace framework_crud.Entity
                         process.WaitForExit();
                         process.Close();
                         process.Dispose();
+
+                        isGenerating = false;
                     }
                 }
                 catch (Exception e)
@@ -96,6 +94,51 @@ namespace framework_crud.Entity
                     Debug.WriteLine(e);
                 }
             }
+        }
+        private void _generateObjectFile()
+        {
+            if (!isGenerating)
+            {
+                isGenerating = true;
+                try
+                {
+                    using (var process = new Process())
+                    {
+                        var startInfo = new ProcessStartInfo
+                        {
+                            WorkingDirectory = SourceDirectory,
+                            WindowStyle = ProcessWindowStyle.Minimized,
+                            CreateNoWindow = true,
+                            RedirectStandardInput = true,
+                            RedirectStandardOutput = true,
+                            UseShellExecute = false,
+                            FileName = "cmd.exe",
+                            Verb = "runas"
+                        };
+                        process.StartInfo = startInfo;
+                        process.Start();
+                        process.StandardInput.WriteLine(cmdToGenerateLayer);
+                        process.StandardInput.Close();
+                        process.WaitForExit();
+                        process.Close();
+                        process.Dispose();
+
+                        isGenerating = false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
+            }
+        }
+
+
+        public void GenerateEntityFiles()
+        {
+            Directory.CreateDirectory(SourceDirectory);
+            _generateMappingFile();
+            _generateObjectFile();
         }
     }
 }
