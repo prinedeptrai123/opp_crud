@@ -1,0 +1,3 @@
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\edmgen.exe /mode:fullgeneration /c:"Data Source=.\SQLEXPRESS; Initial Catalog=MiniBookStore; Integrated Security=SSPI" /project:model /entitycontainer:MiniBookStoreEntities /namespace:crud_genarate.model /language:CSharp
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\edmgen.exe /mode:EntityClassGeneration /incsdl:.\model.csdl /outobjectlayer:.\model.Objects.cs /language:CSharp
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\edmgen.exe /mode:ValidateArtifacts /inssdl:.\model.ssdl /inmsl:.\model.msl /incsdl:.\model.csdl
