@@ -1,0 +1,2 @@
+﻿C:\Windows\Microsoft.NET\Framework\v4.0.30319\edmgen.exe /mode:fullgeneration /c:"Data Source=.\SQLEXPRESS; Initial Catalog=School; Integrated Security=SSPI" /project:School /entitycontainer:SchoolEntities /namespace:SchoolModel /language:CSharp
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\edmgen.exe /mode:EntityClassGeneration /incsdl:.\School.csdl /outobjectlayer:.\School.Objects.cs /language:CSharp

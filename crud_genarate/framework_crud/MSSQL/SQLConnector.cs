@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace crud_genarate.SQLConnection
+namespace framework_crud.MSSQL
 {
     /// <summary>
     /// docs
@@ -36,12 +39,11 @@ namespace crud_genarate.SQLConnection
                     builder.UserID = Username;
                     builder.Password = Password;
                 }
-
                 return builder.ConnectionString;
             }
         }
 
-        public SQLConnector(string Server,string Username,string Password)
+        public SQLConnector(string Server, string Username, string Password)
         {
             this.Server = Server;
             this.Username = Username;
@@ -80,7 +82,7 @@ namespace crud_genarate.SQLConnection
             DataTable db = new DataTable();
             try
             {
-                using(var conn = new SqlConnection(this.ConnectionString))
+                using (var conn = new SqlConnection(this.ConnectionString))
                 {
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     DataSet ds = new DataSet("Data");
@@ -129,5 +131,4 @@ namespace crud_genarate.SQLConnection
             return GetDataTalbe(query);
         }
     }
-
 }

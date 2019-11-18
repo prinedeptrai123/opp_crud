@@ -1,0 +1,8 @@
+[genarate entity]
+https://stackoverflow.com/questions/48354180/how-to-generate-edmx-diagram-file-using-edmgen-exe
+https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ef/edm-generator-edmgen-exe
+https://github.com/ganeshkamath89/SQL2LINQConvertor
+
+[dll]
+System.Data.Entity.dll
+
