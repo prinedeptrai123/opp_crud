@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using crud_genarate.SQLConnection;
+using framework_crud.MSSQL;
 
 namespace crud_genarate
 {
