@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM.MSSQL
 {
-    class MSSQLDataType
+    public class MSSQLDataType
     {
         public static string MsqlToCSharp(string sqlDataType)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class QueryResult:IQueryResult, IRow
+    public class QueryResult:IQueryResult, IRow
     {
         private IDataReader reader;
         private string[] fieldNames;

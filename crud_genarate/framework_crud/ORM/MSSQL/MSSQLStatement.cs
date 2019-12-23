@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class MSSQLStatement:IStatement
+    public class MSSQLStatement:IStatement
     {
         public event EventHandler PreExec;
         public event EventHandler PostExec;

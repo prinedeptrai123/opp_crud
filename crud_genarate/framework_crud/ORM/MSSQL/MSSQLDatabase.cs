@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class MSSQLDatabase: IDatabase
+    public class MSSQLDatabase: IDatabase
     {
         // Defaults based on MSDN (?)
         public static byte DecimalPrecision = 18;

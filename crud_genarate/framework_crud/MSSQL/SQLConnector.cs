@@ -21,7 +21,7 @@ namespace framework_crud.MSSQL
         public bool UseWindowsAuth { get; set; }
         public string Catalog { get; set; }
 
-        private string ConnectionString
+        public string ConnectionString
         {
             get
             {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace framework_crud.ORM
 {
     //TODO:Remove this
-    class LRUCache
+    public class LRUCache
     {
         private int capacity;
         private OrderedDictionary data;

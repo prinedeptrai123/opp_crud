@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class TraceEventArgs: EventArgs
+    public class TraceEventArgs : EventArgs
     {
         private IDbCommand command;
 

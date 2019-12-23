@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace framework_crud.ORM
 {
     //TODO:review
-    class MSSQLTable:ITable
+    public class MSSQLTable:ITable
     {
         private MSSQLDatabase database;
         private Type classType;

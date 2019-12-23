@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    interface IQuery
+    public interface IQuery
     {
         IQuery Eq(string name, object value);
         IQuery Ne(string name, object value);

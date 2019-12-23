@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    interface IStatement: IDisposable
+    public interface IStatement: IDisposable
     {
         IDatabase Database { get; }
 

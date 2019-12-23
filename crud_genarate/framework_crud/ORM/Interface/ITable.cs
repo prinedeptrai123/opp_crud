@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    interface ITable
+    public interface ITable
     {
         IDatabase Database { get; }
         Type ClassType { get; }

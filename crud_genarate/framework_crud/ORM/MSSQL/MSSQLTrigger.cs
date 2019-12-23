@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class MSSQLTrigger
+    public class MSSQLTrigger
     {
         internal const int BeforeInsert = 0;
         internal const int AfterInsert = 1;

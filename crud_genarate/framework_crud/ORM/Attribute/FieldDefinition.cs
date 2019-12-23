@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class FieldDefinition
+    public class FieldDefinition
     {
         private TableDefinition table;
 

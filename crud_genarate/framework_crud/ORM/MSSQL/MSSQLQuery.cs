@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class MSSQLQuery:IQuery
+    public class MSSQLQuery:IQuery
     {
         private MSSQLDatabase database;
         private MSSQLTable table;

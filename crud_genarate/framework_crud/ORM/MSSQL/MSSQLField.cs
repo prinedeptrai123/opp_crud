@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class MSSQLField
+    public class MSSQLField
     {
         private string name;
         private FieldFlags flags = FieldFlags.None;

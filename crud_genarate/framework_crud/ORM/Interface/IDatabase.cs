@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    interface IDatabase:IDisposable
+    public interface IDatabase:IDisposable
     {
         event EventHandler<TraceEventArgs> Trace;
 

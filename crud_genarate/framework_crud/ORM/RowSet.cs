@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class RowSet: IEnumerable<object[]>
+    public class RowSet: IEnumerable<object[]>
     {
         private List<object[]> data;
         private string[] fields;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    class TableDefinition
+    public class TableDefinition
     {
         public string name { get; set; }
         public string schema { get; set; }

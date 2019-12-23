@@ -12,7 +12,7 @@ namespace framework_crud.ORM
     public delegate object ToListCallback(IRow row);
     public delegate T ToListCallback<T>(IRow row);
 
-    interface IQueryResult:IDisposable
+    public interface IQueryResult:IDisposable
     {
         RowSet ToRowSet();
         DataTable ToDataTable();
