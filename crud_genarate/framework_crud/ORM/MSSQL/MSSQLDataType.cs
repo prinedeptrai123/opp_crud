@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace framework_crud.ORM.MSSQL
+namespace framework_crud.ORM
 {
     public class MSSQLDataType
     {
@@ -31,6 +31,8 @@ namespace framework_crud.ORM.MSSQL
                 case "money":
                     return "Decimal";
                 case "binary":
+                    return "Byte[]";
+                case "image":
                     return "Byte[]";
                 case "bit":
                     return "Boolean";

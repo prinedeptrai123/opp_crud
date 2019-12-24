@@ -35,5 +35,11 @@ namespace framework_crud.ORM
         {
             return new FieldDefinition(this, columnName);
         }
+
+        //brige
+        public void generate(IGenerate generate)
+        {
+            generate.Generate(this);
+        }
     }
 }

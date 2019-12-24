@@ -22,5 +22,7 @@ namespace framework_crud.ORM
 
         ITable Table(Type type);
         ITable Table<T>();
+
+        List<TableDefinition> listTable();
     }
 }

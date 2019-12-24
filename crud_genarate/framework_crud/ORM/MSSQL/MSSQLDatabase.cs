@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,6 +133,72 @@ namespace framework_crud.ORM
         public string QuoteName(string name)
         {
             return "[" + name + "]";
+        }
+
+
+        public List<TableDefinition> listTable()
+        {
+            List<TableDefinition> result = new List<TableDefinition>();
+            //TODO: get all table infomation
+            string query = "SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_TYPE ='BASE TABLE' order by TABLE_NAME";
+
+            DataTable db = GetDataTalbe(query);
+            
+            for (int i = 0; i < db.Rows.Count; i++)
+            {
+                string tableName = db.Rows[i][0].ToString();
+                TableDefinition table = new TableDefinition(tableName).Schema("dbo");
+
+                DataTable column = getTableColumn(tableName);
+                for (int j = 0; j < column.Rows.Count; j++)
+                {
+                    string fieldName = column.Rows[j][0].ToString();
+                    string fieldData = column.Rows[j][1].ToString();
+                    //TODO check primary key
+                    if (true)
+                    {
+                        table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Add();
+                    }
+                    else
+                    {
+                        table.Field(fieldName).MapTo("id").Key().Auto().ReadOnly().Add();
+                    }
+                }
+                result.Add(table);
+            }
+            return result;
+        }
+
+        //TODO: change this code
+        private DataTable getTableColumn(string tableName)
+        {
+            string query = $"SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
+            return GetDataTalbe(query);
+        }
+
+        //TODO: change this type
+        private DataTable GetDataTalbe(string query)
+        {
+            DataTable db = new DataTable();
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, connection);
+                DataSet ds = new DataSet("Data");
+                da.Fill(ds);
+                if (ds.Tables.Count == 1)
+                {
+                    return ds.Tables[0];
+                }
+                else
+                {
+                    Debug.WriteLine("Erro here");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+            return null;
         }
     }
 }

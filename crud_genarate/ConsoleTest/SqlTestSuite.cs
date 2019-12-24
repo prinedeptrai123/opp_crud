@@ -145,14 +145,14 @@ namespace ConsoleTest
             TestData copy = database.Table(typeof(TestData))
                     .Query(template).Find() as TestData;
 
-            Console.WriteLine(copy.rowID == data.rowID);
-            Console.WriteLine(copy.string1 == data.string1);
-            Console.WriteLine(copy.int1 == data.int1);
-            Console.WriteLine(copy.float1 == data.float1);
-            Console.WriteLine(copy.double1 == data.double1);
-            Console.WriteLine(copy.guid1 == data.guid1);
-            Console.WriteLine(copy.decimal1 == data.decimal1);
-            Console.WriteLine(copy.money1 == data.money1);
+            Console.WriteLine(copy.rowID);
+            Console.WriteLine(copy.string1);
+            Console.WriteLine(copy.string1);
+            Console.WriteLine(copy.float1);
+            Console.WriteLine(copy.double1);
+            Console.WriteLine(copy.guid1);
+            Console.WriteLine(copy.decimal1 );
+            Console.WriteLine(copy.money1);
         }
 
         public void Test7()
@@ -164,14 +164,14 @@ namespace ConsoleTest
             TestData copy = database.Table(typeof(TestData))
                     .Query().Eq("float1", null).Find() as TestData;
 
-            Console.WriteLine(copy.rowID == data.rowID);
-            Console.WriteLine(copy.string1 == data.string1);
-            Console.WriteLine(copy.int1 == data.int1);
-            Console.WriteLine(copy.float1 == data.float1);
-            Console.WriteLine(copy.double1 == data.double1);
-            Console.WriteLine(copy.guid1 == data.guid1);
-            Console.WriteLine(copy.decimal1 == data.decimal1);
-            Console.WriteLine(copy.money1 == data.money1);
+            Console.WriteLine(copy.rowID);
+            Console.WriteLine(copy.string1);
+            Console.WriteLine(copy.string1);
+            Console.WriteLine(copy.float1);
+            Console.WriteLine(copy.double1);
+            Console.WriteLine(copy.guid1);
+            Console.WriteLine(copy.decimal1);
+            Console.WriteLine(copy.money1);
         }
 
         public void Test8()
