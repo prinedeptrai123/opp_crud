@@ -102,17 +102,6 @@ namespace framework_crud
 
         public void generateProject(string solutionName, string projectName, string generateLocation)
         {
-            //System.Type dteType = Type.GetTypeFromProgID("VisualStudio.DTE.15.0", true);
-            //Object obj = System.Activator.CreateInstance(dteType, true);
-            //EnvDTE.DTE dte = (EnvDTE.DTE)obj;
-            //dte.MainWindow.Visible = true;
-            //dte.Solution.Create(@"D:\TemplateSolution", "TemplateSolution");
-            //var solution = dte.Solution;
-
-            //EnvDTE.Project project = solution.AddFromTemplate(@"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ProjectTemplates\CSharp\Windows\1033\WindowsApplication\csWindowsApplication.vstemplate",
-            //    @"D:\TemplateSolution\TestTemplate", "TestTemplate");
-            //dte.ExecuteCommand("File.SaveAll");
-            //dte.Quit();
             System.Type dteType = Type.GetTypeFromProgID("VisualStudio.DTE.15.0", true);
             Object obj = System.Activator.CreateInstance(dteType, true);
             EnvDTE.DTE dte = (EnvDTE.DTE)obj;

@@ -11,6 +11,7 @@ using framework_crud;
 using framework_crud.MSSQL;
 using framework_crud.ORM;
 using System.Threading;
+using framework_crud.ProjectGen;
 
 namespace ConsoleTest
 {
@@ -79,7 +80,10 @@ namespace ConsoleTest
             ////delete theo id
             ////TODO: 
 
-            generateProject();
+            //generateProject();
+
+            IncludeHelper.IncludeFile("Models", @"D:\TemplateSolution", "TemplateProject");
+
             Console.ReadKey();
         }
 
@@ -90,7 +94,7 @@ namespace ConsoleTest
             string path = @"D://";
             ProjectMaster.Instance.generateProject(solutionName, projectName, path);
 
-
+            
         }
 
         static TestData MakeData()
