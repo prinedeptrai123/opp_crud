@@ -11,6 +11,7 @@ using framework_crud.ORM;
 
 namespace ConsoleTest
 {
+    // database management
     class SqlTestSuite : IDisposable
     {
         private IDatabase database;
@@ -45,6 +46,9 @@ namespace ConsoleTest
             Console.WriteLine("****************************/");
         }
 
+
+        // TEST
+
         void Truncate()
         {
             string sql = "truncate table testdata";
@@ -70,6 +74,7 @@ namespace ConsoleTest
             data.image1 = ASCIIEncoding.Unicode.GetBytes(data.string1);
             return data;
         }
+
 
         public void BeforeTest()
         {

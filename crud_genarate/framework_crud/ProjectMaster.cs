@@ -14,7 +14,16 @@ namespace framework_crud
         #region singleton
         private static ProjectMaster _instance = null;
         private IDatabase database;
-        private static string con = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=test;Integrated Security=True;Connect Timeout=10";
+        private string folderName = "Models";
+        private string folderView = "Views";
+
+        // const temp
+        private static string con = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
+        private string _namespace = "ORM_DEMO";
+        private string _applicationName = "ORM_DEMO";
+
+        //FIXME: path wrong
+        private string directoryName = "D:\\UNIVERSITY\\DesignPattern\\opp_crud\\crud_genarate\\ORM_DEMO";
 
         public static ProjectMaster Instance
         {
@@ -33,6 +42,8 @@ namespace framework_crud
         {
             tables = new List<TableDefinition>();
             Console.WriteLine("Opening database connection: " + connString);
+
+            // FIXME: connect database failed
             database = new MSSQLDatabase(
                     new SqlConnection(connString));
 
@@ -49,12 +60,32 @@ namespace framework_crud
         {
             //TODO: remove
             //IList data = database.Table(tables[0].GetType()).Query().Select();
-            Console.WriteLine(tables[0].name + tables[0].schema + tables[0].fields[0].columnName + tables[0].fields[1].columnName);
+            Console.WriteLine(tables[0].name + tables[0].schema + tables[0].fields[0].columnName + 
+                tables[0].fields[1].columnName);
 
+            // loop generate table to class model
+            // STEP 1: create folder to gen
+            // STEP 2: gen into folder with struct
+            // STEP 3: gen view into folder with struct
 
+            Console.WriteLine("Database ORM will generated into " + folderName);
+            string pathName = String.Format(@"{0}\{1}", directoryName, folderName);
+
+            // STEP 1:
+            System.IO.Directory.CreateDirectory(pathName);
+
+            //STEP 2:
+            //foreach (var table in tables)
+            //{
+            //    table.generate(new classgenerate(pathname));
+            //}
+
+            string pathView = String.Format(@"{0}\{1}", directoryName, folderView);
+            System.IO.Directory.CreateDirectory(pathView);
+            // STEP 3
             foreach (var table in tables)
             {
-                table.generate(new ClassGenerate("D:\\"));
+                table.generate(new FormGenerate(pathView, _namespace));
             }
 
         }

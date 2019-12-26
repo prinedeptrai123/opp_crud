@@ -13,11 +13,13 @@ using framework_crud.ORM;
 
 namespace ConsoleTest
 {
+
+    // Main run code
     class Program
     {
         static string connString = "server=sbusel\\sqlexpress; " +
                 "database=test; trusted_connection=true;";
-        static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=test;Integrated Security=True;Connect Timeout=10";
+        static string con2 = "Data Source=DESKTOP-15SIF8Q\\MISACUKCUKVN; database=System Databases;Integrated Security=True;Connect Timeout=10";
         public static void Main(string[] args)
         {
 
@@ -25,6 +27,7 @@ namespace ConsoleTest
             //Stopwatch timer = Stopwatch.StartNew();
 
             //string SQLServer = "DESKTOP-GR8RADT\\SQLEXPRESS";
+
 
             //SQLConnector connector = new SQLConnector(SQLServer);
 

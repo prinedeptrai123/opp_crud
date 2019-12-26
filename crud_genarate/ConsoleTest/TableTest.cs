@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleTest
 {
+
     [Table("TableTest", "dbo")]
     class TableTest
     {

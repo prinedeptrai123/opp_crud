@@ -37,6 +37,7 @@ namespace framework_crud.ORM
             sb.Replace("%CLASS%", table.name);
             sb.Replace("%FIELDS%", classStatement);
             sb.Replace("%DB%", "dbo");
+
             //Write to file
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathName, saveName)))
             {

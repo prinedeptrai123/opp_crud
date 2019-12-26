@@ -33,5 +33,8 @@ namespace framework_crud.ORM
             + "      %FIELDS%"
             + "  }\n"
             + "}\n";
+
+        // VIEW
+
     }
 }

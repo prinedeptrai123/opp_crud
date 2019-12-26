@@ -7,6 +7,9 @@ using framework_crud.ORM;
 
 namespace ConsoleTest
 {
+
+    // test table to call query
+
     [Table("testdata", "dbo")]
     public class TestData
     {
