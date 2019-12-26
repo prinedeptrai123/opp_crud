@@ -87,13 +87,12 @@ namespace framework_crud
             {
                 table.generate(new FormGenerate(pathView, _namespace));
             }
-
         }
 
         //TODO: code this
         public void genForm()
         {
-
+            
         }
     }
 }

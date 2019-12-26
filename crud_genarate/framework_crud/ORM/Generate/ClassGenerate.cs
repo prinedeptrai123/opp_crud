@@ -16,23 +16,37 @@ namespace framework_crud.ORM
             this.pathName = pathName;
         }
 
-        //TODO generate class file
+        //TODO: generate class file
         public void Generate(TableDefinition table)
         {
             string saveName = table.name + ".cs";
 
             StringBuilder sb = new StringBuilder();
 
-            //generate field
             foreach (var field in table.fields)
             {
-                sb.Append(string.Format(Format.FORMAT_FIELD, field.columnName, field.memberName));
+                
+                if (field.memberName == "string")
+                {
+                    sb.Append(string.Format(Format.FORMAT_FIELD, field.columnName, field.memberName,""));
+                }
+                else
+                {
+                    sb.Append(string.Format(Format.FORMAT_FIELD, field.columnName, field.memberName, "?"));
+                }
             }
             string classStatement = sb.ToString();
             sb.Clear();
 
-            sb.Append(Format.FORMAT_MODEL);
-
+            //string line;
+            //read template from file
+            using (StreamReader sr = new StreamReader("ModelTemplate.txt")) 
+            {
+                // Read the stream to a string, and write the string to the console.
+                String line = sr.ReadToEnd();
+                sb.Append(line);
+            }
+            //TODO:fix hash code
             sb.Replace("%NAMESPACE%", "Testing");
             sb.Replace("%CLASS%", table.name);
             sb.Replace("%FIELDS%", classStatement);

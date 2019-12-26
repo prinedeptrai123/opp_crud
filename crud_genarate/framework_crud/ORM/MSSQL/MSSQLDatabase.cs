@@ -1,4 +1,5 @@
-﻿using System;
+﻿using framework_crud.BASESQL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -136,6 +137,7 @@ namespace framework_crud.ORM
         }
 
 
+        //TODO: move to new class
         public List<TableDefinition> listTable()
         {
             List<TableDefinition> result = new List<TableDefinition>();
@@ -147,24 +149,34 @@ namespace framework_crud.ORM
             for (int i = 0; i < db.Rows.Count; i++)
             {
                 string tableName = db.Rows[i][0].ToString();
-                TableDefinition table = new TableDefinition(tableName).Schema("dbo");
-
-                DataTable column = getTableColumn(tableName);
-                for (int j = 0; j < column.Rows.Count; j++)
+                if (tableName == "sysdiagrams")
                 {
-                    string fieldName = column.Rows[j][0].ToString();
-                    string fieldData = column.Rows[j][1].ToString();
-                    //TODO check primary key
-                    if (true)
-                    {
-                        table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Add();
-                    }
-                    else
-                    {
-                        table.Field(fieldName).MapTo("id").Key().Auto().ReadOnly().Add();
-                    }
+                    continue;
                 }
-                result.Add(table);
+                else
+                {
+                    TableDefinition table = new TableDefinition(tableName).Schema("dbo");
+
+                    DataTable column = getTableColumn(tableName);
+                    for (int j = 0; j < column.Rows.Count; j++)
+                    {
+                        string fieldName = column.Rows[j][0].ToString();
+                        string fieldData = column.Rows[j][1].ToString();
+                        string referenceKey = column.Rows[j][3].ToString();
+                        Console.WriteLine(referenceKey);
+                        //int isKey = int.Parse(column.Rows[j][3].ToString());
+                        //TODO check primary key
+                        if (referenceKey.Contains("PK") && referenceKey.Contains(tableName))
+                        {
+                            table.Field(fieldName).MapTo("id").Key().Auto().ReadOnly().Add();
+                        }
+                        else
+                        {
+                            table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Add();
+                        }
+                    }
+                    result.Add(table);
+                }
             }
             return result;
         }
@@ -172,7 +184,12 @@ namespace framework_crud.ORM
         //TODO: change this code
         private DataTable getTableColumn(string tableName)
         {
-            string query = $"SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
+            //string query = $"SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
+            //string query = "SELECT C.Column_name, data_type, is_Nullable, U.CONSTRAINT_NAME" +
+            //                "FROM information_Schema.Columns C FULL OUTER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE U ON C.COLUMN_NAME = U.COLUMN_NAME" +
+            //                $"WHERE C.TABLE_NAME = '{tableName}'";
+            //Console.WriteLine(string.Format(BaseQuery.GET_TABLE_INFOMATION, tableName));
+            string query = string.Format(BaseQuery.GET_TABLE_INFOMATION, tableName);
             return GetDataTalbe(query);
         }
 
