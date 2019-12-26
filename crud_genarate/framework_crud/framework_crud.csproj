@@ -45,8 +45,55 @@
     <Compile Include="Entity\EntityGenerator.cs" />
     <Compile Include="MSSQL\SQLConnector.cs" />
     <Compile Include="MSSQL\SQLDataType.cs" />
+    <Compile Include="ORM\Attribute\FieldAttribute.cs" />
+    <Compile Include="ORM\Attribute\FieldDefinition.cs" />
+    <Compile Include="ORM\Attribute\FieldFlags.cs" />
+    <Compile Include="ORM\Generate\ClassGenerate.cs" />
+    <Compile Include="ORM\Generate\Format.cs" />
+    <Compile Include="ORM\Generate\FormGenerate.cs" />
+    <Compile Include="ORM\Generate\IGenerate.cs" />
+    <Compile Include="ORM\Attribute\TableAttribute.cs" />
+    <Compile Include="ORM\Attribute\TableDefinition.cs" />
+    <Compile Include="ORM\Even\TraceEventArgs.cs" />
+    <Compile Include="ORM\Interface\IDatabase.cs" />
+    <Compile Include="ORM\Interface\IQuery.cs" />
+    <Compile Include="ORM\Interface\IQueryResult.cs" />
+    <Compile Include="ORM\Interface\IRow.cs" />
+    <Compile Include="ORM\Interface\IStatement.cs" />
+    <Compile Include="ORM\Interface\ITable.cs" />
+    <Compile Include="ORM\Mapping\AttributesTableDefinitionBuilder.cs" />
+    <Compile Include="ORM\Mapping\ITableDefinitionBuilder.cs" />
+    <Compile Include="ORM\Mapping\StaticMethodTableDefinitionBuilder.cs" />
+    <Compile Include="ORM\Mapping\TableDefinitionFactory.cs" />
+    <Compile Include="ORM\MSSQL\LRUCache.cs" />
+    <Compile Include="ORM\MSSQL\MSSQLDatabase.cs" />
+    <Compile Include="ORM\MSSQL\MSSQLDataType.cs" />
+    <Compile Include="ORM\MSSQL\MSSQLField.cs" />
+    <Compile Include="ORM\MSSQL\MSSQLQuery.cs" />
+    <Compile Include="ORM\MSSQL\MSSQLStatement.cs" />
+    <Compile Include="ORM\MSSQL\MSSQLTable.cs" />
+    <Compile Include="ORM\MSSQL\MSSQLTrigger.cs" />
+    <Compile Include="ORM\MSSQL\QueryResult.cs" />
+    <Compile Include="ORM\RowSet.cs" />
+    <Compile Include="ProjectMaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DSTemplate.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ORM\Generate\ModelTemplate.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CSTemplate.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resource\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
