@@ -6,6 +6,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EnvDTE;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
+using System.Threading;
 
 namespace framework_crud
 {
@@ -19,6 +23,7 @@ namespace framework_crud
 
         // const temp
         private static string con = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
+        private static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=test;Integrated Security=True;Connect Timeout=10";
         private string _namespace = "ORM_DEMO";
         private string _applicationName = "ORM_DEMO";
 
@@ -31,7 +36,7 @@ namespace framework_crud
             {
                 if(_instance == null)
                 {
-                    _instance = new ProjectMaster(con);
+                    _instance = new ProjectMaster(con2);
                 }
 
                 return _instance;
@@ -93,6 +98,31 @@ namespace framework_crud
         public void genForm()
         {
             
+        }
+
+        public void generateProject(string solutionName, string projectName, string generateLocation)
+        {
+            //System.Type dteType = Type.GetTypeFromProgID("VisualStudio.DTE.15.0", true);
+            //Object obj = System.Activator.CreateInstance(dteType, true);
+            //EnvDTE.DTE dte = (EnvDTE.DTE)obj;
+            //dte.MainWindow.Visible = true;
+            //dte.Solution.Create(@"D:\TemplateSolution", "TemplateSolution");
+            //var solution = dte.Solution;
+
+            //EnvDTE.Project project = solution.AddFromTemplate(@"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ProjectTemplates\CSharp\Windows\1033\WindowsApplication\csWindowsApplication.vstemplate",
+            //    @"D:\TemplateSolution\TestTemplate", "TestTemplate");
+            //dte.ExecuteCommand("File.SaveAll");
+            //dte.Quit();
+            System.Type dteType = Type.GetTypeFromProgID("VisualStudio.DTE.15.0", true);
+            Object obj = System.Activator.CreateInstance(dteType, true);
+            EnvDTE.DTE dte = (EnvDTE.DTE)obj;
+            dte.MainWindow.Visible = true;
+            dte.Solution.Create(generateLocation, solutionName);
+            var solution = dte.Solution;
+            string solutionPath = generateLocation + solutionName;
+            EnvDTE.Project project = solution.AddFromTemplate(@"D:\\WindowsApplication\csWindowsApplication.vstemplate", solutionPath, projectName);
+            dte.ExecuteCommand("File.SaveAll");
+            dte.Quit();
         }
     }
 }

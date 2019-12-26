@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using framework_crud;
 using framework_crud.MSSQL;
 using framework_crud.ORM;
+using System.Threading;
 
 namespace ConsoleTest
 {
@@ -20,10 +21,11 @@ namespace ConsoleTest
         static string connString = "server=sbusel\\sqlexpress; " +
                 "database=test; trusted_connection=true;";
         static string con2 = "Data Source=DESKTOP-15SIF8Q\\MISACUKCUKVN; database=System Databases;Integrated Security=True;Connect Timeout=10";
+        [STAThread]
         public static void Main(string[] args)
         {
-
-            ProjectMaster.Instance.genTable();
+            Console.WriteLine("ff");
+            //ProjectMaster.Instance.genTable();
             //Stopwatch timer = Stopwatch.StartNew();
 
             //string SQLServer = "DESKTOP-GR8RADT\\SQLEXPRESS";
@@ -77,8 +79,18 @@ namespace ConsoleTest
             ////delete theo id
             ////TODO: 
 
-
+            generateProject();
             Console.ReadKey();
+        }
+
+        static public void generateProject()
+        {
+            string solutionName = "TemplateSolution";
+            string projectName = "TemplateProject";
+            string path = @"D://";
+            ProjectMaster.Instance.generateProject(solutionName, projectName, path);
+
+
         }
 
         static TestData MakeData()
