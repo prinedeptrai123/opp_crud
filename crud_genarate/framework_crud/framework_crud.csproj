@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BASESQL\BaseQuery.cs" />
     <Compile Include="Entity\EntityGenerator.cs" />
     <Compile Include="MSSQL\SQLConnector.cs" />
     <Compile Include="MSSQL\SQLDataType.cs" />
@@ -74,11 +75,11 @@
     <Compile Include="ORM\MSSQL\MSSQLTrigger.cs" />
     <Compile Include="ORM\MSSQL\QueryResult.cs" />
     <Compile Include="ORM\RowSet.cs" />
-    <Compile Include="ProjectMaster.cs" />
+    <Compile Include="ORM\ProjectMaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ORM\Generate\ModelTemplate.txt">
+    <Content Include="ModelTemplate.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

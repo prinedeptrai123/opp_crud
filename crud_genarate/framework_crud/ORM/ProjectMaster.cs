@@ -51,18 +51,16 @@ namespace framework_crud
             //IList data = database.Table(tables[0].GetType()).Query().Select();
             Console.WriteLine(tables[0].name + tables[0].schema + tables[0].fields[0].columnName + tables[0].fields[1].columnName);
 
-
             foreach (var table in tables)
             {
                 table.generate(new ClassGenerate("D:\\"));
             }
-
         }
 
         //TODO: code this
         public void genForm()
         {
-
+            
         }
     }
 }
