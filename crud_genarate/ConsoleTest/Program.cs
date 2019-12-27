@@ -82,7 +82,16 @@ namespace ConsoleTest
             //generateProject();
             string path = @"D:\TemplateSolution";
             string projectName = "TemplateProject";
-            IncludeHelper.IncludeFile("Models", path, projectName);
+           // IncludeHelper.IncludeFile("Models", path, projectName);
+
+            CommonInclude includeHandle = new IncludeFile();
+            includeHandle.includeProject("", "kkkkk", path, projectName);
+            includeHandle.includeProject("qui", "lllll", path, projectName);
+
+            includeHandle = new IncludeForm();
+            includeHandle.includeProject("qui", "Form1", path, projectName);
+
+
 
             Console.ReadKey();
         }
@@ -92,7 +101,7 @@ namespace ConsoleTest
             string solutionName = "TemplateSolution";
             string projectName = "TemplateProject";
             string path = @"D://";
-            ProjectMaster.Instance.generateProject(solutionName, projectName, path);
+            //ProjectMaster.Instance.generateProject(solutionName, projectName, path);
 
             
         }

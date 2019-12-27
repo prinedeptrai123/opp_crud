@@ -41,27 +41,42 @@ namespace framework_crud.ProjectGen
             newCompileNode.Attributes.Append(newCompileNodeAttribute);
             itemGroupCompileNode.AppendChild(newCompileNode);
 
-            //TODO add dll
+            //TODO add asemdll
+           
+            XmlNode newDllNode = xmldoc.CreateNode(XmlNodeType.Element, "Reference", string.Empty);
+            string dll = "framework_crud.dll";
+            XmlAttribute newDLLNodeAttribute = xmldoc.CreateAttribute("Include");
+            newDLLNodeAttribute.Value = dll;
+            newDllNode.Attributes.Append(newDLLNodeAttribute);
+            XmlNode pathNode = xmldoc.CreateNode(XmlNodeType.Element, "HintPath", string.Empty);
+            pathNode.InnerText = $"lib\\{dll}";
+            newDllNode.AppendChild(pathNode);
+            itemGroupReferenceNode.AppendChild(newDllNode);
 
+            //TODO add form
+            string fileName = "Form2";
+            XmlNode newFormNode = xmldoc.CreateNode(XmlNodeType.Element, "Compile", string.Empty);
+            XmlAttribute newFormNodeAttribute = xmldoc.CreateAttribute("Include");
+            newFormNodeAttribute.Value = $"{fileName}.cs";
+            newFormNode.Attributes.Append(newFormNodeAttribute);
+            XmlNode Type = xmldoc.CreateNode(XmlNodeType.Element, "SubType", string.Empty);
+            Type.InnerText = "Form";
+            newFormNode.AppendChild(Type);
+            itemGroupCompileNode.AppendChild(newFormNode);
 
+            //Add designer
+            XmlNode newFormDesign = xmldoc.CreateNode(XmlNodeType.Element, "Compile", string.Empty);
+            XmlAttribute newFormDesignAttribute = xmldoc.CreateAttribute("Include");
+            newFormDesignAttribute.Value = $"{fileName}.Designer.cs";
+            newFormDesign.Attributes.Append(newFormDesignAttribute);
+            XmlNode upon = xmldoc.CreateNode(XmlNodeType.Element, "DependentUpon", string.Empty);
+            upon.InnerText = $"{fileName}.cs";
+            newFormDesign.AppendChild(upon);
+            itemGroupCompileNode.AppendChild(newFormDesign);
 
-            //TODO add dll
-            //XmlNode linkNode = xmldoc.CreateNode(XmlNodeType.Element, "Link", string.Empty);
-            //linkNode.InnerText = "CommonFiltsfsfsfsfsfseInfo.cs";
-
-            //newCompileNode.AppendChild(linkNode);
-            // itemGroupNode.AppendChild(newCompileNode);
-
-            Console.WriteLine(xmldoc.OuterXml);
+            //TODO add folder
 
             xmldoc.Save(path);
-
-            //foreach (XmlNode item in xmldoc.SelectNodes("//x:ProjectGuid", mgr))
-            //{
-            //    string test = item.InnerText.ToString();
-            //    Console.WriteLine(test);
-            //}
-
         }
     }
 }

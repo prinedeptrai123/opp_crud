@@ -27,7 +27,7 @@ namespace framework_crud
 
         private static string con = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
         private static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=test;Integrated Security=True;Connect Timeout=10";
-        private string _namespace = "ORM_DEMO";
+        //private string _namespace = "ORM_DEMO";
         private string _applicationName = "ORM_DEMO";
 
 
