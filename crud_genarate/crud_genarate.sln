@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "framework_crud", "framework
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{D732CBB3-63A2-48C5-8FBD-AAD351E38ED1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM_DEMO", "ORM_DEMO\ORM_DEMO.csproj", "{1BCB87F5-0455-427B-8656-E367A8F6E9D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D732CBB3-63A2-48C5-8FBD-AAD351E38ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D732CBB3-63A2-48C5-8FBD-AAD351E38ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D732CBB3-63A2-48C5-8FBD-AAD351E38ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BCB87F5-0455-427B-8656-E367A8F6E9D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BCB87F5-0455-427B-8656-E367A8F6E9D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BCB87F5-0455-427B-8656-E367A8F6E9D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BCB87F5-0455-427B-8656-E367A8F6E9D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

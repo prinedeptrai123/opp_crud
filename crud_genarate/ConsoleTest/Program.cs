@@ -25,7 +25,7 @@ namespace ConsoleTest
         [STAThread]
         public static void Main(string[] args)
         {
-            Console.WriteLine("ff");
+
             //ProjectMaster.Instance.genTable();
             //Stopwatch timer = Stopwatch.StartNew();
 

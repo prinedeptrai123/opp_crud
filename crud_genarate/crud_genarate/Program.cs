@@ -18,14 +18,14 @@ namespace crud_genarate
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Main());
 
             //System.Type dteType = Type.GetTypeFromProgID("VisualStudio.DTE.15.0", true);
             //Object obj = System.Activator.CreateInstance(dteType, true);
             //EnvDTE.DTE dte = (EnvDTE.DTE)obj;
-            ////dte.MainWindow.Visible = true;
+
             //dte.Solution.Create(@"C:\TemplateSolution", "TemplateSolution");
             //var solution = dte.Solution;
 
