@@ -37,7 +37,7 @@
             this.txtDirectory = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
-            this.cbxCatalog = new System.Windows.Forms.ComboBox();
+            this.txtCatalog = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnTestConnect = new System.Windows.Forms.Button();
             this.txtPassWord = new System.Windows.Forms.TextBox();
@@ -73,7 +73,7 @@
             this.panel1.Controls.Add(this.txtDirectory);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btnReset);
-            this.panel1.Controls.Add(this.cbxCatalog);
+            this.panel1.Controls.Add(this.txtCatalog);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.btnTestConnect);
             this.panel1.Controls.Add(this.txtPassWord);
@@ -154,14 +154,14 @@
             this.btnReset.Text = "reset";
             this.btnReset.UseVisualStyleBackColor = true;
             // 
-            // cbxCatalog
+            // txtCatalog
             // 
-            this.cbxCatalog.FormattingEnabled = true;
-            this.cbxCatalog.Location = new System.Drawing.Point(83, 170);
-            this.cbxCatalog.Margin = new System.Windows.Forms.Padding(2);
-            this.cbxCatalog.Name = "cbxCatalog";
-            this.cbxCatalog.Size = new System.Drawing.Size(210, 21);
-            this.cbxCatalog.TabIndex = 9;
+            this.txtCatalog.FormattingEnabled = true;
+            this.txtCatalog.Location = new System.Drawing.Point(83, 170);
+            this.txtCatalog.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCatalog.Name = "txtCatalog";
+            this.txtCatalog.Size = new System.Drawing.Size(210, 21);
+            this.txtCatalog.TabIndex = 9;
             // 
             // label4
             // 
@@ -306,7 +306,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnTestConnect;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbxCatalog;
+        private System.Windows.Forms.ComboBox txtCatalog;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBrowser;

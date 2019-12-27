@@ -68,6 +68,7 @@ namespace framework_crud
 
             string pathView = String.Format(@"{0}\{1}", _directoryName, folderView);
             System.IO.Directory.CreateDirectory(pathView);
+
             // STEP 3
             foreach (var table in tables)
             {

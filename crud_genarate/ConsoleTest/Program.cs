@@ -19,7 +19,7 @@ namespace ConsoleTest
     {
         static string connString = "server=sbusel\\sqlexpress; " +
                 "database=test; trusted_connection=true;";
-        static string con2 = "Data Source=DESKTOP-15SIF8Q\\MISACUKCUKVN; database=System Databases;Integrated Security=True;Connect Timeout=10";
+        static string con2 = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
         public static void Main(string[] args)
         {
 
