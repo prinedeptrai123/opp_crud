@@ -23,7 +23,7 @@ namespace ConsoleTest
         public static void Main(string[] args)
         {
 
-            ProjectMaster.Instance.genTable();
+            //ProjectMaster.Instance.genTable();
             //Stopwatch timer = Stopwatch.StartNew();
 
             //string SQLServer = "DESKTOP-GR8RADT\\SQLEXPRESS";
