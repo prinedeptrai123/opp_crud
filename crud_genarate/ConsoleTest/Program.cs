@@ -25,7 +25,7 @@ namespace ConsoleTest
         [STAThread]
         public static void Main(string[] args)
         {
-            Console.WriteLine("ff");
+            Console.WriteLine("running");
             //ProjectMaster.Instance.genTable();
             //Stopwatch timer = Stopwatch.StartNew();
 
@@ -81,8 +81,9 @@ namespace ConsoleTest
             ////TODO: 
 
             //generateProject();
-
-            IncludeHelper.IncludeFile("Models", @"D:\TemplateSolution", "TemplateProject");
+            string path = @"D:\TemplateSolution";
+            string projectName = "TemplateProject";
+            IncludeHelper.IncludeFile("Models", path, projectName);
 
             Console.ReadKey();
         }
