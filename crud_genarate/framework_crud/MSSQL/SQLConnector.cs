@@ -27,7 +27,7 @@ namespace framework_crud.MSSQL
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 builder.DataSource = Server;
-                if (!String.IsNullOrEmpty(Catalog)) builder.InitialCatalog = Catalog;
+                if (!string.IsNullOrEmpty(Catalog)) builder.InitialCatalog = Catalog;
                 builder.IntegratedSecurity = false;
                 builder.ConnectTimeout = 10;
                 if (UseWindowsAuth)
