@@ -149,6 +149,7 @@ namespace framework_crud.ORM
             for (int i = 0; i < db.Rows.Count; i++)
             {
                 string tableName = db.Rows[i][0].ToString();
+                Console.WriteLine(tableName+"---------------");
                 if (tableName == "sysdiagrams")
                 {
                     continue;
@@ -160,20 +161,27 @@ namespace framework_crud.ORM
                     DataTable column = getTableColumn(tableName);
                     for (int j = 0; j < column.Rows.Count; j++)
                     {
-                        string fieldName = column.Rows[j][0].ToString();
-                        string fieldData = column.Rows[j][1].ToString();
-                        string referenceKey = column.Rows[j][3].ToString();
-                        Console.WriteLine(referenceKey);
-                        //int isKey = int.Parse(column.Rows[j][3].ToString());
-                        //TODO check primary key
-                        if (referenceKey.Contains("PK") && referenceKey.Contains(tableName))
+                        
+                        string fieldName = column.Rows[j][1].ToString();
+                        string fieldData = column.Rows[j][2].ToString();
+                        string CONTRAINT_TYPE = column.Rows[j][3].ToString();
+                        string RF_TABLE = column.Rows[j][4].ToString();
+                        string RF_COLUMN = column.Rows[j][5].ToString();
+                        Console.WriteLine(CONTRAINT_TYPE);
+                        if (CONTRAINT_TYPE.Contains("PRIMARY KEY"))
                         {
-                            table.Field(fieldName).MapTo("id").Key().Auto().ReadOnly().Add();
+                            table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Key().ReadOnly().Add();
+                        }
+                        else if (CONTRAINT_TYPE.Contains("FOREIGN KEY"))
+                        {
+                            table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData))
+                                .ForeignKey()
+                                .ReferenceTo(RF_TABLE, RF_COLUMN).Add();
                         }
                         else
                         {
                             table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Add();
-                        }
+                        }                       
                     }
                     result.Add(table);
                 }
@@ -189,7 +197,7 @@ namespace framework_crud.ORM
             //                "FROM information_Schema.Columns C FULL OUTER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE U ON C.COLUMN_NAME = U.COLUMN_NAME" +
             //                $"WHERE C.TABLE_NAME = '{tableName}'";
             //Console.WriteLine(string.Format(BaseQuery.GET_TABLE_INFOMATION, tableName));
-            string query = string.Format(BaseQuery.GET_TABLE_INFOMATION, tableName);
+            string query = string.Format(BaseQuery.GET_TABLE_INFOMATION_2, tableName);
             return GetDataTalbe(query);
         }
 

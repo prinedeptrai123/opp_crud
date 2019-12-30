@@ -12,6 +12,8 @@ namespace framework_crud.ORM
     {
         public string Name = string.Empty;
         public FieldFlags Flags = FieldFlags.ReadWrite;
+        public string TableReference = string.Empty;
+        public string columnReference = string.Empty;
 
         public FieldAttribute() : this(string.Empty)
         { }
@@ -23,6 +25,14 @@ namespace framework_crud.ORM
         {
             this.Name = name;
             this.Flags = flags;
+        }
+
+        public FieldAttribute(string name, FieldFlags flags,string TableReference,string columnReference)
+        {
+            this.Name = name;
+            this.Flags = flags;
+            this.TableReference = TableReference;
+            this.columnReference = columnReference;
         }
     }
 }

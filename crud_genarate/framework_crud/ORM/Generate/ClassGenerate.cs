@@ -10,10 +10,12 @@ namespace framework_crud.ORM
     class ClassGenerate : IGenerate
     {
         private string pathName;
+        private string nameSpace;
 
-        public ClassGenerate(string pathName)
+        public ClassGenerate(string pathName,string nameSpace)
         {
             this.pathName = pathName;
+            this.nameSpace = nameSpace;
         }
 
         //TODO: generate class file
@@ -23,16 +25,24 @@ namespace framework_crud.ORM
 
             StringBuilder sb = new StringBuilder();
 
+            Console.WriteLine(table.name + "-------------");
+
             foreach (var field in table.fields)
             {
+                Console.WriteLine(field.flags);
                 
-                if (field.memberName == "string")
+                if (field.flags.HasFlag(FieldFlags.ForeignKey))
                 {
-                    sb.Append(string.Format(Format.FORMAT_FIELD, field.columnName, field.memberName,""));
+                    sb.Append(string.Format(Format.FORMAT_REFERENCE_KEY, field.columnName, field.memberName,
+                         field.fieldReference.table, field.fieldReference.column));
+                }
+                else if (field.flags.HasFlag(FieldFlags.Key))
+                {
+                    sb.Append(string.Format(Format.FORMAT_KEY, field.columnName, field.memberName));
                 }
                 else
                 {
-                    sb.Append(string.Format(Format.FORMAT_FIELD, field.columnName, field.memberName, "?"));
+                    sb.Append(string.Format(Format.FORMAT_FIELD, field.columnName, field.memberName, ""));
                 }
             }
             string classStatement = sb.ToString();
@@ -47,7 +57,7 @@ namespace framework_crud.ORM
                 sb.Append(line);
             }
             //TODO:fix hash code
-            sb.Replace("%NAMESPACE%", "Testing");
+            sb.Replace("%NAMESPACE%", nameSpace);
             sb.Replace("%CLASS%", table.name);
             sb.Replace("%FIELDS%", classStatement);
             sb.Replace("%DB%", "dbo");

@@ -163,7 +163,7 @@ namespace ConsoleTest
         public void Test7()
         {
             TestData data = MakeData();
-            data.float1 = null;
+            //data.float1 = null;
             database.Table(typeof(TestData)).Insert(data);
 
             TestData copy = database.Table(typeof(TestData))

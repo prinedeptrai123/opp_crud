@@ -60,6 +60,8 @@
     <Compile Include="ORM\Attribute\FieldAttribute.cs" />
     <Compile Include="ORM\Attribute\FieldDefinition.cs" />
     <Compile Include="ORM\Attribute\FieldFlags.cs" />
+    <Compile Include="ORM\Attribute\FieldReference.cs" />
+    <Compile Include="ORM\Attribute\ReferenceAttribute.cs" />
     <Compile Include="ORM\Generate\ClassGenerate.cs" />
     <Compile Include="ORM\Generate\Format.cs" />
     <Compile Include="ORM\Generate\FormGenerate.cs" />
