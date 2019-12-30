@@ -1,0 +1,7 @@
+﻿this.%LBNAME%.AutoSize = true;
+this.%LBNAME%.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+this.%LBNAME%.Location = new System.Drawing.Point(35, %LOCATIONY%);
+this.%LBNAME%.Name = "%LBNAME%";
+this.%LBNAME%.Size = new System.Drawing.Size(46, 17);
+this.%LBNAME%.TabIndex = %TABINDEX%;
+this.%LBNAME%.Text = "%LBTEXT%";

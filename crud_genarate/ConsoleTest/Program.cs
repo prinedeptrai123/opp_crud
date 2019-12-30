@@ -49,6 +49,7 @@ namespace ConsoleTest
             ////cap nhat
             //database.Table(qui.GetType()).Update(qui);
             ////xoa
+            ///
             ////lay danh sach
             //IList list1 = database.Table(qui.GetType()).Query().Select();
 
@@ -92,7 +93,7 @@ namespace ConsoleTest
             string solutionName = "TemplateSolution";
             string projectName = "TemplateProject";
             string path = @"D://";
-            ProjectMaster.Instance.generateProject(solutionName, projectName, path);
+            //ProjectMaster.Instance.generateProject(solutionName, projectName, path);
 
             
         }

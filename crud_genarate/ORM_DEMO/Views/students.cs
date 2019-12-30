@@ -1,4 +1,4 @@
-﻿using framework_crud.ORM;
+using framework_crud.ORM;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,12 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using %NAMESPACE%.Models;
-using %NAMESPACE%.Models;
 
-namespace %NAMESPACE%
+namespace ORM_DEMO.Views
 {
-    public partial class %CLASS% : Form
+    public partial class students : Form
     {
         private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
             "Integrated Security=True;Connect Timeout=10";
@@ -23,7 +21,7 @@ namespace %NAMESPACE%
         private BindingSource bd = new BindingSource();
         private bool isUpdate = false;
 
-        public %CLASS%(string conn)
+        public students(string conn)
         {
             this.connstring = conn;
             InitializeComponent();
@@ -31,14 +29,14 @@ namespace %NAMESPACE%
             initial();
         }
 
-        public %CLASS%()
+        public students()
         {
             InitializeComponent();
             regisEvents();
             initial();
         }
 
-        public %CLASS%(%TABLENAME% entity)
+        public students(Models.students entity)
         {
             InitializeComponent();
             regisEvents();
@@ -47,13 +45,13 @@ namespace %NAMESPACE%
 			this.Text = "UpdateForm";
         }
 
-        private void initial(%TABLENAME% entity)
+        private void initial(Models.students entity)
         {
-			%CTINITIAL%
-         //   itnumericid1.Value = Decimal.Parse(entity.id.ToString());
-         //   ittextboxname2.Text = entity.name;
-         //   ittextboxschool3.Text = entity.school;
-         //   database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
+			ittextboxid1.Text = entity.id;
+			ittextboxname2.Text = entity.name;
+			ittextboxschool3.Text = entity.school;
+
+			  database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
         }
 
         private void initial()
@@ -72,22 +70,29 @@ namespace %NAMESPACE%
         {
             try
             {
-				%CTSAVE%
+                string id = ittextboxid1.Text;
+                string name = ittextboxname2.Text;
+                string school = ittextboxschool3.Text;
+
                 // add
                 if (!isUpdate)
                 {
-                    %TABLENAME% tmp = new  %TABLENAME%();
-					%FIELDS%
+                    Models.students tmp = new  Models.students();
                     tmp.id = id;
-                    database.Table(typeof(%TABLENAME%)).Insert(tmp);
+                    tmp.name = name;
+                    tmp.school = school;
+
+                    database.Table(typeof(Models.students)).Insert(tmp);
                 }
                 // update
                 else
                 {
-                    %TABLENAME% tmp = new  %TABLENAME%();
-					%FIELDS%
+                    Models.students tmp = new  Models.students();
                     tmp.id = id;
-                    database.Table(typeof(%TABLENAME%)).Update(tmp);
+                    tmp.name = name;
+                    tmp.school = school;
+
+                    database.Table(typeof(Models.students)).Update(tmp);
                 }
             }
             catch(InvalidCastException ex)
@@ -104,4 +109,5 @@ namespace %NAMESPACE%
         }
     }
 }
+
 

@@ -17,7 +17,7 @@ namespace framework_crud.ORM
         }
 
         //TODO: generate class file
-        public void Generate(TableDefinition table)
+        public void Generate(TableDefinition table, string nameSpace)
         {
             string saveName = table.name + ".cs";
 
@@ -47,7 +47,7 @@ namespace framework_crud.ORM
                 sb.Append(line);
             }
             //TODO:fix hash code
-            sb.Replace("%NAMESPACE%", "Testing");
+            sb.Replace("%NAMESPACE%", nameSpace);
             sb.Replace("%CLASS%", table.name);
             sb.Replace("%FIELDS%", classStatement);
             sb.Replace("%DB%", "dbo");
