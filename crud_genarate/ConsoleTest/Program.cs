@@ -44,11 +44,11 @@ namespace ConsoleTest
                     new SqlConnection(con2));
             //database.listTable();
 
-            IList list = database.Table(typeof(Person)).Query().Select();
+            IList list = database.Table(typeof(Course)).Query().Select();
 
-            foreach (Person c in list)
+            foreach (Course c in list)
             {
-                Console.WriteLine(c.LastName);
+                Console.WriteLine(c.DepartmentID);
             }
 
             //string path = @"F:\OPP\demoApp";

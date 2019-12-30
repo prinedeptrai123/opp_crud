@@ -24,13 +24,13 @@ namespace framework_crud.ORM
         public FieldAttribute(string name, FieldFlags flags)
         {
             this.Name = name;
-            this.Flags = flags;
+            this.Flags |= flags;
         }
 
         public FieldAttribute(string name, FieldFlags flags,string TableReference,string columnReference)
         {
             this.Name = name;
-            this.Flags = flags;
+            this.Flags |= flags;
             this.TableReference = TableReference;
             this.columnReference = columnReference;
         }

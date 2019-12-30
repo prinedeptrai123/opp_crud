@@ -11,11 +11,11 @@ namespace framework_crud.ORM
     {
         // Field is not used
         None = 0,
-		// Field can be read from the database.
+		// doc
 		Read = 1,
-		// Field can be written to the database.
+		// ghi
 		Write = 2,
-		// Field can be read and written. Same as Read | Write.
+		// doc va ghi
 		ReadWrite = 3,
 		//khóa chính
 		Key = 4,
