@@ -22,6 +22,6 @@ namespace framework_crud.ORM
 		// trường tự tăng trong db
 		Auto = 5,
         //là khóa ngoại
-        ForeignKey = 6
+        ForeignKey = 6,
     }
 }

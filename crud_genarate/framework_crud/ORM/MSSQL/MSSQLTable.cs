@@ -194,6 +194,10 @@ namespace framework_crud.ORM
         public int Delete(ICollection list)
         {
             MSSQLField[] keys = GetFields(FieldFlags.Key);
+            //MSSQLField[] keys2 = GetFields(FieldFlags.ForeignKey);
+            MSSQLField[] keys3 = GetFields(FieldFlags.Read);
+
+
             StringBuilder sql = new StringBuilder();
             sql.Append("DELETE FROM ")
                     .Append(QuotedName)
@@ -201,6 +205,11 @@ namespace framework_crud.ORM
             bool first = true;
             for (int i = 0; i < keys.Length; ++i)
             {
+                //skip reference key
+                //if (keys[i].Flags.HasFlag(FieldFlags.ForeignKey))
+                //{
+                //    continue;
+                //}
                 if (!first)
                     sql.Append(" AND ");
                 sql.Append(database.QuoteName(keys[i].Name))

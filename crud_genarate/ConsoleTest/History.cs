@@ -16,7 +16,7 @@ namespace ConsoleTest
         public float Price;
         [Field("Product")]
         public string Product;
-        [Field("Customer_ID", FieldFlags.ForeignKey, "Customer", "ID")]
+        //[Field("Customer_ID", FieldFlags.ForeignKey, "Customer", "ID")]
         public int Customer_ID;
         [Field("Count")]
         public int Count;

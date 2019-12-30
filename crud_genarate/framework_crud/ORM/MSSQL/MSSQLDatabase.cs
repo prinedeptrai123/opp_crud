@@ -117,12 +117,13 @@ namespace framework_crud.ORM
 
         public ITable Table(Type type)
         {
-            MSSQLTable table = tableCache.Get(type) as MSSQLTable;
-            if (table == null)
-            {
-                table = new MSSQLTable(this, type);
-                tableCache.Put(type, table);
-            }
+            //MSSQLTable table = tableCache.Get(type) as MSSQLTable;
+            //if (table == null)
+            //{
+            //    table = new MSSQLTable(this, type);
+            //    tableCache.Put(type, table);
+            //}
+            MSSQLTable table = new MSSQLTable(this, type);
             return table;
         }
 

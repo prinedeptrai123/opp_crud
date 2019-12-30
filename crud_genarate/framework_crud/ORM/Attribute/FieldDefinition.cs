@@ -41,7 +41,7 @@ namespace framework_crud.ORM
 
         public FieldDefinition Flags(FieldFlags flags)
         {
-            this.flags = flags;
+            this.flags |= flags;
             return this;
         }
 

@@ -40,16 +40,57 @@ namespace ConsoleTest
             //Console.WriteLine("Opening database connection: " + connString);
 
 
-            MSSQLDatabase database = new MSSQLDatabase(
-                    new SqlConnection(con2));
+            //MSSQLDatabase database = new MSSQLDatabase(
+            //        new SqlConnection(con2));
             //database.listTable();
 
-            IList list = database.Table(typeof(Course)).Query().Select();
+            
 
-            foreach (Course c in list)
+            //using(var database = new MSSQLDatabase(new SqlConnection(con2)))
+            //{
+            //    IList list = database.Table(typeof(Course)).Query().Select();
+
+            //    foreach (Course c in list)
+            //    {
+            //        Console.WriteLine(c.Title);
+            //    }
+            //}
+
+            //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+            //{
+            //    Course newCourse = new Course
+            //    {
+            //        CourseID = 11,
+            //        Credits = 1,
+            //        DepartmentID = 7,
+            //        Title = "quinew"
+            //    };
+            //   // database.Table(typeof(Course)).Insert(newCourse);
+            //}
+            Console.WriteLine("---------");
+
+            using (var database = new MSSQLDatabase(new SqlConnection(con2)))
             {
-                Console.WriteLine(c.DepartmentID);
+                IList a = database.Table(typeof(Course)).Query().Eq("Title", "54").Select();
+
+                ////foreach (Course cour in a)
+                ////{
+                ////    Console.WriteLine(cour.CourseID);
+                ////}
+                database.Table(typeof(Course)).Delete(a[0]);
             }
+            //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+            //{
+            //    IList list = database.Table(typeof(Course)).Query().Select();
+
+            //    foreach (Course c in list)
+            //    {
+            //        Console.WriteLine(c.Title);
+            //    }
+            //}
+
+
+            Console.WriteLine("---------");
 
             //string path = @"F:\OPP\demoApp";
             //string nameSpace = "ConsoleTest";
