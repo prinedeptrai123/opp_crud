@@ -14,10 +14,23 @@ namespace framework_crud.ORM
         public string columnName;
         public FieldFlags flags = FieldFlags.ReadWrite;
 
+        public FieldReference fieldReference { get; set; }
+
         public FieldDefinition(TableDefinition table, string name)
         {
             this.table = table;
             columnName = name;
+        }
+
+        //TODO: reference to class
+        public FieldDefinition ReferenceTo(string tableName,string columnName)
+        {
+            fieldReference = new FieldReference
+            {
+                table = tableName,
+                column = columnName
+            };
+            return this;
         }
 
         public FieldDefinition MapTo(string name)
@@ -28,13 +41,19 @@ namespace framework_crud.ORM
 
         public FieldDefinition Flags(FieldFlags flags)
         {
-            this.flags = flags;
+            this.flags |= flags;
             return this;
         }
 
         public FieldDefinition Key()
         {
             this.flags |= FieldFlags.Key;
+            return this;
+        }
+
+        public FieldDefinition ForeignKey()
+        {
+            this.flags |= FieldFlags.ForeignKey;
             return this;
         }
 

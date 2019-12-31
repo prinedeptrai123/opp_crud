@@ -14,20 +14,20 @@ namespace ConsoleTest
     public class TestData
     {
         [Field("rowID", FieldFlags.Read | FieldFlags.Key | FieldFlags.Auto)]
-        public int? rowID;
+        public int rowID;
 
-        [Field("byte1")] public byte? byte1;
-        [Field("short1")] public short? short1;
-        [Field("int1")] public int? int1;
-        [Field("long1")] public long? long1;
+        [Field("byte1")] public byte byte1;
+        [Field("short1")] public short short1;
+        [Field("int1")] public int int1;
+        [Field("long1")] public long long1;
         [Field("string1")] public string string1;
-        [Field("bool1")] public bool? bool1;
-        [Field("datetime1")] public DateTime? datetime1;
-        [Field("guid1")] public Guid? guid1;
-        [Field("float1")] public float? float1;
-        [Field("double1")] public double? double1;
-        [Field("decimal1")] public decimal? decimal1;
-        [Field("money1")] public decimal? money1;
+        [Field("bool1")] public bool bool1;
+        [Field("datetime1")] public DateTime datetime1;
+        [Field("guid1")] public Guid guid1;
+        [Field("float1")] public float float1;
+        [Field("double1")] public double double1;
+        [Field("decimal1")] public decimal decimal1;
+        [Field("money1")] public decimal money1;
         [Field("binary1")] public byte[] binary1;
         [Field("image1")] public byte[] image1;
     }
