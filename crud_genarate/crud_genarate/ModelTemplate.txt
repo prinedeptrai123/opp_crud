@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using %NAMESPACE%.Models;
+using framework_crud.ORM;
+
+namespace %NAMESPACE%.Models
+{
+	[Table("%CLASS%", "%DB%")]
+    class %CLASS%
+    {        
+        %FIELDS%
+    }
+}

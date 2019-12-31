@@ -37,9 +37,9 @@ namespace framework_crud.ORM
         }
 
         //brige
-        public void generate(IGenerate generate)
+        public void generate(IGenerate generate, string nameSpace)
         {
-            generate.Generate(this);
+            generate.Generate(this, nameSpace);
         }
     }
 }

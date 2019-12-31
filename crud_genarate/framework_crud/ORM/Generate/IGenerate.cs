@@ -8,6 +8,6 @@ namespace framework_crud.ORM
 {
     public interface IGenerate
     {
-        void Generate(TableDefinition table);
+        void Generate(TableDefinition table, string nameSpace);
     }
 }

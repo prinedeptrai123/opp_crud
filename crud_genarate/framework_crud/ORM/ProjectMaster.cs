@@ -26,9 +26,12 @@ namespace framework_crud
         //private string con = "Data Source={0}; database={1};Integrated Security=True;Connect Timeout=10";
 
         private static string con = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
+
+
         private static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=CaffeApp;Integrated Security=True;Connect Timeout=10";
         //private string _namespace = "ORM_DEMO";
         private string _applicationName = "ORM_DEMO";
+
 
 
         public ProjectMaster(string connString, string nameSpace, string directoryPath)
@@ -62,7 +65,7 @@ namespace framework_crud
             // loop generate table to class model
             // STEP 1: create folder to gen
             // STEP 2: gen into folder with struct
-            // STEP 3: gen view into folder with struct
+            // STEP 3: gen view main, add, update into folder with struct
 
             Console.WriteLine("Database ORM will generated into " + folderName);
             string pathName = String.Format(@"{0}\{1}", _directoryName, folderName);
@@ -73,16 +76,23 @@ namespace framework_crud
             //STEP 2:
             foreach (var table in tables)
             {
+
                 table.generate(new ClassGenerate(pathName, _namespace));
+
             }
 
             string pathView = String.Format(@"{0}\{1}", _directoryName, folderView);
             System.IO.Directory.CreateDirectory(pathView);
+
+            // 
             // STEP 3
-            //foreach (var table in tables)
-            //{
-            //    table.generate(new FormGenerate(pathView, _namespace));
-            //}
+
+            // 
+            foreach (var table in tables)
+            {
+                table.generate(new FormGenerate(pathView), _namespace);
+            }
+
         }
 
         //TODO: code this

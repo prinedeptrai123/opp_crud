@@ -1,0 +1,4 @@
+﻿this.%NAME%.Location = new System.Drawing.Point(118, %LOCATIONY%);
+this.%NAME%.Name = "%NAME%";
+this.%NAME%.Size = new System.Drawing.Size(312, 20);
+this.%NAME%.TabIndex = %TABINDEX%;

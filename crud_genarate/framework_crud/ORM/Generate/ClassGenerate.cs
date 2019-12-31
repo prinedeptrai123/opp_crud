@@ -19,7 +19,7 @@ namespace framework_crud.ORM
         }
 
         //TODO: generate class file
-        public void Generate(TableDefinition table)
+        public void Generate(TableDefinition table, string nameSpace)
         {
             string saveName = table.name + ".cs";
 

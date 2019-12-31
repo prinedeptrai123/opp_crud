@@ -46,9 +46,9 @@ namespace crud_genarate
                 return;
             }
             DataTable catelog = connector.GetCatalogList();
-            cbxCatalog.DataSource = catelog;
-            cbxCatalog.DisplayMember = "name";
-            cbxCatalog.Enabled = true;
+            txtCatalog.DataSource = catelog;
+            txtCatalog.DisplayMember = "name";
+            txtCatalog.Enabled = true;
         }
 
         private bool validateTestCon()
@@ -82,6 +82,7 @@ namespace crud_genarate
                 MessageBox.Show(err);
                 return;
             }
+            connector.Catalog = txtCatalog.Text;
             ProjectMaster projectMaster = new ProjectMaster(connector.ConnectionString, txtNamesSpace.Text, txtDirectory.Text);
             projectMaster.genTable();
         }
@@ -104,7 +105,7 @@ namespace crud_genarate
             bool wdAuthen = chbWindowAuth.Checked;
             string username = txtUserName.Text;
             string password = txtPassWord.Text;
-            string catalog = cbxCatalog.Text;
+            string catalog = txtCatalog.Text;
             string directory = txtDirectory.Text;
             string nameApp = txtNameApp.Text;
             string nameSpace = txtNamesSpace.Text;

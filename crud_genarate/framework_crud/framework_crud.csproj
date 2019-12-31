@@ -98,17 +98,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CTInputTemplate.txt" />
+    <Content Include="CTLabelTemplate.txt" />
+    <Content Include="CTRichTemplate.txt" />
+    <Content Include="DesignTemplate.txt" />
+    <Content Include="DFTemplate.txt" />
+    <Content Include="DLTemplate.txt" />
     <Content Include="DSMainTemplate.txt" />
-    <Content Include="DSTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="CSMainTemplate.txt" />
-    <Content Include="ModelTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CSTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ModelTemplate.txt" />
+    <Content Include="CSTemplate.txt" />
+    <Content Include="FormMain.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

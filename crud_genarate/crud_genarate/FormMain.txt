@@ -9,52 +9,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ORM_DEMO.Models;
+using %NAMESPACE%.Models;
+using %NAMESPACE%_DEMO.Models;
 using System.Diagnostics;
 
-namespace ORM_DEMO
+namespace %NAMESPACE%
 {
-    public partial class FormMain : Form
+    public partial class %FORMNAME% : Form
     {
-        public FormMain()
+        public %FORMNAME%()
         {
             InitializeComponent();
             prepareData();
         }
 
-        public FormMain(string tableName, string connstring)
-        {
-            this.tableName = tableName;
-            this.connstring = connstring;
-        }
+        private string tableName = "%NAMESPACE%.Models.%TABLENAME%";
 
-        private string tableName = "ORM_DEMO.Models.Person";
-
-        private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
+        static string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
             "Integrated Security=True;Connect Timeout=10";
         private IList listData;
-        private List<Models.students> students;
+        private List<%TABLENAME%> %TABLENAME%;
         private MSSQLDatabase database;
         private BindingSource bd = new BindingSource();
 
         private void prepareData()
         {
             lbNameTable.Text = tableName;
-            // connect database
-            database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
-
-            // load data
-            loadData();
-
-            grvData.Dock = DockStyle.Fill;
-            grvData.AutoGenerateColumns = true;
             this.Refresh();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Show add form of table
-            Views.students frmAdd = new Views.students();
+            AddForm frmAdd = new AddForm();
             frmAdd.Show();
         }
 
@@ -65,12 +51,12 @@ namespace ORM_DEMO
 
         private void loadData()
         {
-            students = new List<Models.students>();
-            listData = database.Table(typeof(Models.students)).Query().Select();
+            %TABLENAME% = new List<%TABLENAME%>();
+            listData = database.Table(typeof(%TABLENAME%)).Query().Select();
 
-            foreach (Models.students student in listData)
+            foreach (%TABLENAME% student in listData)
             {
-                students.Add(student);
+                %TABLENAME%.Add(student);
             }
 
             // Set up the DataGridView.
@@ -79,26 +65,35 @@ namespace ORM_DEMO
             // Automatically generate the DataGridView columns.
             grvData.AutoGenerateColumns = true;
             
-            bd.DataSource = students;
+            bd.DataSource = %TABLENAME%;
             grvData.DataSource = bd;
 
             grvData.Update();
         }
 
+        private void %FORMNAME%_Load(object sender, EventArgs e)
+        {
+            // connect database
+            database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
+
+            // load data
+            loadData();
+
+            grvData.Dock = DockStyle.Fill;
+            grvData.AutoGenerateColumns = true;
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Models.students selectedRow = (Models.students) grvData.CurrentRow.DataBoundItem;
-            database.Table(typeof(Models.students)).Delete(selectedRow);
+            %TABLENAME% selectedRow = (%TABLENAME%) grvData.CurrentRow.DataBoundItem;
+            database.Table(typeof(%TABLENAME%)).Delete(selectedRow);
             MessageBox.Show("Delete successfully. Refresh...");
             loadData();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (grvData.CurrentRow == null) return;
-            Models.students selectedRow = (Models.students)grvData.CurrentRow.DataBoundItem;
-            Views.students updateForm = new Views.students(selectedRow);
-            updateForm.Show();
+
         }
     }
 }

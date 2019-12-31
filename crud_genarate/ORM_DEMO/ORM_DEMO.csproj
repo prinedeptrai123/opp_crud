@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\students.cs" />
     <Compile Include="UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,53 +67,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Course.cs">
+    <Compile Include="Views\students.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Course.Designer.cs">
-      <DependentUpon>Course.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CourseInstructor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\CourseInstructor.Designer.cs">
-      <DependentUpon>CourseInstructor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Department.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Department.Designer.cs">
-      <DependentUpon>Department.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\OfficeAssignment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\OfficeAssignment.Designer.cs">
-      <DependentUpon>OfficeAssignment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\OnlineCourse.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\OnlineCourse.Designer.cs">
-      <DependentUpon>OnlineCourse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\OnsiteCourse.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\OnsiteCourse.Designer.cs">
-      <DependentUpon>OnsiteCourse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Person.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Person.Designer.cs">
-      <DependentUpon>Person.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\StudentGrade.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\StudentGrade.Designer.cs">
-      <DependentUpon>StudentGrade.cs</DependentUpon>
+    <Compile Include="Views\students.Designer.cs">
+      <DependentUpon>students.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
@@ -152,7 +111,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Content Include="CTInputTemplate.txt" />
+    <Content Include="CTRichTemplate.txt" />
+    <Content Include="CTLabelTemplate.txt" />
+    <Content Include="DFTemplate.txt" />
+    <Content Include="DesignTemplate.txt" />
+    <Content Include="DLTemplate.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

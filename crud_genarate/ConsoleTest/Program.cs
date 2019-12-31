@@ -105,6 +105,7 @@ namespace ConsoleTest
             ////cap nhat
             //database.Table(qui.GetType()).Update(qui);
             ////xoa
+            ///
             ////lay danh sach
             //IList list1 = database.Table(qui.GetType()).Query().Select();
 
@@ -155,10 +156,12 @@ namespace ConsoleTest
         {
             string solutionName = "TemplateSolution";
             string projectName = "TemplateProject";
+
             string path = @"D:/Template/";
            // ProjectMaster.Instance.generateProject(solutionName, projectName, path);
             ProjectMaster a = new ProjectMaster("Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=test;Integrated Security=True;Connect Timeout=10", "qui", "kkk");
             a.generateProject(solutionName, projectName, path);
+
         }
 
         static TestData MakeData()
