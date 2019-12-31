@@ -29,7 +29,8 @@ namespace crud_genarate
 
         private void btnTestConnect_Click(object sender, EventArgs e)
         {
-            string SQLServer = "DESKTOP-15SIF8Q\\SQLEXPRESS";
+            //string SQLServer = "DESKTOP-15SIF8Q\\SQLEXPRESS";
+            string SQLServer = "DESKTOP-GR8RADT\\SQLEXPRESS";
             //string SQLServer = txtSQLServer.Text;
 
             if (!validateTestCon())
@@ -76,12 +77,15 @@ namespace crud_genarate
 
         private void _callGenCode()
         {
-            string err = validData();
-            if (err != null)
-            {
-                MessageBox.Show(err);
-                return;
-            }
+            //string err = validData();
+            //if (err != null)
+            //{
+            //    MessageBox.Show(err);
+            //    return;
+            //}
+            txtDirectory.Text = @"F:\QUIOPP";
+            txtNameApp.Text = "DEMO";
+            txtNamesSpace.Text = "DEMO";
             connector.Catalog = txtCatalog.Text;
             ProjectMaster projectMaster = new ProjectMaster(connector.ConnectionString, txtNamesSpace.Text, txtDirectory.Text);
             projectMaster.genTable();

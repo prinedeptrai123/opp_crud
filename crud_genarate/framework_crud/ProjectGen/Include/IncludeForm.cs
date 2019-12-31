@@ -25,7 +25,7 @@ namespace framework_crud.ProjectGen
             XmlNode newFormNode = xmldoc.CreateNode(XmlNodeType.Element, "Compile", string.Empty);
             XmlAttribute newFormNodeAttribute = xmldoc.CreateAttribute("Include");
 
-            string formName = $"{ fileName}.cs";
+            string formName = $"{fileName}.cs";
             if (!string.IsNullOrEmpty(folder))
             {
                 formName = $"{folder}\\{fileName}.cs";
@@ -43,7 +43,7 @@ namespace framework_crud.ProjectGen
             XmlAttribute newFormDesignAttribute = xmldoc.CreateAttribute("Include");
 
             string designName = $"{fileName}.Designer.cs";
-            if (string.IsNullOrEmpty(folder))
+            if (!string.IsNullOrEmpty(folder))
             {
                 designName = $"{folder}\\{fileName}.Designer.cs";
             }

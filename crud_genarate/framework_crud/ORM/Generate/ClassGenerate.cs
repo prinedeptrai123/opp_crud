@@ -35,6 +35,7 @@ namespace framework_crud.ORM
             foreach (var field in table.fields)
             {
                 Console.WriteLine(field.flags);
+                //check if field is primary key and foreignkey
                 
                 if (field.flags.HasFlag(FieldFlags.ForeignKey))
                 {

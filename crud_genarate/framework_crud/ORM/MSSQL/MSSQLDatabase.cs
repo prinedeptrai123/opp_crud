@@ -169,20 +169,47 @@ namespace framework_crud.ORM
                         string RF_TABLE = column.Rows[j][4].ToString();
                         string RF_COLUMN = column.Rows[j][5].ToString();
                         Console.WriteLine(CONTRAINT_TYPE);
+
                         if (CONTRAINT_TYPE.Contains("PRIMARY KEY"))
                         {
-                            table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Key().ReadOnly().Add();
+                            int lastIndex = table.fields.FindIndex(x => x.columnName == fieldName);
+                            if (lastIndex < 0)
+                            {
+                                table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Key().ReadOnly().Add();
+                            }
+                            else
+                            {
+                                //FieldFlags test = FieldFlags.ForeignKey | FieldFlags.Key;
+                                //Console.WriteLine(test);
+                                table.fields[lastIndex].flags |= FieldFlags.Key;
+                            }
                         }
                         else if (CONTRAINT_TYPE.Contains("FOREIGN KEY"))
                         {
-                            table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData))
+                            //check if this is primary key
+                            //check if contains key and foreikey
+                            //update field
+                            int lastIndex = table.fields.FindIndex(x => x.columnName == fieldName);
+                            if (lastIndex < 0)
+                            {
+                                table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData))
                                 .ForeignKey()
                                 .ReferenceTo(RF_TABLE, RF_COLUMN).Add();
+                            }
+                            else
+                            {
+                                table.fields[lastIndex].flags |= FieldFlags.Key;
+                                table.fields[lastIndex].fieldReference = new FieldReference
+                                {
+                                    table = RF_TABLE,
+                                    column = RF_COLUMN
+                                };
+                            }
                         }
                         else
                         {
                             table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Add();
-                        }                       
+                        }
                     }
                     result.Add(table);
                 }
