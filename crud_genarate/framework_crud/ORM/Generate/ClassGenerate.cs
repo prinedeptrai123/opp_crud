@@ -10,12 +10,17 @@ namespace framework_crud.ORM
     class ClassGenerate : IGenerate
     {
         private string pathName;
-        private string nameSpace;
+        //private string nameSpace;
 
         public ClassGenerate(string pathName,string nameSpace)
         {
             this.pathName = pathName;
-            this.nameSpace = nameSpace;
+            //this.nameSpace = nameSpace;
+        }
+
+        public ClassGenerate(string pathName)
+        {
+            this.pathName = pathName;
         }
 
         //TODO: generate class file
