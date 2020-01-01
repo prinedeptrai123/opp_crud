@@ -19,9 +19,12 @@ namespace ConsoleTest
     class Program
     {
         static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
+        string database = "School, Test, BookStoreData";
         //[STAThread]
         public static void Main(string[] args)
         {
+            //TableDefinition a = new TableDefinition();
+
 
         }
     }
