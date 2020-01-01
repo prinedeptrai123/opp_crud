@@ -20,7 +20,7 @@ namespace framework_crud.ORM
         private string schema;
         private MSSQLField[] fields;
         private MSSQLTrigger[] triggers;
-        private object[] triggerParameters; //don't need new object[] for every trigger call
+        private object[] triggerParameters;
 
         public MSSQLTable(MSSQLDatabase database, Type type)
         {
@@ -106,8 +106,6 @@ namespace framework_crud.ORM
                     for (int i = 0; i < writeable.Length; ++i)
                     {
                         parameters[i] = writeable[i].GetValue(obj);
-                        // HACK: Support setting binary fields to NULL.
-                        //       See SqlStatement.SetParamValue().
                         if (parameters[i] == null && writeable[i].DataType == MSSQLStatement.ByteArrayType)
                             parameters[i] = MSSQLStatement.BinaryNull;
                     }
@@ -194,9 +192,6 @@ namespace framework_crud.ORM
         public int Delete(ICollection list)
         {
             MSSQLField[] keys = GetFields(FieldFlags.Key);
-            //MSSQLField[] keys2 = GetFields(FieldFlags.ForeignKey);
-            MSSQLField[] keys3 = GetFields(FieldFlags.Read);
-
 
             StringBuilder sql = new StringBuilder();
             sql.Append("DELETE FROM ")
@@ -205,11 +200,6 @@ namespace framework_crud.ORM
             bool first = true;
             for (int i = 0; i < keys.Length; ++i)
             {
-                //skip reference key
-                //if (keys[i].Flags.HasFlag(FieldFlags.ForeignKey))
-                //{
-                //    continue;
-                //}
                 if (!first)
                     sql.Append(" AND ");
                 sql.Append(database.QuoteName(keys[i].Name))

@@ -29,141 +29,147 @@ namespace ConsoleTest
         {
 
             FieldFlags a = FieldFlags.ForeignKey | FieldFlags.Key | FieldFlags.Auto;
-            string a1 = " " + a.ToString();
-            a1 = a1.Replace(" ", "FieldFlags.");
-            a1 = a1.Replace(",", " | ");
+            //string a1 = " " + a.ToString();
+            //a1 = a1.Replace(" ", "FieldFlags.");
+            //a1 = a1.Replace(",", " | ");
+            Console.WriteLine(a & FieldFlags.Write);
+            if((a & FieldFlags.Key) == FieldFlags.Key){
+                Console.WriteLine("hihi");
+            }
 
 
-            Console.WriteLine(a1);
-
-            //string s = Regex.Replace(a.ToString(), @"\,\b", "something", RegexOptions.IgnoreCase);
-
-            Console.WriteLine(a);
-
-            //ProjectMaster.Instance.genTable();
-            //Stopwatch timer = Stopwatch.StartNew();
-
-            //string SQLServer = "DESKTOP-GR8RADT\\SQLEXPRESS";
 
 
-            //SQLConnector connector = new SQLConnector(SQLServer);
+            //Console.WriteLine(a1);
 
-            ////using (SqlTestSuite testSuite = new SqlTestSuite(con2))
-            ////    RunSuite(testSuite);
-            ////timer.Stop();
-            //Console.WriteLine("Opening database connection: " + connString);
+                //string s = Regex.Replace(a.ToString(), @"\,\b", "something", RegexOptions.IgnoreCase);
 
+                //Console.WriteLine(a);
 
-            //MSSQLDatabase database = new MSSQLDatabase(
-            //        new SqlConnection(con2));
-            //database.listTable();
+                //ProjectMaster.Instance.genTable();
+                //Stopwatch timer = Stopwatch.StartNew();
 
-            
-
-            //using(var database = new MSSQLDatabase(new SqlConnection(con2)))
-            //{
-            //    IList list = database.Table(typeof(Course)).Query().Select();
-
-            //    foreach (Course c in list)
-            //    {
-            //        Console.WriteLine(c.Title);
-            //    }
-            //}
-
-            //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
-            //{
-            //    Course newCourse = new Course
-            //    {
-            //        CourseID = 11,
-            //        Credits = 1,
-            //        DepartmentID = 7,
-            //        Title = "quinew"
-            //    };
-            //   // database.Table(typeof(Course)).Insert(newCourse);
-            //}
-            //Console.WriteLine("---------");
-
-            //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
-            //{
-            //    IList a = database.Table(typeof(Course)).Query().Eq("Title", "54").Select();
-
-            //    ////foreach (Course cour in a)
-            //    ////{
-            //    ////    Console.WriteLine(cour.CourseID);
-            //    ////}
-            //    database.Table(typeof(Course)).Delete(a[0]);
-            //}
-            //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
-            //{
-            //    IList list = database.Table(typeof(Course)).Query().Select();
-
-            //    foreach (Course c in list)
-            //    {
-            //        Console.WriteLine(c.Title);
-            //    }
-            //}
+                //string SQLServer = "DESKTOP-GR8RADT\\SQLEXPRESS";
 
 
-            //Console.WriteLine("---------");
+                //SQLConnector connector = new SQLConnector(SQLServer);
 
-            //string path = @"F:\OPP\demoApp";
-            //string nameSpace = "ConsoleTest";
-            //ProjectMaster master = new ProjectMaster(con2, nameSpace, path);
-            //master.genTable();
-
-            //TestData qui = MakeData();
-            //History qui = new History();
-
-            ////them
-            ////database.Table(qui.GetType()).Insert(qui);
-            ////cap nhat
-            //database.Table(qui.GetType()).Update(qui);
-            ////xoa
-            ///
-            ////lay danh sach
-            //IList list1 = database.Table(qui.GetType()).Query().Select();
-
-            //foreach (History td in list1)
-            //    Console.WriteLine(td.TrangThai);
-            //Console.WriteLine("\nSqlTestSuite total execution time (ms): " +
-            //        timer.ElapsedMilliseconds);
-
-            //IList list = database.Table(typeof(TestData))
-            //        .Query().In("rowID", new int[] { 1, 2, 3 }).Select();
-            //foreach (TestData td in list)
-            //{
-            //    Console.WriteLine(td.rowID);
-            //    Console.WriteLine(td.string1);
-            //    Console.WriteLine(td.float1);
-            //}
-
-            //TableTest qui2 = new TableTest { name = "q", age = 222 };
-            ////delete qui2
+                ////using (SqlTestSuite testSuite = new SqlTestSuite(con2))
+                ////    RunSuite(testSuite);
+                ////timer.Stop();
+                //Console.WriteLine("Opening database connection: " + connString);
 
 
-            //database.Table(qui2.GetType()).Insert(qui2);
-            //database.Table(qui2.GetType()).Delete(qui2);
-            ////detete
-            //database.Table(qui.GetType()).Delete(list);
-            ////database.Table(qui.GetType()).
+                //MSSQLDatabase database = new MSSQLDatabase(
+                //        new SqlConnection(con2));
+                //database.listTable();
 
-            ////delete theo id
-            ////TODO: 
 
-            //generateProject();
-            // string path = @"D:\TemplateSolution";
-            // string projectName = "TemplateProject";
-            //// IncludeHelper.IncludeFile("Models", path, projectName);
 
-            // CommonInclude includeHandle = new IncludeFile();
-            // includeHandle.includeProject("", "kkkkk", path, projectName);
-            // includeHandle.includeProject("qui", "lllll", path, projectName);
+                //using(var database = new MSSQLDatabase(new SqlConnection(con2)))
+                //{
+                //    IList list = database.Table(typeof(Course)).Query().Select();
 
-            // includeHandle = new IncludeForm();
-            // includeHandle.includeProject("qui", "Form1", path, projectName);
+                //    foreach (Course c in list)
+                //    {
+                //        Console.WriteLine(c.Title);
+                //    }
+                //}
 
-            //generateProject();
-            Console.ReadKey();
+                //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+                //{
+                //    Course newCourse = new Course
+                //    {
+                //        CourseID = 11,
+                //        Credits = 1,
+                //        DepartmentID = 7,
+                //        Title = "quinew"
+                //    };
+                //   // database.Table(typeof(Course)).Insert(newCourse);
+                //}
+                //Console.WriteLine("---------");
+
+                //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+                //{
+                //    IList a = database.Table(typeof(Course)).Query().Eq("Title", "54").Select();
+
+                //    ////foreach (Course cour in a)
+                //    ////{
+                //    ////    Console.WriteLine(cour.CourseID);
+                //    ////}
+                //    database.Table(typeof(Course)).Delete(a[0]);
+                //}
+                //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+                //{
+                //    IList list = database.Table(typeof(Course)).Query().Select();
+
+                //    foreach (Course c in list)
+                //    {
+                //        Console.WriteLine(c.Title);
+                //    }
+                //}
+
+
+                //Console.WriteLine("---------");
+
+                //string path = @"F:\OPP\demoApp";
+                //string nameSpace = "ConsoleTest";
+                //ProjectMaster master = new ProjectMaster(con2, nameSpace, path);
+                //master.genTable();
+
+                //TestData qui = MakeData();
+                //History qui = new History();
+
+                ////them
+                ////database.Table(qui.GetType()).Insert(qui);
+                ////cap nhat
+                //database.Table(qui.GetType()).Update(qui);
+                ////xoa
+                ///
+                ////lay danh sach
+                //IList list1 = database.Table(qui.GetType()).Query().Select();
+
+                //foreach (History td in list1)
+                //    Console.WriteLine(td.TrangThai);
+                //Console.WriteLine("\nSqlTestSuite total execution time (ms): " +
+                //        timer.ElapsedMilliseconds);
+
+                //IList list = database.Table(typeof(TestData))
+                //        .Query().In("rowID", new int[] { 1, 2, 3 }).Select();
+                //foreach (TestData td in list)
+                //{
+                //    Console.WriteLine(td.rowID);
+                //    Console.WriteLine(td.string1);
+                //    Console.WriteLine(td.float1);
+                //}
+
+                //TableTest qui2 = new TableTest { name = "q", age = 222 };
+                ////delete qui2
+
+
+                //database.Table(qui2.GetType()).Insert(qui2);
+                //database.Table(qui2.GetType()).Delete(qui2);
+                ////detete
+                //database.Table(qui.GetType()).Delete(list);
+                ////database.Table(qui.GetType()).
+
+                ////delete theo id
+                ////TODO: 
+
+                //generateProject();
+                // string path = @"D:\TemplateSolution";
+                // string projectName = "TemplateProject";
+                //// IncludeHelper.IncludeFile("Models", path, projectName);
+
+                // CommonInclude includeHandle = new IncludeFile();
+                // includeHandle.includeProject("", "kkkkk", path, projectName);
+                // includeHandle.includeProject("qui", "lllll", path, projectName);
+
+                // includeHandle = new IncludeForm();
+                // includeHandle.includeProject("qui", "Form1", path, projectName);
+
+                //generateProject();
+                Console.ReadKey();
         }
 
         static public void generateProject()

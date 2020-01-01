@@ -130,7 +130,12 @@ namespace framework_crud
         //TODO: code this
         public void genForm()
         {
-            
+
+        }
+
+        public void genFormMain()
+        {
+
         }
 
         public void generateProject(string solutionName, string projectName, string generateLocation)

@@ -9,7 +9,7 @@ namespace ConsoleTest.Models
     [Table("Course", "dbo")]
     class Course
     {
-        [Field("CourseID", FieldFlags.Key)]
+        [Field("CourseID", FieldFlags.Key|FieldFlags.ForeignKey)]
         public Int32 CourseID { get; set; }
         [Field("Title")]
         public string Title { get; set; }
