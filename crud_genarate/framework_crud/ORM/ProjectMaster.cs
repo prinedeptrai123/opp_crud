@@ -35,8 +35,6 @@ namespace framework_crud
         //private string _namespace = "ORM_DEMO";
         private string _applicationName = "ORM_DEMO";
 
-
-
         public ProjectMaster(string connString, string nameSpace, string directoryPath)
         {
             _namespace = nameSpace;

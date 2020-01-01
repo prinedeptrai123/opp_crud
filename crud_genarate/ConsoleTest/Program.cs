@@ -13,6 +13,7 @@ using framework_crud.ORM;
 using System.Threading;
 using framework_crud.ProjectGen;
 using ConsoleTest.Models;
+using System.Text.RegularExpressions;
 
 namespace ConsoleTest
 {
@@ -26,6 +27,19 @@ namespace ConsoleTest
         //[STAThread]
         public static void Main(string[] args)
         {
+
+            FieldFlags a = FieldFlags.ForeignKey | FieldFlags.Key | FieldFlags.Auto;
+            string a1 = " " + a.ToString();
+            a1 = a1.Replace(" ", "FieldFlags.");
+            a1 = a1.Replace(",", " | ");
+
+
+            Console.WriteLine(a1);
+
+            //string s = Regex.Replace(a.ToString(), @"\,\b", "something", RegexOptions.IgnoreCase);
+
+            Console.WriteLine(a);
+
             //ProjectMaster.Instance.genTable();
             //Stopwatch timer = Stopwatch.StartNew();
 
@@ -67,18 +81,18 @@ namespace ConsoleTest
             //    };
             //   // database.Table(typeof(Course)).Insert(newCourse);
             //}
-            Console.WriteLine("---------");
+            //Console.WriteLine("---------");
 
-            using (var database = new MSSQLDatabase(new SqlConnection(con2)))
-            {
-                IList a = database.Table(typeof(Course)).Query().Eq("Title", "54").Select();
+            //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+            //{
+            //    IList a = database.Table(typeof(Course)).Query().Eq("Title", "54").Select();
 
-                ////foreach (Course cour in a)
-                ////{
-                ////    Console.WriteLine(cour.CourseID);
-                ////}
-                database.Table(typeof(Course)).Delete(a[0]);
-            }
+            //    ////foreach (Course cour in a)
+            //    ////{
+            //    ////    Console.WriteLine(cour.CourseID);
+            //    ////}
+            //    database.Table(typeof(Course)).Delete(a[0]);
+            //}
             //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
             //{
             //    IList list = database.Table(typeof(Course)).Query().Select();
@@ -90,7 +104,7 @@ namespace ConsoleTest
             //}
 
 
-            Console.WriteLine("---------");
+            //Console.WriteLine("---------");
 
             //string path = @"F:\OPP\demoApp";
             //string nameSpace = "ConsoleTest";

@@ -168,7 +168,6 @@ namespace framework_crud.ORM
                         string CONTRAINT_TYPE = column.Rows[j][3].ToString();
                         string RF_TABLE = column.Rows[j][4].ToString();
                         string RF_COLUMN = column.Rows[j][5].ToString();
-                        Console.WriteLine(CONTRAINT_TYPE);
 
                         if (CONTRAINT_TYPE.Contains("PRIMARY KEY"))
                         {
@@ -179,9 +178,8 @@ namespace framework_crud.ORM
                             }
                             else
                             {
-                                //FieldFlags test = FieldFlags.ForeignKey | FieldFlags.Key;
-                                //Console.WriteLine(test);
-                                table.fields[lastIndex].flags |= FieldFlags.Key;
+                                table.fields[lastIndex].flags = FieldFlags.Key | FieldFlags.ForeignKey;
+                                //table.fields[lastIndex].flags |= FieldFlags.Key;
                             }
                         }
                         else if (CONTRAINT_TYPE.Contains("FOREIGN KEY"))
@@ -198,7 +196,7 @@ namespace framework_crud.ORM
                             }
                             else
                             {
-                                table.fields[lastIndex].flags |= FieldFlags.Key;
+                                table.fields[lastIndex].flags = FieldFlags.Key | FieldFlags.ForeignKey;
                                 table.fields[lastIndex].fieldReference = new FieldReference
                                 {
                                     table = RF_TABLE,
