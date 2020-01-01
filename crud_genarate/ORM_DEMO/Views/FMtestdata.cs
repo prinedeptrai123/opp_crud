@@ -1,4 +1,4 @@
-﻿using framework_crud.ORM;
+using framework_crud.ORM;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,57 +9,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ORM_DEMO.Models;
+using ORM_DEMO.Views;
 using System.Diagnostics;
 
-namespace ORM_DEMO
+namespace ORM_DEMO.Views
 {
-    public partial class FormMain : Form
+    public partial class FMtestdata : Form
     {
-        public FormMain()
+        public FMtestdata()
         {
             InitializeComponent();
             prepareData();
         }
 
-        public FormMain(string tableName, string connstring)
+        public FMtestdata(string tableName, string connstring)
         {
             this.tableName = tableName;
             this.connstring = connstring;
         }
 
-        private string tableName = "ORM_DEMO.Models.Person";
+        private string tableName = "Models.testdata";
 
         private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
             "Integrated Security=True;Connect Timeout=10";
         private IList listData;
-        private List<Models.students> students;
+        private List<Models.testdata> testdata;
         private MSSQLDatabase database;
         private BindingSource bd = new BindingSource();
 
         private void prepareData()
         {
-            lbNameTable.Text = tableName;
             // connect database
             database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
 
             // load data
             loadData();
 
-            // register event
-            btnAdd.Click += new System.EventHandler(btnAdd_Click);
-            btnRefresh.Click += new System.EventHandler(btnRefresh_Click);
-            btnDelete.Click += new System.EventHandler(btnDelete_Click);
-
             grvData.Dock = DockStyle.Fill;
             grvData.AutoGenerateColumns = true;
+            lbNameTable.Text = tableName;
+            this.Text = "FormMain";
             this.Refresh();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // Show add form of table
-            Views.students frmAdd = new Views.students();
+            Views.testdata frmAdd = new Views.testdata();
             frmAdd.Show();
         }
 
@@ -70,12 +66,12 @@ namespace ORM_DEMO
 
         private void loadData()
         {
-            students = new List<Models.students>();
-            listData = database.Table(typeof(Models.students)).Query().Select();
+            testdata = new List<Models.testdata>();
+            listData = database.Table(typeof(Models.testdata)).Query().Select();
 
-            foreach (Models.students item in listData)
+            foreach (Models.testdata item in listData)
             {
-                students.Add(item);
+                testdata.Add(item);
             }
 
             // Set up the DataGridView.
@@ -92,8 +88,8 @@ namespace ORM_DEMO
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Models.students selectedRow = (Models.students) grvData.CurrentRow.DataBoundItem;
-            database.Table(typeof(Models.students)).Delete(selectedRow);
+            Models.testdata selectedRow = (Models.testdata) grvData.CurrentRow.DataBoundItem;
+            database.Table(typeof(Models.testdata)).Delete(selectedRow);
             MessageBox.Show("Delete successfully. Refresh...");
             loadData();
         }
@@ -101,9 +97,10 @@ namespace ORM_DEMO
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (grvData.CurrentRow == null) return;
-            Models.students selectedRow = (Models.students)grvData.CurrentRow.DataBoundItem;
-            Views.students updateForm = new Views.students(selectedRow);
+            Models.testdata selectedRow = (Models.testdata)grvData.CurrentRow.DataBoundItem;
+            Views.testdata updateForm = new Views.testdata(selectedRow);
             updateForm.Show();
         }
     }
 }
+

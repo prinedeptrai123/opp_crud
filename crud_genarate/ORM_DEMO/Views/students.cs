@@ -47,7 +47,7 @@ namespace ORM_DEMO.Views
 
         private void initial(Models.students entity)
         {
-			ittextboxid1.Text = entity.id;
+			itnumericupdownid1.Text = entity.id;
 			ittextboxname2.Text = entity.name;
 			ittextboxschool3.Text = entity.school;
 
@@ -70,7 +70,7 @@ namespace ORM_DEMO.Views
         {
             try
             {
-                string id = ittextboxid1.Text;
+                string id = itnumericupdownid1.Text;
                 string name = ittextboxname2.Text;
                 string school = ittextboxschool3.Text;
 

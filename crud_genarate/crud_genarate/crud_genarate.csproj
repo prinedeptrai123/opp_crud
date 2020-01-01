@@ -170,13 +170,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\" />
     <Folder Include="image\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\CSMainTemplate.txt" />
+    <Content Include="bin\Debug\CSTemplate.txt" />
+    <Content Include="bin\Debug\CTInputTemplate.txt" />
+    <Content Include="bin\Debug\CTLabelTemplate.txt" />
+    <Content Include="bin\Debug\CTRichTemplate.txt" />
+    <Content Include="bin\Debug\DesignTemplate.txt" />
+    <Content Include="bin\Debug\DFTemplate.txt" />
+    <Content Include="bin\Debug\DLTemplate.txt" />
+    <Content Include="bin\Debug\DSFormMain.txt" />
+    <Content Include="bin\Debug\DSMainTemplate.txt" />
+    <Content Include="bin\Debug\FormMain.txt" />
+    <Content Include="bin\Debug\ModelTemplate.txt" />
+    <Content Include="CSListViews.txt" />
+    <Content Include="DSListViews.txt" />
     <Content Include="CSMainTemplate.txt" />
     <Content Include="CSTemplate.txt" />
     <Content Include="CTInputTemplate.txt" />
@@ -185,9 +198,11 @@
     <Content Include="DesignTemplate.txt" />
     <Content Include="DFTemplate.txt" />
     <Content Include="DLTemplate.txt" />
+    <Content Include="DSFormMain.txt" />
     <Content Include="DSMainTemplate.txt" />
     <Content Include="EDMGen\cmd.txt" />
     <Content Include="FormMain.txt" />
+    <Content Include="LabelLinkTemplate.txt" />
     <Content Include="ModelTemplate.txt" />
     <Content Include="ts\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

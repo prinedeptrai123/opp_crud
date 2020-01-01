@@ -1,4 +1,4 @@
-﻿using framework_crud.ORM;
+using framework_crud.ORM;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,26 +9,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ORM_DEMO.Models;
+using ORM_DEMO.Views;
 using System.Diagnostics;
 
-namespace ORM_DEMO
+namespace ORM_DEMO.Views
 {
-    public partial class FormMain : Form
+    public partial class FMstudents : Form
     {
-        public FormMain()
+        public FMstudents()
         {
             InitializeComponent();
             prepareData();
         }
 
-        public FormMain(string tableName, string connstring)
+        public FMstudents(string tableName, string connstring)
         {
             this.tableName = tableName;
             this.connstring = connstring;
         }
 
-        private string tableName = "ORM_DEMO.Models.Person";
+        private string tableName = "Models.students";
 
         private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
             "Integrated Security=True;Connect Timeout=10";
@@ -39,20 +39,16 @@ namespace ORM_DEMO
 
         private void prepareData()
         {
-            lbNameTable.Text = tableName;
             // connect database
             database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
 
             // load data
             loadData();
 
-            // register event
-            btnAdd.Click += new System.EventHandler(btnAdd_Click);
-            btnRefresh.Click += new System.EventHandler(btnRefresh_Click);
-            btnDelete.Click += new System.EventHandler(btnDelete_Click);
-
             grvData.Dock = DockStyle.Fill;
             grvData.AutoGenerateColumns = true;
+            lbNameTable.Text = tableName;
+            this.Text = "FormMain";
             this.Refresh();
         }
 
@@ -107,3 +103,4 @@ namespace ORM_DEMO
         }
     }
 }
+

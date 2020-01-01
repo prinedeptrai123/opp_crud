@@ -21,9 +21,58 @@ namespace framework_crud.ORM
         // generate form view CRUD
         public void Generate(TableDefinition table, string nameSpace)
         {
-            // generate file  .cs and file Designer.cs
+            // generate file .cs and file Designer.cs FormMain
+            GenerateCSFormMain(table, nameSpace + ".Views");
+            GenerateDSFormMain(table, nameSpace + ".Views");
+
+            // generate file  .cs and file Designer.cs addForm and updateForm
             GenerateCSFile(table, nameSpace + ".Views");
             GenerateDSFile(table, nameSpace + ".Views");
+        }
+
+        private void GenerateDSFormMain(TableDefinition table, string nameSpace)
+        {
+            string dsName = "FM" + table.name + _designPostFix;
+            StringBuilder sb = new StringBuilder();
+
+            using (StreamReader sr = new StreamReader("DSFormMain.txt"))
+            {
+                // Read the stream to a string, and write the string to the console.
+                String line = sr.ReadToEnd();
+                sb.Append(line);
+            }
+
+            sb.Replace("%NAMESPACE%", nameSpace);
+            sb.Replace("%FORMNAME%", "FM" + table.name);
+
+            // write to file
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, dsName)))
+            {
+                outputFile.WriteLine(sb.ToString());
+            }
+        }
+
+        private void GenerateCSFormMain(TableDefinition table, string nameSpace)
+        {
+            string csName = "FM" + table.name + _csPostFix;
+            StringBuilder sb = new StringBuilder();
+
+            using (StreamReader sr = new StreamReader("FormMain.txt"))
+            {
+                // Read the stream to a string, and write the string to the console.
+                String line = sr.ReadToEnd();
+                sb.Append(line);
+            }
+
+            sb.Replace("%NAMESPACE%", nameSpace);
+            sb.Replace("%TABLENAME%", table.name);
+            sb.Replace("%FORMNAME%", "FM" + table.name);
+
+            // write to file
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, csName)))
+            {
+                outputFile.WriteLine(sb.ToString());
+            }
         }
 
         private void GenerateCSFile(TableDefinition table, string nameSpace)
