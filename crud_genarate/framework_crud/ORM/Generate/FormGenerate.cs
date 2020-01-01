@@ -9,24 +9,17 @@ namespace framework_crud.ORM
 {
     public class FormGenerate : IGenerate
     {
+        private string _connString;
         private string _pathName;
         private string _csPostFix = ".cs";
         private string _designPostFix = ".Designer.cs";
         private List<TableDefinition> tables;
 
-        public FormGenerate(string pathName, List<TableDefinition> tables)
+        public FormGenerate(string connString, string pathName, List<TableDefinition> tables)
         {
+            this._connString = connString;
             this._pathName = pathName;
             this.tables = tables;
-        }
-
-
-        public void GenerateFormLink(string nameSpace)
-        {
-            if (tables.Count <= 0) return;
-            // generate file .cs and file Designer.cs FormMain
-            GenerateCSListViews(tables, nameSpace + ".Views");
-            GenerateDSListViews(tables, nameSpace + ".Views");
         }
 
         // generate form view CRUD
@@ -42,6 +35,14 @@ namespace framework_crud.ORM
             // generate file  .cs and file Designer.cs addForm and updateForm
             GenerateCSFile(table, nameSpace + ".Views");
             GenerateDSFile(table, nameSpace + ".Views");
+        }
+
+        public void GenerateFormLink(string nameSpace)
+        {
+            if (tables.Count <= 0) return;
+            // generate file .cs and file Designer.cs FormMain
+            GenerateCSListViews(tables, nameSpace + ".Views");
+            GenerateDSListViews(tables, nameSpace + ".Views");
         }
 
         private void GenerateDSListViews(List<TableDefinition> tables, string nameSpace)
@@ -124,7 +125,7 @@ namespace framework_crud.ORM
                 sb.Append(line);
             }
 
-            foreach(TableDefinition td in tables)
+            foreach (TableDefinition td in tables)
             {
                 string csName = "FM" + td.name + _csPostFix;
                 string fnName = "FM" + td.name;
@@ -144,6 +145,7 @@ namespace framework_crud.ORM
             sb.Replace("%NAMESPACE%", nameSpace);
             sb.Replace("%REGISTER%", sbRegisters.ToString());
             sb.Replace("%FUNCTION%", sbFunction.ToString());
+            sb.Replace(@"%CONNSTRING%", _connString);
 
             // write to file
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, "ListViews.cs")))
@@ -167,6 +169,7 @@ namespace framework_crud.ORM
             sb.Replace("%NAMESPACE%", nameSpace);
             sb.Replace("%TABLENAME%", table.name);
             sb.Replace("%FORMNAME%", "FM" + table.name);
+            sb.Replace(@"%CONNSTRING%", _connString);
 
             // write to file
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, csName)))
@@ -232,9 +235,16 @@ namespace framework_crud.ORM
                 }
                 else if (isBool(fd.memberName))
                 {
-                    sbContent.Append(string.Format("			{1}.Checked = entity.{1};\n", nameItem, fd.columnName));
+                    sbContent.Append(string.Format("			{0}.Checked = entity.{1};\n", nameItem, fd.columnName));
                     // content save
                     string ctSave = "                bool {0} = {1}.Checked;\n";
+                    sbSave.Append(string.Format(ctSave, fd.columnName, nameItem));
+                }
+                else if (isDateTime(fd.memberName))
+                {
+                    sbContent.Append(string.Format("			{0}.Value = entity.{1};\n", nameItem, fd.columnName));
+                    // content save
+                    string ctSave = "                DateTime {0} = {1}.Value;\n";
                     sbSave.Append(string.Format(ctSave, fd.columnName, nameItem));
                 }
                 else // text case
@@ -256,6 +266,7 @@ namespace framework_crud.ORM
             sb.Replace("%FIELDS%", sbFields.ToString());
             sb.Replace("%CTINITIAL%", sbContent.ToString());
             sb.Replace("%CTSAVE%", sbSave.ToString());
+            sb.Replace(@"%CONNSTRING%", _connString);
 
             // write to file
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, csName)))
@@ -344,7 +355,7 @@ namespace framework_crud.ORM
             }
         }
 
-        private void ReplaceDesign(TableDefinition table, float Y, StringBuilder strAdd, StringBuilder strContent, 
+        private void ReplaceDesign(TableDefinition table, float Y, StringBuilder strAdd, StringBuilder strContent,
             StringBuilder strDeclare, StringBuilder strDefine, StringBuilder dsTemplate, string nameSpace)
         {
             // scale for panel // scroll

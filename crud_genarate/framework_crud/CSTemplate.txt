@@ -15,8 +15,7 @@ namespace %NAMESPACE%
 {
     public partial class %CLASS% : Form
     {
-        private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
-            "Integrated Security=True;Connect Timeout=10";
+        private string connstring = @"%CONNSTRING%";
         private MSSQLDatabase database;
         private BindingSource bd = new BindingSource();
         private bool isUpdate = false;
@@ -81,6 +80,7 @@ namespace %NAMESPACE%
                     %TABLENAME% tmp = new  %TABLENAME%();
 %FIELDS%
                     database.Table(typeof(%TABLENAME%)).Update(tmp);
+					this.Close();
                 }
             }
             catch(InvalidCastException ex)

@@ -24,19 +24,16 @@ namespace framework_crud
         private string dll = "framework_crud";
         private string _namespace;
         private string _directoryName;
+        private string _connstring;
 
         // const temp
         //private string con = "Data Source={0}; database={1};Integrated Security=True;Connect Timeout=10";
 
-        private static string con = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
-
-
-        private static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=CaffeApp;Integrated Security=True;Connect Timeout=10";
-        //private string _namespace = "ORM_DEMO";
         private string _applicationName = "ORM_DEMO";
 
         public ProjectMaster(string connString, string nameSpace, string directoryPath)
         {
+            _connstring = connString;
             _namespace = nameSpace;
             _directoryName = directoryPath;
 
@@ -96,7 +93,7 @@ namespace framework_crud
 
             foreach (var table in tables)
             {
-                table.generate(new FormGenerate(pathView, tables), _namespace);
+                table.generate(new FormGenerate(_connstring, pathView, tables), _namespace);
             }
 
             foreach(var table in tables)
@@ -149,7 +146,7 @@ namespace framework_crud
             var solution = dte.Solution;
             System.Threading.Thread.Sleep(1000);
             string projectPath = generateLocation + "\\" + solutionName;
-            EnvDTE.Project project = solution.AddFromTemplate(@"D:\WindowsApplication\csWindowsApplication.vstemplate", projectPath, projectName);
+            EnvDTE.Project project = solution.AddFromTemplate(@"D:\WindowsApplication\CustomizeTemplate.vstemplate", projectPath, projectName);
             System.Threading.Thread.Sleep(5000);
             dte.ExecuteCommand("File.SaveAll");
             System.Threading.Thread.Sleep(0);

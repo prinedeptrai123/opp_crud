@@ -24,14 +24,15 @@ namespace %NAMESPACE%
 
         public %FORMNAME%(string tableName, string connstring)
         {
+			InitializeComponent();
+            prepareData();
             this.tableName = tableName;
             this.connstring = connstring;
         }
 
         private string tableName = "Models.%TABLENAME%";
 
-        private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
-            "Integrated Security=True;Connect Timeout=10";
+        private string connstring = @"%CONNSTRING%";
         private IList listData;
         private List<Models.%TABLENAME%> list;
         private MSSQLDatabase database;
