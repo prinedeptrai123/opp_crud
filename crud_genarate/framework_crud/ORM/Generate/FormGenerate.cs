@@ -12,18 +12,140 @@ namespace framework_crud.ORM
         private string _pathName;
         private string _csPostFix = ".cs";
         private string _designPostFix = ".Designer.cs";
+        private List<TableDefinition> tables;
 
-        public FormGenerate(string pathName)
+        public FormGenerate(string pathName, List<TableDefinition> tables)
         {
             this._pathName = pathName;
+            this.tables = tables;
+        }
+
+
+        public void GenerateFormLink(string nameSpace)
+        {
+            if (tables.Count <= 0) return;
+            // generate file .cs and file Designer.cs FormMain
+            GenerateCSFormMain(tables, nameSpace + ".Views");
+            GenerateDSFormMain(tables, nameSpace + ".Views");
         }
 
         // generate form view CRUD
         public void Generate(TableDefinition table, string nameSpace)
         {
-            // generate file  .cs and file Designer.cs
+            // generate form show all link
+            GenerateFormLink(nameSpace);
+
+            // generate file  .cs and file Designer.cs addForm and updateForm
             GenerateCSFile(table, nameSpace + ".Views");
             GenerateDSFile(table, nameSpace + ".Views");
+        }
+
+        private void GenerateDSFormMain(List<TableDefinition> tables, string nameSpace)
+        {
+            string dsName = "ListViews" + _designPostFix;
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sbDecalre = new StringBuilder();
+            StringBuilder sbContent = new StringBuilder();
+            StringBuilder sbAddd = new StringBuilder();
+            StringBuilder sbDefine = new StringBuilder();
+
+            string declareTemplate = "            this.{0} = new System.Windows.Forms.LinkLabel();\n";
+            string dfTemplate = "        private System.Windows.Forms.LinkLabel {0};\n";
+            string addTemplatle = "            this.Controls.Add(this.{0});\n";
+            string contentTemplate = "";
+            using (StreamReader sr = new StreamReader("DSListViews.txt"))
+            {
+                // Read the stream to a string, and write the string to the console.
+                String line = sr.ReadToEnd();
+                sb.Append(line);
+            }
+
+            using (StreamReader sr = new StreamReader("LabelLinkTemplate.txt"))
+            {
+                // Read the stream to a string, and write the string to the console.
+                contentTemplate = sr.ReadToEnd();
+            }
+
+            int Y = 150;
+            int tabIndex = 2;
+            foreach (TableDefinition td in tables)
+            {
+                string lblName = "lbl" + td.name;
+                sbDecalre.Append(string.Format(declareTemplate, lblName));
+                sbDefine.Append(string.Format(dfTemplate, lblName));
+                sbAddd.Append(string.Format(addTemplatle, lblName));
+
+                // content
+                sbContent.Append(contentTemplate);
+                sbContent.Replace("%LBNAME%", lblName);
+                sbContent.Replace("%TEXT%", "Models." + td.name);
+                sbContent.Replace("%LBY%", Y.ToString());
+                sbContent.Replace("%TABINDEX%", tabIndex.ToString());
+
+                tabIndex++;
+                Y += 30;
+            }
+
+            sb.Replace("%NAMESPACE%", nameSpace);
+            sb.Replace("%Y%", Y.ToString());
+            sb.Replace("%DECLARE%", sbDecalre.ToString());
+            sb.Replace("%ADD%", sbAddd.ToString());
+            sb.Replace("%CONTENT%", sbContent.ToString());
+            sb.Replace("%DEFINE%", sbDefine.ToString());
+
+            // write to file
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, dsName)))
+            {
+                outputFile.WriteLine(sb.ToString());
+            }
+        }
+
+        private void GenerateCSFormMain(List<TableDefinition> tables, string nameSpace)
+        {
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sbFunction = new StringBuilder();
+            StringBuilder sbRegisters = new StringBuilder();
+            String functionTemplate = "";
+
+            using (StreamReader sr = new StreamReader("FNLinkTemplate.txt"))
+            {
+                // Read the stream to a string, and write the string to the console.
+                functionTemplate = sr.ReadToEnd();
+            }
+
+            using (StreamReader sr = new StreamReader("CSListViews.txt"))
+            {
+                // Read the stream to a string, and write the string to the console.
+                String line = sr.ReadToEnd();
+                sb.Append(line);
+            }
+
+            foreach(TableDefinition td in tables)
+            {
+                string csName = "FM" + td.name + _csPostFix;
+                string fnName = "FM" + td.name;
+                string lbLinkName = "lbl" + td.name;
+                string functionClick = lbLinkName + "_click";
+
+                // registers
+                sbRegisters.Append(string.Format("			{0}.Click += new System.EventHandler({1});\n", lbLinkName, functionClick));
+
+                // functions
+                sbFunction.Append(functionTemplate);
+                sbFunction.Replace("%FUNCTIONNAME%", functionClick);
+                sbFunction.Replace("%FORMNAME%", fnName);
+                sbFunction.Replace("%TABLENAME%", td.name);
+            }
+
+            sb.Replace("%NAMESPACE%", nameSpace);
+            sb.Replace("%REGISTER%", sbRegisters.ToString());
+            sb.Replace("%FUNCTION%", sbFunction.ToString());
+
+            // write to file
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, "ListViews.cs")))
+            {
+                outputFile.WriteLine(sb.ToString());
+            }
         }
 
         private void GenerateCSFile(TableDefinition table, string nameSpace)

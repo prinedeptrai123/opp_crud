@@ -9,6 +9,12 @@ namespace ORM_DEMO.Models
 	[Table("students", "dbo")]
     public class students
     {        
+
+        public students()
+        {
+
+        }
+
         [Field("id")]
  public string id;
 [Field("name")]

@@ -1,4 +1,4 @@
-﻿using framework_crud.ORM;
+using framework_crud.ORM;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,31 +9,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using %NAMESPACE%;
+using ORM_DEMO.Views;
 using System.Diagnostics;
 
-namespace %NAMESPACE%
+namespace ORM_DEMO.Views
 {
-    public partial class %FORMNAME% : Form
+    public partial class FMstudents : Form
     {
-        public %FORMNAME%()
+        public FMstudents()
         {
             InitializeComponent();
             prepareData();
         }
 
-        public %FORMNAME%(string tableName, string connstring)
+        public FMstudents(string tableName, string connstring)
         {
             this.tableName = tableName;
             this.connstring = connstring;
         }
 
-        private string tableName = "Models.%TABLENAME%";
+        private string tableName = "Models.students";
 
         private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
             "Integrated Security=True;Connect Timeout=10";
         private IList listData;
-        private List<Models.%TABLENAME%> list;
+        private List<Models.students> students;
         private MSSQLDatabase database;
         private BindingSource bd = new BindingSource();
 
@@ -55,7 +55,7 @@ namespace %NAMESPACE%
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // Show add form of table
-            Views.%TABLENAME% frmAdd = new Views.%TABLENAME%();
+            Views.students frmAdd = new Views.students();
             frmAdd.Show();
         }
 
@@ -66,12 +66,12 @@ namespace %NAMESPACE%
 
         private void loadData()
         {
-            %TABLENAME% = new List<Models.%TABLENAME%>();
-            listData = database.Table(typeof(Models.%TABLENAME%)).Query().Select();
+            students = new List<Models.students>();
+            listData = database.Table(typeof(Models.students)).Query().Select();
 
-            foreach (Models.%TABLENAME% item in listData)
+            foreach (Models.students item in listData)
             {
-                %TABLENAME%.Add(item);
+                students.Add(item);
             }
 
             // Set up the DataGridView.
@@ -80,7 +80,7 @@ namespace %NAMESPACE%
             // Automatically generate the DataGridView columns.
             grvData.AutoGenerateColumns = true;
             
-            bd.DataSource = list;
+            bd.DataSource = students;
             grvData.DataSource = bd;
 
             grvData.Update();
@@ -88,8 +88,8 @@ namespace %NAMESPACE%
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Models.%TABLENAME% selectedRow = (Models.%TABLENAME%) grvData.CurrentRow.DataBoundItem;
-            database.Table(typeof(Models.%TABLENAME%)).Delete(selectedRow);
+            Models.students selectedRow = (Models.students) grvData.CurrentRow.DataBoundItem;
+            database.Table(typeof(Models.students)).Delete(selectedRow);
             MessageBox.Show("Delete successfully. Refresh...");
             loadData();
         }
@@ -97,9 +97,10 @@ namespace %NAMESPACE%
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (grvData.CurrentRow == null) return;
-            Models.%TABLENAME% selectedRow = (Models.%TABLENAME%)grvData.CurrentRow.DataBoundItem;
-            Views.%TABLENAME% updateForm = new Views.%TABLENAME%(selectedRow);
+            Models.students selectedRow = (Models.students)grvData.CurrentRow.DataBoundItem;
+            Views.students updateForm = new Views.students(selectedRow);
             updateForm.Show();
         }
     }
 }
+

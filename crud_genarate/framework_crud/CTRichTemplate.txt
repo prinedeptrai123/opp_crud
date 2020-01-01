@@ -1,5 +1,0 @@
-﻿this.%RBNAME%.Location = new System.Drawing.Point(118, %LOCATIONY%);
-this.%RBNAME%.Name = "%RBNAME%";
-this.%RBNAME%.Size = new System.Drawing.Size(312, 95);
-this.%RBNAME%.TabIndex = %TABINDEX%;
-this.%RBNAME%.Text = "";

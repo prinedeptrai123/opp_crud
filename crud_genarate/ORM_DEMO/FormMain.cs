@@ -46,6 +46,11 @@ namespace ORM_DEMO
             // load data
             loadData();
 
+            // register event
+            btnAdd.Click += new System.EventHandler(btnAdd_Click);
+            btnRefresh.Click += new System.EventHandler(btnRefresh_Click);
+            btnDelete.Click += new System.EventHandler(btnDelete_Click);
+
             grvData.Dock = DockStyle.Fill;
             grvData.AutoGenerateColumns = true;
             this.Refresh();
@@ -68,9 +73,9 @@ namespace ORM_DEMO
             students = new List<Models.students>();
             listData = database.Table(typeof(Models.students)).Query().Select();
 
-            foreach (Models.students student in listData)
+            foreach (Models.students item in listData)
             {
-                students.Add(student);
+                students.Add(item);
             }
 
             // Set up the DataGridView.
