@@ -9,8 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using %NAMESPACE%.Models;
-using %NAMESPACE%_DEMO.Models;
+using %NAMESPACE%;
 using System.Diagnostics;
 
 namespace %NAMESPACE%
@@ -23,24 +22,40 @@ namespace %NAMESPACE%
             prepareData();
         }
 
-        private string tableName = "%NAMESPACE%.Models.%TABLENAME%";
+        public %FORMNAME%(string tableName, string connstring)
+        {
+            this.tableName = tableName;
+            this.connstring = connstring;
+        }
 
-        static string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
+        private string tableName = "Models.%TABLENAME%";
+
+        private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
             "Integrated Security=True;Connect Timeout=10";
         private IList listData;
-        private List<%TABLENAME%> %TABLENAME%;
+        private List<Models.%TABLENAME%> %TABLENAME%;
         private MSSQLDatabase database;
         private BindingSource bd = new BindingSource();
 
         private void prepareData()
         {
+            // connect database
+            database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
+
+            // load data
+            loadData();
+
+            grvData.Dock = DockStyle.Fill;
+            grvData.AutoGenerateColumns = true;
             lbNameTable.Text = tableName;
+            this.Text = "FormMain";
             this.Refresh();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddForm frmAdd = new AddForm();
+            // Show add form of table
+            Views.%TABLENAME% frmAdd = new Views.%TABLENAME%();
             frmAdd.Show();
         }
 
@@ -51,12 +66,12 @@ namespace %NAMESPACE%
 
         private void loadData()
         {
-            %TABLENAME% = new List<%TABLENAME%>();
-            listData = database.Table(typeof(%TABLENAME%)).Query().Select();
+            %TABLENAME% = new List<Models.%TABLENAME%>();
+            listData = database.Table(typeof(Models.%TABLENAME%)).Query().Select();
 
-            foreach (%TABLENAME% student in listData)
+            foreach (Models.%TABLENAME% item in listData)
             {
-                %TABLENAME%.Add(student);
+                %TABLENAME%.Add(item);
             }
 
             // Set up the DataGridView.
@@ -65,35 +80,26 @@ namespace %NAMESPACE%
             // Automatically generate the DataGridView columns.
             grvData.AutoGenerateColumns = true;
             
-            bd.DataSource = %TABLENAME%;
+            bd.DataSource = students;
             grvData.DataSource = bd;
 
             grvData.Update();
         }
 
-        private void %FORMNAME%_Load(object sender, EventArgs e)
-        {
-            // connect database
-            database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
-
-            // load data
-            loadData();
-
-            grvData.Dock = DockStyle.Fill;
-            grvData.AutoGenerateColumns = true;
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            %TABLENAME% selectedRow = (%TABLENAME%) grvData.CurrentRow.DataBoundItem;
-            database.Table(typeof(%TABLENAME%)).Delete(selectedRow);
+            Models.%TABLENAME% selectedRow = (Models.%TABLENAME%) grvData.CurrentRow.DataBoundItem;
+            database.Table(typeof(Models.%TABLENAME%)).Delete(selectedRow);
             MessageBox.Show("Delete successfully. Refresh...");
             loadData();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            if (grvData.CurrentRow == null) return;
+            Models.%TABLENAME% selectedRow = (Models.%TABLENAME%)grvData.CurrentRow.DataBoundItem;
+            Views.%TABLENAME% updateForm = new Views.%TABLENAME%(selectedRow);
+            updateForm.Show();
         }
     }
 }

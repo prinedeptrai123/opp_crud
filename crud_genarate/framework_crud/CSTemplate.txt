@@ -10,8 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using %NAMESPACE%.Models;
-using %NAMESPACE%.Models;
 
 namespace %NAMESPACE%
 {
@@ -49,11 +47,8 @@ namespace %NAMESPACE%
 
         private void initial(%TABLENAME% entity)
         {
-			%CTINITIAL%
-         //   itnumericid1.Value = Decimal.Parse(entity.id.ToString());
-         //   ittextboxname2.Text = entity.name;
-         //   ittextboxschool3.Text = entity.school;
-         //   database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
+%CTINITIAL%
+			  database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
         }
 
         private void initial()
@@ -72,21 +67,19 @@ namespace %NAMESPACE%
         {
             try
             {
-				%CTSAVE%
+%CTSAVE%
                 // add
                 if (!isUpdate)
                 {
                     %TABLENAME% tmp = new  %TABLENAME%();
-					%FIELDS%
-                    tmp.id = id;
+%FIELDS%
                     database.Table(typeof(%TABLENAME%)).Insert(tmp);
                 }
                 // update
                 else
                 {
                     %TABLENAME% tmp = new  %TABLENAME%();
-					%FIELDS%
-                    tmp.id = id;
+%FIELDS%
                     database.Table(typeof(%TABLENAME%)).Update(tmp);
                 }
             }

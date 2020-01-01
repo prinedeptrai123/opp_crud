@@ -58,11 +58,7 @@ namespace framework_crud
         //TODO: code this
         public void genTable()
         {
-
             //gen project
-            
-
-
             generateProject(_namespace, _namespace, _directoryName);
 
             //TODO: remove
@@ -112,6 +108,7 @@ namespace framework_crud
                 //include update
                 //include main
                 includeForm.includeProject(folderView, table.name, projectPath, _namespace);
+                includeForm.includeProject(folderView, $"FM{table.name}", projectPath, _namespace);
             }
 
             //TODO: copy and reference dll

@@ -242,16 +242,13 @@ namespace framework_crud.ORM
                 }
                 else
                 {
-                    Debug.WriteLine("Erro here");
                 }
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
+                throw e;
             }
             return null;
         }
-
-
     }
 }

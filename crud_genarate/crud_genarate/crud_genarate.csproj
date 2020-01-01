@@ -176,6 +176,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\CSListViews.txt" />
     <Content Include="bin\Debug\CSMainTemplate.txt" />
     <Content Include="bin\Debug\CSTemplate.txt" />
     <Content Include="bin\Debug\CTInputTemplate.txt" />
@@ -185,8 +186,10 @@
     <Content Include="bin\Debug\DFTemplate.txt" />
     <Content Include="bin\Debug\DLTemplate.txt" />
     <Content Include="bin\Debug\DSFormMain.txt" />
+    <Content Include="bin\Debug\DSListViews.txt" />
     <Content Include="bin\Debug\DSMainTemplate.txt" />
     <Content Include="bin\Debug\FormMain.txt" />
+    <Content Include="bin\Debug\LabelLinkTemplate.txt" />
     <Content Include="bin\Debug\ModelTemplate.txt" />
     <Content Include="CSListViews.txt" />
     <Content Include="DSListViews.txt" />
