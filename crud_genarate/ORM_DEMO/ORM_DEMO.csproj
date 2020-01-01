@@ -53,6 +53,7 @@
       <DependentUpon>ListViews.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\students.cs" />
+    <Compile Include="Models\testdata.cs" />
     <Compile Include="UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,11 +80,29 @@
     <Compile Include="Views\FMstudents.Designer.cs">
       <DependentUpon>FMstudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FMtestdata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FMtestdata.Designer.cs">
+      <DependentUpon>FMtestdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListViews.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ListViews.Designer.cs">
+      <DependentUpon>ListViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\students.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\students.Designer.cs">
       <DependentUpon>students.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\testdata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\testdata.Designer.cs">
+      <DependentUpon>testdata.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ListViews.resx">
       <DependentUpon>ListViews.cs</DependentUpon>
@@ -106,6 +125,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\ListViews.resx">
+      <DependentUpon>ListViews.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

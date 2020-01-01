@@ -1,4 +1,4 @@
-﻿namespace %NAMESPACE%
+namespace ORM_DEMO.Views
 {
     partial class ListViews
     {
@@ -31,7 +31,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbDatabaseName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-%DECLARE%
+            this.lblstudents = new System.Windows.Forms.LinkLabel();
+            this.lbltestdata = new System.Windows.Forms.LinkLabel();
+
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,14 +64,42 @@
             this.label1.Size = new System.Drawing.Size(80, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "List Views";
-%CONTENT%
+            // 
+            // lblstudents
+            // 
+			this.lblstudents.AutoSize = true;
+            this.lblstudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblstudents.Location = new System.Drawing.Point(46, 130);
+            this.lblstudents.Name = "lblstudents";
+            this.lblstudents.Size = new System.Drawing.Size(72, 17);
+            this.lblstudents.TabIndex = 2;
+            this.lblstudents.TabStop = true;
+            this.lblstudents.Text = "Models.students";
+
+
+            // 
+            // lbltestdata
+            // 
+			this.lbltestdata.AutoSize = true;
+            this.lbltestdata.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbltestdata.Location = new System.Drawing.Point(46, 160);
+            this.lbltestdata.Name = "lbltestdata";
+            this.lbltestdata.Size = new System.Drawing.Size(72, 17);
+            this.lbltestdata.TabIndex = 3;
+            this.lbltestdata.TabStop = true;
+            this.lbltestdata.Text = "Models.testdata";
+
+
+
             // 
             // ListViews
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, %Y%);
-%ADD%
+            this.ClientSize = new System.Drawing.Size(589, 190);
+            this.Controls.Add(this.lblstudents);
+            this.Controls.Add(this.lbltestdata);
+
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Name = "ListViews";
@@ -86,6 +116,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbDatabaseName;
         private System.Windows.Forms.Label label1;
-%DEFINE%
+        private System.Windows.Forms.LinkLabel lblstudents;
+        private System.Windows.Forms.LinkLabel lbltestdata;
+
     }
 }

@@ -40,7 +40,6 @@ namespace ORM_DEMO
             foreach(TableDefinition fd in tables)
             {
                 // register event for table link
-                new System.EventHandler()
             }
         }
 
