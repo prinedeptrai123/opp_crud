@@ -1,4 +1,4 @@
-﻿using framework_crud.ORM;
+using framework_crud.ORM;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace %NAMESPACE%
+namespace ORM_DEMO.Views
 {
     public partial class ListViews : Form
     {
@@ -45,9 +45,26 @@ namespace %NAMESPACE%
 
         private void registerEvents()
         {
-            %REGISTER%
+            			lblstudents.Click += new System.EventHandler(lblstudents_click);
+			lbltestdata.Click += new System.EventHandler(lbltestdata_click);
+
         }
 
-        %FUNCTION%
+        
+		private void lblstudents_click(object sender, EventArgs e) 
+		{
+			Views.FMstudents frm = new Views.FMstudents("Models." + "students", connstring);
+			frm.Show();
+		}
+
+
+		private void lbltestdata_click(object sender, EventArgs e) 
+		{
+			Views.FMtestdata frm = new Views.FMtestdata("Models." + "testdata", connstring);
+			frm.Show();
+		}
+
+
     }
 }
+

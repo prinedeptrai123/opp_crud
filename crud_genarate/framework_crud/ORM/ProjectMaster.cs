@@ -66,6 +66,7 @@ namespace framework_crud
             // STEP 1: create folder to gen
             // STEP 2: gen into folder with struct
             // STEP 3: gen view main, add, update into folder with struct
+            // STEP 4: gen view show all link to form of models
 
             Console.WriteLine("Database ORM will generated into " + folderName);
             string pathName = String.Format(@"{0}\{1}", _directoryName, folderName);
@@ -83,14 +84,14 @@ namespace framework_crud
             string pathView = String.Format(@"{0}\{1}", _directoryName, folderView);
             System.IO.Directory.CreateDirectory(pathView);
 
-            // 
             // STEP 3
-
-            // 
             foreach (var table in tables)
             {
-                table.generate(new FormGenerate(pathView), _namespace);
+                table.generate(new FormGenerate(pathView, tables), _namespace);
             }
+
+            // STEP 4
+
 
         }
 

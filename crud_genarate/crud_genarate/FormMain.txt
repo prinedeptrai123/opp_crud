@@ -33,7 +33,7 @@ namespace %NAMESPACE%
         private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
             "Integrated Security=True;Connect Timeout=10";
         private IList listData;
-        private List<Models.%TABLENAME%> %TABLENAME%;
+        private List<Models.%TABLENAME%> list;
         private MSSQLDatabase database;
         private BindingSource bd = new BindingSource();
 
@@ -80,7 +80,7 @@ namespace %NAMESPACE%
             // Automatically generate the DataGridView columns.
             grvData.AutoGenerateColumns = true;
             
-            bd.DataSource = students;
+            bd.DataSource = list;
             grvData.DataSource = bd;
 
             grvData.Update();

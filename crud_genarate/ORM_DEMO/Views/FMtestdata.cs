@@ -33,7 +33,7 @@ namespace ORM_DEMO.Views
         private string connstring = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=oop;" +
             "Integrated Security=True;Connect Timeout=10";
         private IList listData;
-        private List<Models.testdata> testdata;
+        private List<Models.testdata> list;
         private MSSQLDatabase database;
         private BindingSource bd = new BindingSource();
 
@@ -66,12 +66,12 @@ namespace ORM_DEMO.Views
 
         private void loadData()
         {
-            testdata = new List<Models.testdata>();
+            list = new List<Models.testdata>();
             listData = database.Table(typeof(Models.testdata)).Query().Select();
 
             foreach (Models.testdata item in listData)
             {
-                testdata.Add(item);
+                list.Add(item);
             }
 
             // Set up the DataGridView.
@@ -80,7 +80,7 @@ namespace ORM_DEMO.Views
             // Automatically generate the DataGridView columns.
             grvData.AutoGenerateColumns = true;
             
-            bd.DataSource = students;
+            bd.DataSource = list;
             grvData.DataSource = bd;
 
             grvData.Update();

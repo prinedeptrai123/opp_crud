@@ -1,0 +1,7 @@
+﻿
+		private void %FUNCTIONNAME%(object sender, EventArgs e) 
+		{
+			Views.%FORMNAME% frm = new Views.%FORMNAME%("Models." + "%TABLENAME%", connstring);
+			frm.Show();
+		}
+

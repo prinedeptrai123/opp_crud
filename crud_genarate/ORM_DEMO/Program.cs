@@ -17,7 +17,7 @@ namespace ORM_DEMO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FMstudents());
+            Application.Run(new Views.ListViews());
         }
     }
 }
