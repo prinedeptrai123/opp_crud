@@ -40,16 +40,14 @@ namespace %NAMESPACE%
         {
             database = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(connstring));
             tables = database.listTable();
+			this.Text = "List Views of Database";
         }
 
         private void registerEvents()
         {
-            foreach(TableDefinition fd in tables)
-            {
-                // register event for table link
-            }
+            %REGISTER%
         }
 
-        
+        %FUNCTION%
     }
 }

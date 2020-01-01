@@ -1,6 +1,6 @@
 ﻿namespace %NAMESPACE%
 {
-    partial class %FORMNAME%
+    partial class ListViews
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbDatabaseName = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
-            //this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            //this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            //this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-			%DECLARE%
-
+%DECLARE%
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,34 +47,30 @@
             // 
             this.lbDatabaseName.AutoSize = true;
             this.lbDatabaseName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.lbDatabaseName.Location = new System.Drawing.Point(229, 13);
+            this.lbDatabaseName.Location = new System.Drawing.Point(147, 18);
             this.lbDatabaseName.Name = "lbDatabaseName";
-            this.lbDatabaseName.Size = new System.Drawing.Size(79, 29);
+            this.lbDatabaseName.Size = new System.Drawing.Size(235, 29);
             this.lbDatabaseName.TabIndex = 0;
-            this.lbDatabaseName.Text = "label1";
-
+            this.lbDatabaseName.Text = "Form show all Views";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label1.Location = new System.Drawing.Point(12, 97);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.Location = new System.Drawing.Point(12, 114);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 22);
-            this.label1.TabIndex = 2;
+            this.label1.Size = new System.Drawing.Size(80, 20);
+            this.label1.TabIndex = 1;
             this.label1.Text = "List Views";
-
+%CONTENT%
             // 
             // ListViews
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 450);
-            this.Controls.Add(this.linkLabel4);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel2);
+            this.ClientSize = new System.Drawing.Size(589, %Y%);
+%ADD%
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.panel1);
             this.Name = "ListViews";
             this.Text = "ListViews";
@@ -94,11 +85,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbDatabaseName;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label1;
-        //private System.Windows.Forms.LinkLabel linkLabel2;
-        //private System.Windows.Forms.LinkLabel linkLabel3;
-        //private System.Windows.Forms.LinkLabel linkLabel4;
-		%DEFINE%
+%DEFINE%
     }
 }

@@ -99,18 +99,20 @@ namespace framework_crud
                 table.generate(new FormGenerate(pathView, tables), _namespace);
             }
 
-
             foreach(var table in tables)
             {
-                includeFile.includeProject(folderName, table.name, projectPath, _namespace);
-                //include add
-                //include update
-                //include main
+                //include add | update
                 includeForm.includeProject(folderView, table.name, projectPath, _namespace);
+                //include main | form
                 includeForm.includeProject(folderView, $"FM{table.name}", projectPath, _namespace);
+                //include Model
+                includeFile.includeProject(folderName, table.name, projectPath, _namespace);
             }
 
-            //TODO: copy and reference dll
+            //include List
+            includeForm.includeProject(folderView, "ListViews", projectPath, _namespace);
+
+            //copy | add reference dll
             string pathLibs = String.Format(@"{0}\{1}\{2}", _directoryName, _namespace, folderLib);
             copyFile(dll + ".dll", pathLibs);
             includeDLL.includeProject(folderLib, dll, projectPath, _namespace);

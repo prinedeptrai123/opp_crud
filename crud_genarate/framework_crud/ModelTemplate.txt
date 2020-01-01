@@ -7,7 +7,7 @@ using framework_crud.ORM;
 namespace %NAMESPACE%.Models
 {
 	[Table("%CLASS%", "%DB%")]
-    class %CLASS%
+    public class %CLASS%
     {        
         %FIELDS%
     }

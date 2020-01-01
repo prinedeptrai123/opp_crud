@@ -25,8 +25,8 @@ namespace framework_crud.ORM
         {
             if (tables.Count <= 0) return;
             // generate file .cs and file Designer.cs FormMain
-            GenerateCSFormMain(tables, nameSpace + ".Views");
-            GenerateDSFormMain(tables, nameSpace + ".Views");
+            GenerateCSListViews(tables, nameSpace + ".Views");
+            GenerateDSListViews(tables, nameSpace + ".Views");
         }
 
         // generate form view CRUD
@@ -35,12 +35,16 @@ namespace framework_crud.ORM
             // generate form show all link
             GenerateFormLink(nameSpace);
 
+            // generate form main
+            GenerateCSFormMain(table, nameSpace + ".Views");
+            GenerateDSFormMain(table, nameSpace + ".Views");
+
             // generate file  .cs and file Designer.cs addForm and updateForm
             GenerateCSFile(table, nameSpace + ".Views");
             GenerateDSFile(table, nameSpace + ".Views");
         }
 
-        private void GenerateDSFormMain(List<TableDefinition> tables, string nameSpace)
+        private void GenerateDSListViews(List<TableDefinition> tables, string nameSpace)
         {
             string dsName = "ListViews" + _designPostFix;
             StringBuilder sb = new StringBuilder();
@@ -100,7 +104,7 @@ namespace framework_crud.ORM
             }
         }
 
-        private void GenerateCSFormMain(List<TableDefinition> tables, string nameSpace)
+        private void GenerateCSListViews(List<TableDefinition> tables, string nameSpace)
         {
             StringBuilder sb = new StringBuilder();
             StringBuilder sbFunction = new StringBuilder();
@@ -148,6 +152,52 @@ namespace framework_crud.ORM
             }
         }
 
+        private void GenerateCSFormMain(TableDefinition table, string nameSpace)
+        {
+            string csName = "FM" + table.name + _csPostFix;
+            StringBuilder sb = new StringBuilder();
+
+            using (StreamReader sr = new StreamReader("FormMain.txt"))
+            {
+                // Read the stream to a string, and write the string to the console.
+                String line = sr.ReadToEnd();
+                sb.Append(line);
+            }
+
+            sb.Replace("%NAMESPACE%", nameSpace);
+            sb.Replace("%TABLENAME%", table.name);
+            sb.Replace("%FORMNAME%", "FM" + table.name);
+
+            // write to file
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, csName)))
+            {
+                outputFile.WriteLine(sb.ToString());
+            }
+        }
+
+        private void GenerateDSFormMain(TableDefinition table, string nameSpace)
+        {
+            string dsName = "FM" + table.name + _designPostFix;
+            StringBuilder sb = new StringBuilder();
+
+            using (StreamReader sr = new StreamReader("DSFormMain.txt"))
+            {
+                // Read the stream to a string, and write the string to the console.
+                String line = sr.ReadToEnd();
+                sb.Append(line);
+            }
+
+            sb.Replace("%NAMESPACE%", nameSpace);
+            sb.Replace("%FORMNAME%", "FM" + table.name);
+
+            // write to file
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, dsName)))
+            {
+                outputFile.WriteLine(sb.ToString());
+            }
+        }
+
+
         private void GenerateCSFile(TableDefinition table, string nameSpace)
         {
             string csName = table.name + _csPostFix;
@@ -175,9 +225,9 @@ namespace framework_crud.ORM
                 // case number
                 if (isNumeric(fd.memberName))
                 {
-                    sbContent.Append(string.Format("			{0}.Value = Decimal.Parse(entity.{1}.ToString();\n", nameItem, fd.columnName));
+                    sbContent.Append(string.Format("			{0}.Value = Decimal.Parse(entity.{1}.ToString());\n", nameItem, fd.columnName));
                     // content save
-                    string ctSave = "                string {0} = Int32.Parse({1}.Value.ToString());\n";
+                    string ctSave = "                Int32 {0} = Int32.Parse(Math.Floor({1}.Value).ToString());\n";
                     sbSave.Append(string.Format(ctSave, fd.columnName, nameItem));
                 }
                 else if (isBool(fd.memberName))
@@ -390,7 +440,7 @@ namespace framework_crud.ORM
 
         private bool isNumeric(string type)
         {
-            if ("Double" == type || "Decimal" == type) return true;
+            if ("Double" == type || "Decimal" == type || "Int32" == type) return true;
             return false;
         }
 

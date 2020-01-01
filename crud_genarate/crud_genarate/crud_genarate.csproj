@@ -176,70 +176,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\CSListViews.txt" />
-    <Content Include="bin\Debug\CSMainTemplate.txt" />
-    <Content Include="bin\Debug\CSTemplate.txt" />
-    <Content Include="bin\Debug\CTInputTemplate.txt" />
-    <Content Include="bin\Debug\CTLabelTemplate.txt" />
-    <Content Include="bin\Debug\CTRichTemplate.txt" />
-    <Content Include="bin\Debug\DesignTemplate.txt" />
-    <Content Include="bin\Debug\DFTemplate.txt" />
-    <Content Include="bin\Debug\DLTemplate.txt" />
-    <Content Include="bin\Debug\DSFormMain.txt" />
-    <Content Include="bin\Debug\DSListViews.txt" />
-    <Content Include="bin\Debug\DSMainTemplate.txt" />
-    <Content Include="bin\Debug\FormMain.txt" />
-    <Content Include="bin\Debug\LabelLinkTemplate.txt" />
-    <Content Include="bin\Debug\ModelTemplate.txt" />
-    <Content Include="CSListViews.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DSListViews.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CSMainTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CSTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CTInputTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CTLabelTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CTRichTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DesignTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DFTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DLTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DSFormMain.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DSMainTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="EDMGen\cmd.txt" />
-    <Content Include="FNLinkTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="FormMain.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="LabelLinkTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ModelTemplate.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ts\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
