@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using framework_crud.MSSQL;
-using crud_genarate.model;
 using framework_crud.Entity;
 using framework_crud;
 using System.Data.SqlClient;
@@ -25,13 +24,16 @@ namespace crud_genarate
         public Main()
         {
             InitializeComponent();
+
+            txtDirectory.Text = @"F:\QUIOPP";
+            txtNameApp.Text = "DEMO";
+            txtNamesSpace.Text = "DEMO";
+            txtSQLServer.Text = "DESKTOP-GR8RADT\\SQLEXPRESS";
         }
 
         private void btnTestConnect_Click(object sender, EventArgs e)
         {
-            //string SQLServer = "DESKTOP-15SIF8Q\\SQLEXPRESS";
-            string SQLServer = "DESKTOP-GR8RADT\\SQLEXPRESS";
-            //string SQLServer = txtSQLServer.Text;
+            string SQLServer = txtSQLServer.Text;
 
             if (!validateTestCon())
             {
@@ -77,15 +79,13 @@ namespace crud_genarate
 
         private void _callGenCode()
         {
-            //string err = validData();
-            //if (err != null)
-            //{
-            //    MessageBox.Show(err);
-            //    return;
-            //}
-            txtDirectory.Text = @"F:\QUIOPP";
-            txtNameApp.Text = "DEMO";
-            txtNamesSpace.Text = "DEMO";
+            string err = validData();
+            if (err != null)
+            {
+                MessageBox.Show(err);
+                return;
+            }
+            
             connector.Catalog = txtCatalog.Text;
             ProjectMaster projectMaster = new ProjectMaster(connector.ConnectionString, txtNamesSpace.Text, txtDirectory.Text);
             projectMaster.genTable();
