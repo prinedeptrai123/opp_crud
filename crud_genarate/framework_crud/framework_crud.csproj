@@ -60,6 +60,8 @@
     <Compile Include="ORM\Attribute\FieldAttribute.cs" />
     <Compile Include="ORM\Attribute\FieldDefinition.cs" />
     <Compile Include="ORM\Attribute\FieldFlags.cs" />
+    <Compile Include="ORM\Attribute\FieldReference.cs" />
+    <Compile Include="ORM\Attribute\ReferenceAttribute.cs" />
     <Compile Include="ORM\Generate\ClassGenerate.cs" />
     <Compile Include="ORM\Generate\Format.cs" />
     <Compile Include="ORM\Generate\FormGenerate.cs" />
@@ -88,6 +90,10 @@
     <Compile Include="ORM\MSSQL\QueryResult.cs" />
     <Compile Include="ORM\RowSet.cs" />
     <Compile Include="ORM\ProjectMaster.cs" />
+    <Compile Include="ProjectGen\Include\CommonInclude.cs" />
+    <Compile Include="ProjectGen\Include\IncludeDLL.cs" />
+    <Compile Include="ProjectGen\Include\IncludeFile.cs" />
+    <Compile Include="ProjectGen\Include\IncludeForm.cs" />
     <Compile Include="ProjectGen\IncludeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

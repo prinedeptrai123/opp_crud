@@ -26,15 +26,18 @@ namespace framework_crud
         //private string con = "Data Source={0}; database={1};Integrated Security=True;Connect Timeout=10";
 
         private static string con = "Data Source=DESKTOP-15SIF8Q\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
-        private static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=test;Integrated Security=True;Connect Timeout=10";
+
+
+        private static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=CaffeApp;Integrated Security=True;Connect Timeout=10";
+        //private string _namespace = "ORM_DEMO";
+        private string _applicationName = "ORM_DEMO";
+
 
 
         public ProjectMaster(string connString, string nameSpace, string directoryPath)
         {
-
             _namespace = nameSpace;
             _directoryName = directoryPath;
-
 
             tables = new List<TableDefinition>();
             Console.WriteLine("Opening database connection: " + connString);
@@ -73,7 +76,9 @@ namespace framework_crud
             //STEP 2:
             foreach (var table in tables)
             {
-                table.generate(new ClassGenerate(pathName), _namespace);
+
+                table.generate(new ClassGenerate(pathName, _namespace));
+
             }
 
             string pathView = String.Format(@"{0}\{1}", _directoryName, folderView);
@@ -81,11 +86,13 @@ namespace framework_crud
 
             // 
             // STEP 3
+
             // 
             foreach (var table in tables)
             {
                 table.generate(new FormGenerate(pathView), _namespace);
             }
+
         }
 
         //TODO: code this
@@ -96,15 +103,19 @@ namespace framework_crud
 
         public void generateProject(string solutionName, string projectName, string generateLocation)
         {
+            System.Threading.Thread.Sleep(1000);
             System.Type dteType = Type.GetTypeFromProgID("VisualStudio.DTE.15.0", true);
             Object obj = System.Activator.CreateInstance(dteType, true);
             EnvDTE.DTE dte = (EnvDTE.DTE)obj;
             dte.MainWindow.Visible = true;
             dte.Solution.Create(generateLocation, solutionName);
             var solution = dte.Solution;
-            string solutionPath = generateLocation + solutionName;
-            EnvDTE.Project project = solution.AddFromTemplate(@"D:\\WindowsApplication\csWindowsApplication.vstemplate", solutionPath, projectName);
+            System.Threading.Thread.Sleep(1000);
+            string projectPath = generateLocation + solutionName;
+            EnvDTE.Project project = solution.AddFromTemplate(@"D:\WindowsApplication\csWindowsApplication.vstemplate", projectPath, projectName);
+            System.Threading.Thread.Sleep(5000);
             dte.ExecuteCommand("File.SaveAll");
+            System.Threading.Thread.Sleep(0);
             dte.Quit();
         }
     }

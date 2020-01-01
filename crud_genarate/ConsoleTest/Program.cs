@@ -12,6 +12,7 @@ using framework_crud.MSSQL;
 using framework_crud.ORM;
 using System.Threading;
 using framework_crud.ProjectGen;
+using ConsoleTest.Models;
 
 namespace ConsoleTest
 {
@@ -21,8 +22,8 @@ namespace ConsoleTest
     {
         static string connString = "server=sbusel\\sqlexpress; " +
                 "database=test; trusted_connection=true;";
-        static string con2 = "Data Source=DESKTOP-15SIF8Q\\MISACUKCUKVN; database=System Databases;Integrated Security=True;Connect Timeout=10";
-        [STAThread]
+        static string con2 = "Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=School;Integrated Security=True;Connect Timeout=10";
+        //[STAThread]
         public static void Main(string[] args)
         {
             //ProjectMaster.Instance.genTable();
@@ -41,8 +42,63 @@ namespace ConsoleTest
 
             //MSSQLDatabase database = new MSSQLDatabase(
             //        new SqlConnection(con2));
+            //database.listTable();
+
+            
+
+            //using(var database = new MSSQLDatabase(new SqlConnection(con2)))
+            //{
+            //    IList list = database.Table(typeof(Course)).Query().Select();
+
+            //    foreach (Course c in list)
+            //    {
+            //        Console.WriteLine(c.Title);
+            //    }
+            //}
+
+            //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+            //{
+            //    Course newCourse = new Course
+            //    {
+            //        CourseID = 11,
+            //        Credits = 1,
+            //        DepartmentID = 7,
+            //        Title = "quinew"
+            //    };
+            //   // database.Table(typeof(Course)).Insert(newCourse);
+            //}
+            Console.WriteLine("---------");
+
+            using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+            {
+                IList a = database.Table(typeof(Course)).Query().Eq("Title", "54").Select();
+
+                ////foreach (Course cour in a)
+                ////{
+                ////    Console.WriteLine(cour.CourseID);
+                ////}
+                database.Table(typeof(Course)).Delete(a[0]);
+            }
+            //using (var database = new MSSQLDatabase(new SqlConnection(con2)))
+            //{
+            //    IList list = database.Table(typeof(Course)).Query().Select();
+
+            //    foreach (Course c in list)
+            //    {
+            //        Console.WriteLine(c.Title);
+            //    }
+            //}
+
+
+            Console.WriteLine("---------");
+
+            //string path = @"F:\OPP\demoApp";
+            //string nameSpace = "ConsoleTest";
+            //ProjectMaster master = new ProjectMaster(con2, nameSpace, path);
+            //master.genTable();
 
             //TestData qui = MakeData();
+            //History qui = new History();
 
             ////them
             ////database.Table(qui.GetType()).Insert(qui);
@@ -53,8 +109,8 @@ namespace ConsoleTest
             ////lay danh sach
             //IList list1 = database.Table(qui.GetType()).Query().Select();
 
-            //foreach (TestData td in list1)
-            //    Console.WriteLine(td.rowID);
+            //foreach (History td in list1)
+            //    Console.WriteLine(td.TrangThai);
             //Console.WriteLine("\nSqlTestSuite total execution time (ms): " +
             //        timer.ElapsedMilliseconds);
 
@@ -81,10 +137,18 @@ namespace ConsoleTest
             ////TODO: 
 
             //generateProject();
-            string path = @"D:\TemplateSolution";
-            string projectName = "TemplateProject";
-            IncludeHelper.IncludeFile("Models", path, projectName);
+            // string path = @"D:\TemplateSolution";
+            // string projectName = "TemplateProject";
+            //// IncludeHelper.IncludeFile("Models", path, projectName);
 
+            // CommonInclude includeHandle = new IncludeFile();
+            // includeHandle.includeProject("", "kkkkk", path, projectName);
+            // includeHandle.includeProject("qui", "lllll", path, projectName);
+
+            // includeHandle = new IncludeForm();
+            // includeHandle.includeProject("qui", "Form1", path, projectName);
+
+            //generateProject();
             Console.ReadKey();
         }
 
@@ -92,10 +156,12 @@ namespace ConsoleTest
         {
             string solutionName = "TemplateSolution";
             string projectName = "TemplateProject";
-            string path = @"D://";
-            //ProjectMaster.Instance.generateProject(solutionName, projectName, path);
 
-            
+            string path = @"D:/Template/";
+           // ProjectMaster.Instance.generateProject(solutionName, projectName, path);
+            ProjectMaster a = new ProjectMaster("Data Source=DESKTOP-GR8RADT\\SQLEXPRESS; database=test;Integrated Security=True;Connect Timeout=10", "qui", "kkk");
+            a.generateProject(solutionName, projectName, path);
+
         }
 
         static TestData MakeData()
