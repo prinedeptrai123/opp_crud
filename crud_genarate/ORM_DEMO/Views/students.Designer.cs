@@ -32,7 +32,7 @@ namespace ORM_DEMO.Views
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
 			            this.itlabelid1 = new System.Windows.Forms.Label();
-            this.ittextboxid1 = new System.Windows.Forms.TextBox();
+            this.itnumericupdownid1 = new System.Windows.Forms.NumericUpDown();
             this.itlabelname2 = new System.Windows.Forms.Label();
             this.ittextboxname2 = new System.Windows.Forms.TextBox();
             this.itlabelschool3 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@ namespace ORM_DEMO.Views
 			// add panel 
 			//
 			            this.panel1.Controls.Add(this.itlabelid1);
-            this.panel1.Controls.Add(this.ittextboxid1);
+            this.panel1.Controls.Add(this.itnumericupdownid1);
             this.panel1.Controls.Add(this.itlabelname2);
             this.panel1.Controls.Add(this.ittextboxname2);
             this.panel1.Controls.Add(this.itlabelschool3);
@@ -98,12 +98,12 @@ namespace ORM_DEMO.Views
 
 
             // 
-            // ittextboxid1
+            // itnumericupdownid1
             // 
-            this.ittextboxid1.Location = new System.Drawing.Point(118, 27);
-			this.ittextboxid1.Name = "ittextboxid1";
-			this.ittextboxid1.Size = new System.Drawing.Size(312, 20);
-			this.ittextboxid1.TabIndex = 1;
+            this.itnumericupdownid1.Location = new System.Drawing.Point(118, 27);
+			this.itnumericupdownid1.Name = "itnumericupdownid1";
+			this.itnumericupdownid1.Size = new System.Drawing.Size(312, 20);
+			this.itnumericupdownid1.TabIndex = 1;
 
 
             // 
@@ -175,7 +175,7 @@ namespace ORM_DEMO.Views
         private System.Windows.Forms.Button btnCancel;
 
 		            private System.Windows.Forms.Label itlabelid1;
-            private System.Windows.Forms.TextBox ittextboxid1;
+            private System.Windows.Forms.NumericUpDown itnumericupdownid1;
             private System.Windows.Forms.Label itlabelname2;
             private System.Windows.Forms.TextBox ittextboxname2;
             private System.Windows.Forms.Label itlabelschool3;

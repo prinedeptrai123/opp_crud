@@ -47,7 +47,7 @@ namespace ORM_DEMO.Views
 
         private void initial(Models.testdata entity)
         {
-			ittextboxrowID1.Text = entity.rowID;
+			itnumericupdownrowID1.Text = entity.rowID;
 			itnumericupdownbyte12.Text = entity.byte1;
 			itnumericupdownshort13.Text = entity.short1;
 			itnumericupdownint14.Text = entity.int1;
@@ -82,7 +82,7 @@ namespace ORM_DEMO.Views
         {
             try
             {
-                string rowID = ittextboxrowID1.Text;
+                string rowID = itnumericupdownrowID1.Text;
                 string byte1 = itnumericupdownbyte12.Text;
                 string short1 = itnumericupdownshort13.Text;
                 string int1 = itnumericupdownint14.Text;

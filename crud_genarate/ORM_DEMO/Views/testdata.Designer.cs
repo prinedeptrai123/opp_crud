@@ -32,7 +32,7 @@ namespace ORM_DEMO.Views
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
 			            this.itlabelrowID1 = new System.Windows.Forms.Label();
-            this.ittextboxrowID1 = new System.Windows.Forms.TextBox();
+            this.itnumericupdownrowID1 = new System.Windows.Forms.NumericUpDown();
             this.itlabelbyte12 = new System.Windows.Forms.Label();
             this.itnumericupdownbyte12 = new System.Windows.Forms.NumericUpDown();
             this.itlabelshort13 = new System.Windows.Forms.Label();
@@ -76,7 +76,7 @@ namespace ORM_DEMO.Views
 			// add panel 
 			//
 			            this.panel1.Controls.Add(this.itlabelrowID1);
-            this.panel1.Controls.Add(this.ittextboxrowID1);
+            this.panel1.Controls.Add(this.itnumericupdownrowID1);
             this.panel1.Controls.Add(this.itlabelbyte12);
             this.panel1.Controls.Add(this.itnumericupdownbyte12);
             this.panel1.Controls.Add(this.itlabelshort13);
@@ -146,12 +146,12 @@ namespace ORM_DEMO.Views
 
 
             // 
-            // ittextboxrowID1
+            // itnumericupdownrowID1
             // 
-            this.ittextboxrowID1.Location = new System.Drawing.Point(118, 27);
-			this.ittextboxrowID1.Name = "ittextboxrowID1";
-			this.ittextboxrowID1.Size = new System.Drawing.Size(312, 20);
-			this.ittextboxrowID1.TabIndex = 1;
+            this.itnumericupdownrowID1.Location = new System.Drawing.Point(118, 27);
+			this.itnumericupdownrowID1.Name = "itnumericupdownrowID1";
+			this.itnumericupdownrowID1.Size = new System.Drawing.Size(312, 20);
+			this.itnumericupdownrowID1.TabIndex = 1;
 
 
             // 
@@ -475,7 +475,7 @@ namespace ORM_DEMO.Views
         private System.Windows.Forms.Button btnCancel;
 
 		            private System.Windows.Forms.Label itlabelrowID1;
-            private System.Windows.Forms.TextBox ittextboxrowID1;
+            private System.Windows.Forms.NumericUpDown itnumericupdownrowID1;
             private System.Windows.Forms.Label itlabelbyte12;
             private System.Windows.Forms.NumericUpDown itnumericupdownbyte12;
             private System.Windows.Forms.Label itlabelshort13;

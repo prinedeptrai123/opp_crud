@@ -77,8 +77,7 @@ namespace framework_crud
             foreach (var table in tables)
             {
 
-                table.generate(new ClassGenerate(pathName, _namespace));
-
+                //table.generate(new ClassGenerate(pathName, _namespace));
             }
 
             string pathView = String.Format(@"{0}\{1}", _directoryName, folderView);
