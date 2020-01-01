@@ -18,10 +18,10 @@ namespace framework_crud.ORM
         /// <summary>
         /// %s1,s3: name,2: datatype
         /// </summary>
-        public static string FORMAT_KEY = "[Field(\"{0}\", FieldFlags.Read | FieldFlags.Key | FieldFlags.Auto)]\n" +
+        public static string FORMAT_KEY = "[Field(\"{0}\", {2})]\n" +
         "public {1} {0} {{get;set;}}\n";
 
-        public static string FORMAT_REFERENCE_KEY = "[Field(\"{0}\", FieldFlags.ForeignKey, \"{2}\", \"{3}\")]\n" +
+        public static string FORMAT_REFERENCE_KEY = "[Field(\"{0}\", {4}, \"{2}\", \"{3}\")]\n" +
         "public {1} {0} {{get;set;}}\n";
     }
 }

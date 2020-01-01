@@ -10,12 +10,17 @@ namespace framework_crud.ORM
     class ClassGenerate : IGenerate
     {
         private string pathName;
-        private string nameSpace;
+        //private string nameSpace;
 
         public ClassGenerate(string pathName,string nameSpace)
         {
             this.pathName = pathName;
-            this.nameSpace = nameSpace;
+            //this.nameSpace = nameSpace;
+        }
+
+        public ClassGenerate(string pathName)
+        {
+            this.pathName = pathName;
         }
 
         //TODO: generate class file
@@ -29,16 +34,18 @@ namespace framework_crud.ORM
 
             foreach (var field in table.fields)
             {
-                Console.WriteLine(field.flags);
-                
+                string stringFlag = " " + field.flags.ToString();
+                stringFlag = stringFlag.Replace(" ", "FieldFlags.");
+                stringFlag = stringFlag.Replace(",", " | ");
+                //check if field is primary key and foreignkey
                 if (field.flags.HasFlag(FieldFlags.ForeignKey))
                 {
                     sb.Append(string.Format(Format.FORMAT_REFERENCE_KEY, field.columnName, field.memberName,
-                         field.fieldReference.table, field.fieldReference.column));
+                         field.fieldReference.table, field.fieldReference.column, stringFlag));
                 }
                 else if (field.flags.HasFlag(FieldFlags.Key))
                 {
-                    sb.Append(string.Format(Format.FORMAT_KEY, field.columnName, field.memberName));
+                    sb.Append(string.Format(Format.FORMAT_KEY, field.columnName, field.memberName, stringFlag));
                 }
                 else
                 {
