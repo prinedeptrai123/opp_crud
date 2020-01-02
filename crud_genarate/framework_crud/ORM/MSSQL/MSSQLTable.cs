@@ -70,8 +70,15 @@ namespace framework_crud.ORM
         {
             MSSQLField[] writeable = GetFields(FieldFlags.Write);
             MSSQLField[] identity = GetFields(FieldFlags.Auto);
+            //REMOVE FIELD INDENTITY KEY
+            if (identity.Length > 0) {
+                var temp = writeable.ToList();
+                temp.Remove(identity[0]);
+                writeable = temp.ToArray();
+            }
             string[] names = new string[writeable.Length];
             string[] places = new string[writeable.Length];
+
             for (int i = 0; i < writeable.Length; ++i)
             {
                 names[i] = database.QuoteName(writeable[i].Name);
@@ -83,15 +90,16 @@ namespace framework_crud.ORM
                     "(" + fieldstr + ") VALUES(" + valuestr + ");";
 
             FireTrigger(MSSQLTrigger.BeforeInsert, list);
-
+            
             SqlParameter pID = null;
             if (identity.Length > 0)
             {
-                sql += " SET @ID=SCOPE_IDENTITY();";
-                pID = new SqlParameter();
-                pID.ParameterName = "@ID";
-                pID.SqlDbType = SqlDbType.BigInt;
-                pID.Direction = ParameterDirection.Output;
+                //TODO: REMOVE 
+                //sql += " SET @ID=SCOPE_IDENTITY();";
+                //pID = new SqlParameter();
+                //pID.ParameterName = "@ID";
+                //pID.SqlDbType = SqlDbType.BigInt;
+                //pID.Direction = ParameterDirection.Output;
             }
 
             int rowcount = 0;

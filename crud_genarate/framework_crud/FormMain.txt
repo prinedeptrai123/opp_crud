@@ -68,24 +68,27 @@ namespace %NAMESPACE%
 
         private void loadData()
         {
-            list = new List<Models.%TABLENAME%>();
-            listData = database.Table(typeof(Models.%TABLENAME%)).Query().Select();
+			try
+			{
+				list = new List<Models.%TABLENAME%>();
+				listData = database.Table(typeof(Models.%TABLENAME%)).Query().Select();
 
-            foreach (Models.%TABLENAME% item in listData)
-            {
-                list.Add(item);
-            }
+				foreach (Models.%TABLENAME% item in listData)
+				{
+					list.Add(item);
+				}
 
-            // Set up the DataGridView.
-            grvData.Dock = DockStyle.Fill;
+				// Set up the DataGridView.
+				grvData.Dock = DockStyle.Fill;
 
-            // Automatically generate the DataGridView columns.
-            grvData.AutoGenerateColumns = true;
+				// Automatically generate the DataGridView columns.
+				grvData.AutoGenerateColumns = true;
             
-            bd.DataSource = list;
-            grvData.DataSource = bd;
+				bd.DataSource = list;
+				grvData.DataSource = bd;
 
-            grvData.Update();
+				grvData.Update();
+			}
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -105,10 +108,17 @@ namespace %NAMESPACE%
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (grvData.CurrentRow == null) return;
-            Models.%TABLENAME% selectedRow = (Models.%TABLENAME%)grvData.CurrentRow.DataBoundItem;
-            Views.%TABLENAME% updateForm = new Views.%TABLENAME%(selectedRow);
-            updateForm.Show();
+			try
+			{
+				if (grvData.CurrentRow == null) return;
+				Models.%TABLENAME% selectedRow = (Models.%TABLENAME%)grvData.CurrentRow.DataBoundItem;
+				Views.%TABLENAME% updateForm = new Views.%TABLENAME%(selectedRow);
+				updateForm.Show();
+			}
+            catch(SqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
         }
     }
 }
