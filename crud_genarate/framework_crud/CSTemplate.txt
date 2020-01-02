@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace %NAMESPACE%
 {
@@ -24,6 +25,7 @@ namespace %NAMESPACE%
         {
             this.connstring = conn;
             InitializeComponent();
+            prepareLoad();
             regisEvents();
             initial();
         }
@@ -31,6 +33,7 @@ namespace %NAMESPACE%
         public %CLASS%()
         {
             InitializeComponent();
+            prepareLoad(); 
             regisEvents();
             initial();
         }
@@ -38,11 +41,17 @@ namespace %NAMESPACE%
         public %CLASS%(%TABLENAME% entity)
         {
             InitializeComponent();
+            prepareLoad();
             regisEvents();
             initial(entity);
             isUpdate = true;
 			this.Text = "UpdateForm";
         }
+
+		private void prepareLoad() 
+		{
+%PREPARE%
+		}
 
         private void initial(%TABLENAME% entity)
         {
@@ -73,6 +82,7 @@ namespace %NAMESPACE%
                     %TABLENAME% tmp = new  %TABLENAME%();
 %FIELDS%
                     database.Table(typeof(%TABLENAME%)).Insert(tmp);
+					this.Close();
                 }
                 // update
                 else
@@ -88,6 +98,11 @@ namespace %NAMESPACE%
                 Debug.WriteLine(ex.Message);
                 MessageBox.Show("Invalid value for type Number! Please try again.");
                 this.Close();
+            }
+			catch(SqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 

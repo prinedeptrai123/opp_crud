@@ -25,10 +25,10 @@ namespace crud_genarate
         {
             InitializeComponent();
 
-            txtDirectory.Text = @"F:\QUIOPP";
+            txtDirectory.Text = @"C:\Users\Administrator\Pictures";
             txtNameApp.Text = "DEMO";
             txtNamesSpace.Text = "DEMO";
-            txtSQLServer.Text = "DESKTOP-GR8RADT\\SQLEXPRESS";
+            txtSQLServer.Text = "DESKTOP-15SIF8Q\\SQLEXPRESS";
         }
 
         private void btnTestConnect_Click(object sender, EventArgs e)

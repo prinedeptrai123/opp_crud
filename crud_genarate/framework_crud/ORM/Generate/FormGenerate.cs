@@ -208,6 +208,7 @@ namespace framework_crud.ORM
             StringBuilder sbContent = new StringBuilder();
             StringBuilder sbSave = new StringBuilder();
             StringBuilder sbFields = new StringBuilder();
+            StringBuilder sbMaxValue = new StringBuilder();
 
             using (StreamReader sr = new StreamReader("CSTemplate.txt"))
             {
@@ -228,6 +229,7 @@ namespace framework_crud.ORM
                 // case number
                 if (isNumeric(fd.memberName))
                 {
+                    sbMaxValue.Append(string.Format("			{0}.Maximum = decimal.MaxValue;\n", nameItem));
                     sbContent.Append(string.Format("			{0}.Value = Decimal.Parse(entity.{1}.ToString());\n", nameItem, fd.columnName));
                     // content save
                     string ctSave = "                Int32 {0} = Int32.Parse(Math.Floor({1}.Value).ToString());\n";
@@ -267,6 +269,7 @@ namespace framework_crud.ORM
             sb.Replace("%CTINITIAL%", sbContent.ToString());
             sb.Replace("%CTSAVE%", sbSave.ToString());
             sb.Replace(@"%CONNSTRING%", _connString);
+            sb.Replace("%PREPARE%", sbMaxValue.ToString());
 
             // write to file
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(_pathName, csName)))

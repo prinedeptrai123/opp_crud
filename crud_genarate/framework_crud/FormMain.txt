@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using %NAMESPACE%;
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace %NAMESPACE%
 {
@@ -89,10 +90,17 @@ namespace %NAMESPACE%
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Models.%TABLENAME% selectedRow = (Models.%TABLENAME%) grvData.CurrentRow.DataBoundItem;
-            database.Table(typeof(Models.%TABLENAME%)).Delete(selectedRow);
-            MessageBox.Show("Delete successfully. Refresh...");
-            loadData();
+			try
+			{
+				Models.%TABLENAME% selectedRow = (Models.%TABLENAME%) grvData.CurrentRow.DataBoundItem;
+				database.Table(typeof(Models.%TABLENAME%)).Delete(selectedRow);
+				MessageBox.Show("Delete successfully. Refresh...");
+				loadData();
+			}
+			catch(SqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

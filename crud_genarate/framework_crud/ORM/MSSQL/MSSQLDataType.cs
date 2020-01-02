@@ -46,8 +46,8 @@ namespace framework_crud.ORM
                     return "DateTimeOffset";
                 //Byte[]
                 case "varbinary":
-                case "rowversion":
                 case "timestamp":
+                case "rowversion":
                     return "Byte[]";
                 //Various
                 case "time":

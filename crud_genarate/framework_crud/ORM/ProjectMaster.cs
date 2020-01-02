@@ -111,6 +111,7 @@ namespace framework_crud
 
             //copy | add reference dll
             string pathLibs = String.Format(@"{0}\{1}\{2}", _directoryName, _namespace, folderLib);
+            System.IO.Directory.CreateDirectory(pathLibs);
             copyFile(dll + ".dll", pathLibs);
             includeDLL.includeProject(folderLib, dll, projectPath, _namespace);
         }
@@ -146,7 +147,7 @@ namespace framework_crud
             var solution = dte.Solution;
             System.Threading.Thread.Sleep(1000);
             string projectPath = generateLocation + "\\" + solutionName;
-            EnvDTE.Project project = solution.AddFromTemplate(@"D:\WindowsApplication\CustomizeTemplate.vstemplate", projectPath, projectName);
+            EnvDTE.Project project = solution.AddFromTemplate(@"D:\WindowsApplication\MyTemplate.vstemplate", projectPath, projectName);
             System.Threading.Thread.Sleep(5000);
             dte.ExecuteCommand("File.SaveAll");
             System.Threading.Thread.Sleep(0);

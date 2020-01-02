@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ORM_DEMO.Views;
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace ORM_DEMO.Views
 {
@@ -88,10 +89,18 @@ namespace ORM_DEMO.Views
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Models.students selectedRow = (Models.students) grvData.CurrentRow.DataBoundItem;
-            database.Table(typeof(Models.students)).Delete(selectedRow);
-            MessageBox.Show("Delete successfully. Refresh...");
-            loadData();
+            try
+            {
+                Models.students selectedRow = (Models.students)grvData.CurrentRow.DataBoundItem;
+                database.Table(typeof(Models.students)).Delete(selectedRow);
+                MessageBox.Show("Delete successfully. Refresh...");
+                loadData();
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+          
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
