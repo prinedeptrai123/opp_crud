@@ -46,7 +46,7 @@ namespace framework_crud.MSSQL
                 case "varbinary":
                 case "rowversion":
                 case "timestamp":
-                    return "Byte[]";
+                    return "DateTime";
                 //Various
                 case "time":
                     return "TimeSpan";

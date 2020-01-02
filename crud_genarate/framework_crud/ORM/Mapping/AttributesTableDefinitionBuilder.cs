@@ -36,7 +36,8 @@ namespace framework_crud.ORM
                 FieldAttribute fa = (FieldAttribute)member.GetCustomAttributes(
                         typeof(FieldAttribute), false)[0];
 
-                table.Field(fa.Name).MapTo(member.Name).Flags(fa.Flags).Add();
+                table.Field(fa.Name).MapTo(member.Name).Flags(fa.Flags)
+                    .ReferenceTo(fa.TableReference, fa.columnReference).Add();
             }
 
             return table;

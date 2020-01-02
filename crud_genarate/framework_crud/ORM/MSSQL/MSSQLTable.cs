@@ -213,6 +213,7 @@ namespace framework_crud.ORM
                 sql.Append(database.QuoteName(keys[i].Name))
                         .Append("=")
                         .Append("{").Append(i).Append("}");
+                first = false;
             }
 
             FireTrigger(MSSQLTrigger.BeforeDelete, list);

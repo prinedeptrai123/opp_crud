@@ -89,6 +89,10 @@ namespace %NAMESPACE%
 
 				grvData.Update();
 			}
+			catch(SqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

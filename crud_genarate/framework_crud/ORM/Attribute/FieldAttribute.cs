@@ -29,9 +29,8 @@ namespace framework_crud.ORM
 
         public FieldAttribute(string name, FieldFlags flags,string TableReference,string columnReference)
         {
-            //TODO: FIX THIS
             this.Name = name;
-            //this.Flags = flags;
+            this.Flags = flags;
             this.TableReference = TableReference;
             this.columnReference = columnReference;
         }

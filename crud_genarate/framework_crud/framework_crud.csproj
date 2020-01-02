@@ -62,10 +62,10 @@
     <Compile Include="ORM\Attribute\FieldFlags.cs" />
     <Compile Include="ORM\Attribute\FieldReference.cs" />
     <Compile Include="ORM\Attribute\ReferenceAttribute.cs" />
-    <Compile Include="ORM\Generate\ClassGenerate.cs" />
-    <Compile Include="ORM\Generate\Format.cs" />
-    <Compile Include="ORM\Generate\FormGenerate.cs" />
-    <Compile Include="ORM\Generate\IGenerate.cs" />
+    <Compile Include="ProjectGen\Generate\ClassGenerate.cs" />
+    <Compile Include="ProjectGen\Generate\Format.cs" />
+    <Compile Include="ProjectGen\Generate\FormGenerate.cs" />
+    <Compile Include="ProjectGen\Generate\IGenerate.cs" />
     <Compile Include="ORM\Attribute\TableAttribute.cs" />
     <Compile Include="ORM\Attribute\TableDefinition.cs" />
     <Compile Include="ORM\Even\TraceEventArgs.cs" />
@@ -89,12 +89,11 @@
     <Compile Include="ORM\MSSQL\MSSQLTrigger.cs" />
     <Compile Include="ORM\MSSQL\QueryResult.cs" />
     <Compile Include="ORM\RowSet.cs" />
-    <Compile Include="ORM\ProjectMaster.cs" />
+    <Compile Include="ProjectGen\ProjectMaster.cs" />
     <Compile Include="ProjectGen\Include\CommonInclude.cs" />
     <Compile Include="ProjectGen\Include\IncludeDLL.cs" />
     <Compile Include="ProjectGen\Include\IncludeFile.cs" />
     <Compile Include="ProjectGen\Include\IncludeForm.cs" />
-    <Compile Include="ProjectGen\IncludeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

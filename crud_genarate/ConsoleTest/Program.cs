@@ -23,9 +23,31 @@ namespace ConsoleTest
         //[STAThread]
         public static void Main(string[] args)
         {
-            TestSchool();
+            //TestSchool();
             //TestTest();
-            check2();
+            //check2();
+
+            //FieldFlags a = FieldFlags.Key | FieldFlags.ForeignKey;
+
+            //Console.WriteLine(a);
+            checkdelete();
+            Console.ReadKey();
+        }
+
+        static void checkdelete()
+        {
+            con2 = @"Data Source=DESKTOP-GR8RADT\SQLEXPRESS;Initial Catalog=School;Integrated Security=True;Connect Timeout=10";
+            MSSQLDatabase a = new MSSQLDatabase(new System.Data.SqlClient.SqlConnection(con2));
+
+            CourseInstructor coure = new CourseInstructor()
+            {
+                CourseID = 1061,
+                PersonID = 31
+            };
+
+
+            a.Table(typeof(CourseInstructor)).Delete(coure);
+
         }
 
         static void check2()
