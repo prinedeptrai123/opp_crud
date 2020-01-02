@@ -56,5 +56,9 @@ namespace framework_crud.BASESQL
 		                ON col2.column_id = referenced_column_id AND col2.object_id = tab2.object_id) AS FK_INFO
 		                ON FK_INFO.table_2 = INFO_ALL.TABLE_NAME AND INFO_ALL.COLUMN_NAME = FK_INFO.column_2
                 WHERE INFO_ALL.TABLE_NAME = '{0}'";
+
+        public static string GET_TABLE_IDENTITY = @"SELECT	name, is_identity
+                        FROM sys.columns
+                        WHERE[object_id] = object_id('{0}') AND is_identity = 1";
     }
 }

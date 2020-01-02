@@ -25,6 +25,12 @@ namespace ConsoleTest
         {
             TestSchool();
             //TestTest();
+            check2();
+        }
+
+        static void check2()
+        {
+
         }
 
         static void TestSchool()

@@ -137,7 +137,6 @@ namespace framework_crud.ORM
             return "[" + name + "]";
         }
 
-
         //TODO: move to new class
         public List<TableDefinition> listTable()
         {
@@ -146,7 +145,7 @@ namespace framework_crud.ORM
             string query = "SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_TYPE ='BASE TABLE' order by TABLE_NAME";
 
             DataTable db = GetDataTalbe(query);
-            
+
             for (int i = 0; i < db.Rows.Count; i++)
             {
                 string tableName = db.Rows[i][0].ToString();
@@ -160,6 +159,14 @@ namespace framework_crud.ORM
                     TableDefinition table = new TableDefinition(tableName).Schema("dbo");
 
                     DataTable column = getTableColumn(tableName);
+                    //get identity field
+                    DataTable identites = GetDataTalbe(string.Format(BaseQuery.GET_TABLE_IDENTITY, tableName));
+                    string identity_Field = "null";
+                    if(identites.Rows.Count > 0)
+                    {
+                        identity_Field = identites.Rows[0][0].ToString();
+                    }
+
                     for (int j = 0; j < column.Rows.Count; j++)
                     {
                         
@@ -174,12 +181,27 @@ namespace framework_crud.ORM
                             int lastIndex = table.fields.FindIndex(x => x.columnName == fieldName);
                             if (lastIndex < 0)
                             {
-                                table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Key().ReadOnly().Add();
+                                //check if is identity
+                                if (fieldName.Equals(identity_Field))
+                                {
+                                    table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Key().ReadOnly().Auto().Add();
+                                }
+                                else
+                                {
+                                    table.Field(fieldName).MapTo(MSSQLDataType.MsqlToCSharp(fieldData)).Key().ReadOnly().Add();
+                                }
                             }
                             else
                             {
-                                table.fields[lastIndex].flags = FieldFlags.Key | FieldFlags.ForeignKey;
-                                //table.fields[lastIndex].flags |= FieldFlags.Key;
+                                //check if is identity
+                                if (fieldName.Equals(identity_Field))
+                                {
+                                    table.fields[lastIndex].flags = FieldFlags.Key | FieldFlags.ForeignKey | FieldFlags.Auto;
+                                }
+                                else
+                                {
+                                    table.fields[lastIndex].flags = FieldFlags.Key | FieldFlags.ForeignKey;
+                                }
                             }
                         }
                         else if (CONTRAINT_TYPE.Contains("FOREIGN KEY"))
@@ -196,7 +218,15 @@ namespace framework_crud.ORM
                             }
                             else
                             {
-                                table.fields[lastIndex].flags = FieldFlags.Key | FieldFlags.ForeignKey;
+                                if (fieldName.Equals(identity_Field))
+                                {
+                                    table.fields[lastIndex].flags = FieldFlags.Key | FieldFlags.ForeignKey | FieldFlags.Auto;
+                                }
+                                else
+                                {
+                                    table.fields[lastIndex].flags = FieldFlags.Key | FieldFlags.ForeignKey;
+                                }
+
                                 table.fields[lastIndex].fieldReference = new FieldReference
                                 {
                                     table = RF_TABLE,
