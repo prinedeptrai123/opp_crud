@@ -45,7 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Info.cs" />
+    <Compile Include="Models\Book\Bill.cs" />
+    <Compile Include="Models\Book\Bill_Detail.cs" />
+    <Compile Include="Models\Book\Bill_Type.cs" />
+    <Compile Include="Models\Book\Book.cs" />
+    <Compile Include="Models\Book\Book_Inventory.cs" />
+    <Compile Include="Models\Book\Book_Theme.cs" />
+    <Compile Include="Models\Book\Book_Type.cs" />
+    <Compile Include="Models\Book\Customer.cs" />
+    <Compile Include="Models\Book\Decentralization.cs" />
+    <Compile Include="Models\Book\Discount_Code.cs" />
+    <Compile Include="Models\Book\Employee.cs" />
+    <Compile Include="Models\Book\Employee_Account.cs" />
+    <Compile Include="Models\Book\Employee_Role.cs" />
+    <Compile Include="Models\Book\Pay_Wage.cs" />
+    <Compile Include="Models\Book\Promotion_Type.cs" />
+    <Compile Include="Models\Book\Publishing_Company.cs" />
+    <Compile Include="Models\Book\Warehouse.cs" />
+    <Compile Include="Models\Book\Warehouse_Detail.cs" />
+    <Compile Include="Models\School\Info.cs" />
+    <Compile Include="Models\Test\Table1.cs" />
+    <Compile Include="Models\Test\tabletest.cs" />
+    <Compile Include="Models\Test\testdata.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

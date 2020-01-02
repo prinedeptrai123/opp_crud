@@ -4,7 +4,7 @@ using System.Linq;
 using DEMO.Models;
 using framework_crud.ORM;
 
-namespace DEMO.Models
+namespace ConsoleTest
 {
 	[Table("testdata", "dbo")]
     public class testdata

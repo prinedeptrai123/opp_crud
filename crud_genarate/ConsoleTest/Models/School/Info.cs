@@ -8,7 +8,7 @@ namespace ConsoleTest
     [Table("Info", "dbo")]
     public class Info
     {
-        [Field("ID", FieldFlags.Read | FieldFlags.Key)]
+        [Field("ID", FieldFlags.Read | FieldFlags.Key | FieldFlags.Auto)]
         public Int32 ID { get; set; }
         [Field("Name")]
         public string Name { get; set; }

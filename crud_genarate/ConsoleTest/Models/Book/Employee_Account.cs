@@ -11,8 +11,8 @@ namespace DEMO.Models
     {        
         [Field("Employee_ID", FieldFlags.ReadWrite | FieldFlags.ForeignKey, "Employee", "Employee_ID")]
 public Int32 Employee_ID {get;set;}
-[Field("Employee_ID")]
- public Int32 Employee_ID {get;set;}
+//[Field("Employee_ID")]
+// public Int32 Employee_ID {get;set;}
 [Field("Account_ID", FieldFlags.Read | FieldFlags.Key)]
 public Int32 Account_ID {get;set;}
 [Field("Account_User")]

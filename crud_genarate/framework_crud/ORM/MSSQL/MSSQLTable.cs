@@ -66,12 +66,26 @@ namespace framework_crud.ORM
             return Insert(new object[] { obj });
         }
 
+        private MSSQLField[] getWriteableField(List<MSSQLField> writeable,List<MSSQLField> identity)
+        {
+            foreach(var item in identity)
+            {
+                writeable.Remove(item);
+            }
+            return writeable.ToArray();
+        }
+
         public int Insert(ICollection list)
         {
-            MSSQLField[] writeable = GetFields(FieldFlags.Write);
+            MSSQLField[] writeable1 = GetFields(FieldFlags.Write);
             MSSQLField[] identity = GetFields(FieldFlags.Auto);
+
+            MSSQLField[] writeable = getWriteableField(writeable1.ToList(), identity.ToList());
             string[] names = new string[writeable.Length];
             string[] places = new string[writeable.Length];
+
+            //remove IDENTITY FIELD
+
             for (int i = 0; i < writeable.Length; ++i)
             {
                 names[i] = database.QuoteName(writeable[i].Name);
@@ -84,14 +98,17 @@ namespace framework_crud.ORM
 
             FireTrigger(MSSQLTrigger.BeforeInsert, list);
 
+            //TODO: FIX
             SqlParameter pID = null;
             if (identity.Length > 0)
             {
-                sql += " SET @ID=SCOPE_IDENTITY();";
-                pID = new SqlParameter();
-                pID.ParameterName = "@ID";
-                pID.SqlDbType = SqlDbType.BigInt;
-                pID.Direction = ParameterDirection.Output;
+                //TODO: REMOVE 
+
+                //sql += " SET @ID=SCOPE_IDENTITY();";
+                //pID = new SqlParameter();
+                //pID.ParameterName = "@ID";
+                //pID.SqlDbType = SqlDbType.BigInt;
+                //pID.Direction = ParameterDirection.Output;
             }
 
             int rowcount = 0;
