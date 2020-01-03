@@ -78,13 +78,10 @@ namespace framework_crud.ORM
         public void SetValue(object target, object value)
         {
             Type dataType = DataType;
-            // Handle Nullable types.
-            // TODO: Maybe better checking to ensure that it's really Nullable.
             if (dataType.IsGenericType)
                 dataType = dataType.GetGenericArguments()[0];
             if (value != null && !dataType.IsAssignableFrom(value.GetType()))
                 value = Convert.ChangeType(value, dataType);
-
             try
             {
                 if (property != null)

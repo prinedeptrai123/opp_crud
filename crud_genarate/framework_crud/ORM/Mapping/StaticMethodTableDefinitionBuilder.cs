@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
+    //TODO remove this
     class StaticMethodTableDefinitionBuilder: ITableDefinitionBuilder
     {
         public static readonly string MethodName = "DefineTable";

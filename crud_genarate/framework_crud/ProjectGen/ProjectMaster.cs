@@ -26,12 +26,28 @@ namespace framework_crud
         private string _directoryName;
         private string _connstring;
 
+        private static ProjectMaster _instance;
+        public static void createProject(string connString, string nameSpace, string directoryPath)
+        {
+            _instance = new ProjectMaster(connString, nameSpace, directoryPath);
+        }
+        public static ProjectMaster Instance { get
+            {
+                if(_instance == null)
+                {
+                    throw new Exception("Please create instance first");
+                }
+                return _instance;
+            } }
+
         // const temp
         //private string con = "Data Source={0}; database={1};Integrated Security=True;Connect Timeout=10";
 
         private string _applicationName = "ORM_DEMO";
+        List<TableDefinition> tables;
 
-        public ProjectMaster(string connString, string nameSpace, string directoryPath)
+
+        private ProjectMaster(string connString, string nameSpace, string directoryPath)
         {
             _connstring = connString;
             _namespace = nameSpace;
@@ -50,7 +66,6 @@ namespace framework_crud
 
         #endregion
 
-        List<TableDefinition> tables;
 
         //TODO: code this
         public void genTable()
@@ -123,18 +138,8 @@ namespace framework_crud
             System.IO.File.Copy(sourceFile, destFile, true);
         }
 
-        //TODO: code this
-        public void genForm()
-        {
 
-        }
-
-        public void genFormMain()
-        {
-
-        }
-
-        public void generateProject(string solutionName, string projectName, string generateLocation)
+        private void generateProject(string solutionName, string projectName, string generateLocation)
         {
             Console.WriteLine($"{solutionName} {projectName} {generateLocation}");
 

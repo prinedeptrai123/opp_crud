@@ -87,8 +87,10 @@ namespace crud_genarate
             }
             
             connector.Catalog = txtCatalog.Text;
-            ProjectMaster projectMaster = new ProjectMaster(connector.ConnectionString, txtNamesSpace.Text, txtDirectory.Text);
-            projectMaster.genTable();
+            //ProjectMaster projectMaster = new ProjectMaster(connector.ConnectionString, txtNamesSpace.Text, txtDirectory.Text);
+            ProjectMaster.createProject(connector.ConnectionString, txtNamesSpace.Text, txtDirectory.Text);
+            ProjectMaster.Instance.genTable();
+            //projectMaster.genTable();
         }
 
         private void btnBrowser_Click(object sender, EventArgs e)

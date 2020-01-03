@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace framework_crud.ORM
 {
-    //TODO:review
     public class MSSQLTable:ITable
     {
         private MSSQLDatabase database;
@@ -19,14 +18,11 @@ namespace framework_crud.ORM
         private string name;
         private string schema;
         private MSSQLField[] fields;
-        private object[] triggerParameters;
 
         public MSSQLTable(MSSQLDatabase database, Type type)
         {
             this.database = database;
             classType = type;
-            triggerParameters = new object[] { database, EventArgs.Empty };
-
             BuildTable();
         }
 
@@ -254,6 +250,7 @@ namespace framework_crud.ORM
 
         public virtual object NewObject()
         {
+            //flag
             return Activator.CreateInstance(classType);
         }
 

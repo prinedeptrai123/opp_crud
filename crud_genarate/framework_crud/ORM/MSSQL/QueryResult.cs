@@ -42,7 +42,6 @@ namespace framework_crud.ORM
             DataTable table = new DataTable();
             using (this)
                 table.Load(reader);
-            //NOTE: No DBNull to .NET null conversion
             return table;
         }
 
