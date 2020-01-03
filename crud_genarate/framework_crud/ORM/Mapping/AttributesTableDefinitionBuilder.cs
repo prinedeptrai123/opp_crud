@@ -9,6 +9,7 @@ namespace framework_crud.ORM
 {
     class AttributesTableDefinitionBuilder: ITableDefinitionBuilder
     {
+        //TODO:Build table base on custome attribute
         public TableDefinition Build(Type type)
         {
             if (!type.IsDefined(typeof(TableAttribute), false))

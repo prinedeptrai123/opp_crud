@@ -19,7 +19,6 @@ namespace framework_crud.ORM
         private string name;
         private string schema;
         private MSSQLField[] fields;
-        private MSSQLTrigger[] triggers;
         private object[] triggerParameters;
 
         public MSSQLTable(MSSQLDatabase database, Type type)
@@ -89,19 +88,8 @@ namespace framework_crud.ORM
             string sql = "INSERT INTO " + QuotedName +
                     "(" + fieldstr + ") VALUES(" + valuestr + ");";
 
-            FireTrigger(MSSQLTrigger.BeforeInsert, list);
             
             SqlParameter pID = null;
-            if (identity.Length > 0)
-            {
-                //TODO: REMOVE 
-                //sql += " SET @ID=SCOPE_IDENTITY();";
-                //pID = new SqlParameter();
-                //pID.ParameterName = "@ID";
-                //pID.SqlDbType = SqlDbType.BigInt;
-                //pID.Direction = ParameterDirection.Output;
-            }
-
             int rowcount = 0;
             object[] parameters = new object[writeable.Length];
             using (MSSQLStatement stmt = database.Prepare(sql) as MSSQLStatement)
@@ -125,7 +113,6 @@ namespace framework_crud.ORM
                     }
                 }
             }
-            FireTrigger(MSSQLTrigger.AfterInsert, list);
             return rowcount;
         }
 
@@ -173,7 +160,6 @@ namespace framework_crud.ORM
                 }
             }
 
-            FireTrigger(MSSQLTrigger.BeforeUpdate, list);
             int rowcount = 0;
             object[] parameters = new object[nonKeys.Length + keys.Length];
             using (MSSQLStatement stmt = database.Prepare(sql.ToString()) as MSSQLStatement)
@@ -188,7 +174,6 @@ namespace framework_crud.ORM
                     rowcount += stmt.ExecNonQuery(parameters);
                 }
             }
-            FireTrigger(MSSQLTrigger.AfterUpdate, list);
             return rowcount;
         }
 
@@ -216,7 +201,6 @@ namespace framework_crud.ORM
                 first = false;
             }
 
-            FireTrigger(MSSQLTrigger.BeforeDelete, list);
             int rowcount = 0;
             object[] parameters = new object[keys.Length];
             using (MSSQLStatement stmt = database.Prepare(sql.ToString()) as MSSQLStatement)
@@ -228,17 +212,9 @@ namespace framework_crud.ORM
                     rowcount += stmt.ExecNonQuery(parameters);
                 }
             }
-            FireTrigger(MSSQLTrigger.AfterDelete, list);
             return rowcount;
         }
 
-        internal void FireTrigger(int which, ICollection list)
-        {
-            MSSQLTrigger trigger = triggers[which];
-            if (trigger != null)
-                foreach (object obj in list)
-                    trigger.Fire(obj, triggerParameters);
-        }
 
         public string QuotedName
         {
@@ -295,7 +271,7 @@ namespace framework_crud.ORM
             this.name = tableDef.name;
             this.schema = tableDef.schema;
             this.fields = new MSSQLField[tableDef.fields.Count];
-            this.triggers = new MSSQLTrigger[MSSQLTrigger.Names.Length];
+            //this.triggers = new MSSQLTrigger[MSSQLTrigger.Names.Length];
 
             int i = 0;
             BindingFlags flags = BindingFlags.Instance
@@ -313,13 +289,6 @@ namespace framework_crud.ORM
                             fieldDef.memberName, classType.FullName, fieldDef.columnName));
                 this.fields[i] = new MSSQLField(fieldDef.columnName, member, fieldDef.flags);
                 i++;
-            }
-
-            for (i = 0; i < MSSQLTrigger.Names.Length; ++i)
-            {
-                MethodInfo method = classType.GetMethod(MSSQLTrigger.Names[i], flags);
-                if (method != null)
-                    this.triggers[i] = new MSSQLTrigger(method);
             }
         }
     }

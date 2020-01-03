@@ -47,6 +47,10 @@ namespace ConsoleTest
 
 
             a.Table(typeof(CourseInstructor)).Delete(coure);
+            a.Table(typeof(CourseInstructor)).Insert(coure);
+           // a.Table(typeof(CourseInstructor)).Update(coure);
+           // a.Table(typeof(CourseInstructor)).Query().Select();
+            //a.Table(typeof(CourseInstructor)).Query().And().Eq("CourseID", 1).EndSub();
 
         }
 

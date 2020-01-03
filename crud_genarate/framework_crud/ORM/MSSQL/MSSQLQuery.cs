@@ -240,7 +240,6 @@ namespace framework_crud.ORM
                 result.ForEach(callback);
             }
 
-            table.FireTrigger(MSSQLTrigger.AfterSelect, list);
         }
 
         public IList Select()

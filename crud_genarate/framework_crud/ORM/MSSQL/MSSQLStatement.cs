@@ -180,8 +180,7 @@ namespace framework_crud.ORM
                 p.Size = 0;
                 return;
             }
-            // HACK: Support setting binary fields to NULL.
-            // Without this, Sql Server cannot implicitly convert nvarchar to varbinary.
+           
             if (value == BinaryNull)
             {
                 p.Value = DBNull.Value;

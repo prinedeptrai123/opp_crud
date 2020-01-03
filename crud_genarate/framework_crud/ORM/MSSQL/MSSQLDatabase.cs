@@ -12,7 +12,6 @@ namespace framework_crud.ORM
 {
     public class MSSQLDatabase: IDatabase
     {
-        // Defaults based on MSDN (?)
         public static byte DecimalPrecision = 18;
         public static byte DecimalScale = 0;
 
@@ -21,7 +20,6 @@ namespace framework_crud.ORM
         private SqlConnection connection;
         private SqlTransaction transaction;
         private bool closeConnection = false;
-        private LRUCache tableCache = new LRUCache(10); /*TODO: hardcoded size*/
 
         public MSSQLDatabase(SqlConnection connection)
         {
@@ -117,12 +115,6 @@ namespace framework_crud.ORM
 
         public ITable Table(Type type)
         {
-            //MSSQLTable table = tableCache.Get(type) as MSSQLTable;
-            //if (table == null)
-            //{
-            //    table = new MSSQLTable(this, type);
-            //    tableCache.Put(type, table);
-            //}
             MSSQLTable table = new MSSQLTable(this, type);
             return table;
         }
@@ -149,7 +141,6 @@ namespace framework_crud.ORM
             for (int i = 0; i < db.Rows.Count; i++)
             {
                 string tableName = db.Rows[i][0].ToString();
-                Console.WriteLine(tableName+"---------------");
                 if (tableName == "sysdiagrams")
                 {
                     continue;
@@ -169,7 +160,6 @@ namespace framework_crud.ORM
 
                     for (int j = 0; j < column.Rows.Count; j++)
                     {
-                        
                         string fieldName = column.Rows[j][1].ToString();
                         string fieldData = column.Rows[j][2].ToString();
                         string CONTRAINT_TYPE = column.Rows[j][3].ToString();
@@ -248,11 +238,6 @@ namespace framework_crud.ORM
         //TODO: change this code
         private DataTable getTableColumn(string tableName)
         {
-            //string query = $"SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
-            //string query = "SELECT C.Column_name, data_type, is_Nullable, U.CONSTRAINT_NAME" +
-            //                "FROM information_Schema.Columns C FULL OUTER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE U ON C.COLUMN_NAME = U.COLUMN_NAME" +
-            //                $"WHERE C.TABLE_NAME = '{tableName}'";
-            //Console.WriteLine(string.Format(BaseQuery.GET_TABLE_INFOMATION, tableName));
             string query = string.Format(BaseQuery.GET_TABLE_INFOMATION_2, tableName);
             return GetDataTalbe(query);
         }
